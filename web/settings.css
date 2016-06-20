@@ -21,14 +21,13 @@
 	border:				.2em solid rgba(0,0,0,0);
 	background-color:	rgba(0,0,0,0.3);
 	display:			inline-block;
-	outline:			none;
 	width:				31%;
 	height:				30%;
 	opacity:			0.6;
 	color:				#fff;
 	font-size:			1.2em;
 	margin:				0 0 1em 0;
-	padding:			2.5em;
+	padding:			2.5em 0 2.5em 0;
 	cursor:				pointer;
 	transition:			opacity .2s ease-in, border .3s ease-in;
 	-webkit-transition:	opacity .2s ease-in, border .3s ease-in;
@@ -42,5 +41,3 @@
 	opacity:	1;
 	border:		.2em solid rgba(0,0,0,1);
 }
-
-
