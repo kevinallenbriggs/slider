@@ -1,17 +1,5 @@
 <?php
 
-require_once '../db_connect.php';
-
-// retrieve all the files from the uploads/ directory
-$files = array_diff(scandir("uploads/", SCANDIR_SORT_NONE), array('.', '..'));
-
-if ($result = $connection->query("SELECT * FROM files")) {
-	// compare these results to what is in the uploads directory
-	if ($result->num_rows <= 0) {
-		
-	}
-}
-
 ?>
 
 <html>
