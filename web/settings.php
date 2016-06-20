@@ -23,7 +23,7 @@ $appname = "TeenSeen";
 	</div>
 	
 	<div class="settings">
-		<button id="exit_button" onclick="window.location.href='/';">Exit Settings</button>
+		<button id="exit_button" onclick="goHome();">Exit Settings</button>
 	</div>
 </div> <!-- .container -->
 </body>
