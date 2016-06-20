@@ -1,4 +1,4 @@
-<?php /*
+<?php
 
 require_once '../db_connect.php';
 
@@ -12,7 +12,7 @@ if ($result = $connection->query("SELECT * FROM files")) {
 	}
 }
 
-*/?>
+?>
 
 <html>
 <head>

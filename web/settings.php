@@ -6,7 +6,7 @@ $appname = "TeenSeen";
 <head>
 	<title>Settings</title>
 	<link rel="stylesheet" href="style.css" />
-	<link rel="stylesheet" href="settings_css.php" />
+	<link rel="stylesheet" href="settings.css" />
 	<link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
 	<script src="settings.js"></script>
 	
@@ -26,5 +26,15 @@ $appname = "TeenSeen";
 		<button id="exit_button" onclick="goHome();">Exit Settings</button>
 	</div>
 </div> <!-- .container -->
+
+<div id="lightbox" onclick="toggleLightBox()">
+	<div class="lb_container">
+		<form action="<?= $_SERVER['PHP_SELF'];?>" method="post" enctype="multiport/form-data">
+		<h1>Add a Slide</h1>
+		This is where the form goes to upload a slide.
+		<input type="file" value="search">
+		</form>
+	</div>
+</div>
 </body>
 </html>
