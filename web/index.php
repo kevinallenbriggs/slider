@@ -1,8 +1,13 @@
 <?php
 
 include_once '../functions.php';
-getSlides();
+$slides = getSlides();
 
+/*foreach ($slides as $slide) {
+	echo "<pre>";
+	print_r($slide);
+	echo "</pre>";
+}*/
 ?>
 
 <html>
@@ -22,7 +27,12 @@ getSlides();
 			<ul>
 				<?php 
 					foreach ($slides as $slide) {
-						echo "<li><img src='uploads/$slide'></li>";
+						echo '<li>';
+						if (isPic($slide))
+							echo "<img src='$slide->path'>";
+						else
+							echo "<iframe src='$slide->path' width='100%' style='height:100%'></iframe>";
+						echo '</li>';
 					}
 				?>
 				<!-- <li><img src="uploads/20160318_153732.jpg"></li>
