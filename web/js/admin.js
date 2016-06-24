@@ -1,5 +1,5 @@
 function goHome() {
-	window.location.href = location.href.replace('settings.php', '');
+	window.location.href = location.href.replace('admin.php', '');
 }
 
 

@@ -5,10 +5,10 @@ $appname = "TeenSeen";
 <html>
 <head>
 	<title>Settings</title>
-	<link rel="stylesheet" href="style.css" />
-	<link rel="stylesheet" href="settings.css" />
+	<link rel="stylesheet" href="css/style.css" />
+	<link rel="stylesheet" href="css/admin.css" />
 	<link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
-	<script src="settings.js"></script>
+	<script src="js/admin.js"></script>
 	
 </head>
 

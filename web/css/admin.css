@@ -1,5 +1,5 @@
 .container {
-	background-image:	url('images/settings_bg.jpg');
+	background-image:	url('../images/settings_bg.jpg');
 	background-repeat:	no-repeat;
 	background-size:	640px 480px;
 }
