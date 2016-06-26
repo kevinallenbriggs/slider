@@ -14,7 +14,7 @@ function toggleLightBox(id) {
 }
 
 // THIS FUNCTION ALLOWS USERS TO ADD A SLIDE TO THE SYSTEM
-function add() {
+function add_slide() {
 	toggleLightBox();
 }
 

@@ -1,6 +1,7 @@
 $(function() {
 	var ul = $(".slider ul");	// get the ul which contains the slides
 	var slide_count = ul.children().length;		// determine the number of slides
+	console.log("slide count upon initialization: " + slide_count);
 	var slide_width_pc = 100.0 / slide_count;	// determine the width of each slide
 	var slide_index = 0;		// create a reference for our current slide (within the array)
 	var first_slide = ul.find("li:first-child");	// create a reference for the first slide
@@ -17,6 +18,7 @@ $(function() {
 	first_slide.clone().appendTo(ul);
 
 	ul.css("margin-left", "-100%");		// hide the first slide of the array, which is really the last slide due to the above trickery
+	ul.css("width", slide_count * 100 + "%");	// set the width of the ul so that all slides fit
 
 	// 'line up' the slides according to their index within the array
 	ul.find("li").each(function(indx) {
@@ -28,7 +30,7 @@ $(function() {
 	
 	// Listen for click of play button
 	$(".slider .play").click(function() {
-		console.log("play button clicked, playing is set to " + playing);		// log a message to the console for debugging
+		//console.log("play button clicked, playing is set to " + playing);		// log a message to the console for debugging
 		if(!playing) {
 			slide(slide_index + 1);
 			interval = setInterval(function(){
@@ -40,7 +42,7 @@ $(function() {
 	
 	// Listen for click of pause button
 	$(".slider .pause").click(function() {
-		console.log("pause button clicked");
+		//console.log("pause button clicked");
 		if (playing) {
 			clearInterval(interval);
 			playing = false;
@@ -54,7 +56,7 @@ $(function() {
 			if(new_slide_index < 0) {
 				ul.css("margin-left", ((slide_count) * (-100)) + "%");
 				new_slide_index = slide_count - 1;
-			}
+			} 
 
 			// If new slide is after last slide
 			else if(new_slide_index >= slide_count) {
@@ -67,3 +69,8 @@ $(function() {
 
 	}
 });
+
+function preserveGet($dest) {
+		$url = window.location.href.split('?');
+		window.location.href = $url[0] + $dest + '?' + $url[1];
+}

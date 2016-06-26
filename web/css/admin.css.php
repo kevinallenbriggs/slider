@@ -1,7 +1,12 @@
+<?php
+header("Content-type: text/css; charset: UTF-8");
+include_once ('../../functions.php');
+?>
+
 .container {
 	background-image:	url('../images/settings_bg.jpg');
 	background-repeat:	no-repeat;
-	background-size:	640px 480px;
+	background-size:	<?php echo APP_WIDTH; ?>px <?php echo APP_HEIGHT; ?>px;
 }
 .container h1 {
 	text-align:					center;

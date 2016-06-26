@@ -25,10 +25,11 @@
 	position:	absolute;
 	top:		0;
 	bottom:		0;
+	text-align:	center;
 }
 
 .slider li img {
-	width:		100%;
+	/*width:		100%;*/
 	border:		none;
 	min-height:	100%;
 }
@@ -66,7 +67,7 @@
 	right: 0;
 }
 
-.slider button.settings {
+.slider button.admin {
 	left: 20%;
 	width: 60%;
 	height: 80%;

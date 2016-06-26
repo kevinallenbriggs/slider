@@ -1,13 +1,8 @@
 <?php
 
 include_once '../functions.php';
-$slides = getSlides();
+$slides = getFiles();
 
-/*foreach ($slides as $slide) {
-	echo "<pre>";
-	print_r($slide);
-	echo "</pre>";
-}*/
 ?>
 
 <html>
@@ -15,33 +10,52 @@ $slides = getSlides();
 	<title>Slider</title>
 	<link rel="stylesheet" href="css/slider.css" />
 	<link rel="stylesheet" href="css/style.css" />
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script> 
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+	<?php 
+	if (!isset($_GET['w']) || !isset($_GET['h'])) {
+		echo <<<_END
+			<script>
+				<!--
+				var w = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+				var h = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
+				document.location = "$PHP_SELF?w=" + w + "&h=" + h;
+				//-->
+			</script>
+_END;
+	};
+	?>
 	<link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
 	<script src="js/slider.js"></script>
 </head>
 
-<!--<body id="body" onload="setInterval(function() {$('.next').click();}, 4000)">-->
 <body onload="$('.slider .play').click()">
 	<div class="container">
+	
+	<script type="text/javascript">
+		<!--
+		console.log('your resolution is ' + <?php echo APP_WIDTH; ?> + 'x' + <?php echo APP_HEIGHT; ?>);
+		//-->
+	</script>
 		<div class="slider">
 			<ul>
 				<?php 
 					foreach ($slides as $slide) {
 						echo '<li>';
-						if (isPic($slide))
+						if (isPic($slide)) {
 							echo "<img src='$slide->path'>";
-						else
+							
+						} else {
 							echo "<iframe src='$slide->path' width='100%' style='height:100%'></iframe>";
+						}
 						echo '</li>';
+						
 					}
 				?>
-				<!-- <li><img src="uploads/20160318_153732.jpg"></li>
-				<li><img src="uploads/IMG_8672.JPG"></li>
-				<li><img src="uploads/sync-poster-no-dates-2016-final.jpg"></li>-->
 			</ul>
 			<button class="pause"><img src="images/pause.png"></button>
 			<button class="play"><img src="images/play.png"></button>
-			<button class="settings" onclick="window.location.href='admin.php'"><img src="images/settings.png"></button>
+			<!--<button class="admin" onclick="window.location.href='admin.php'"><img src="images/settings.png"></button> -->
+			<button class="admin" onclick="preserveGet('admin.php');"><img src="images/admin.png"></button>
 		</div>
 	</div>
 
