@@ -11,6 +11,11 @@ $slides = getFiles();
 	<link rel="stylesheet" href="css/slider.css" />
 	<link rel="stylesheet" href="css/style.css" />
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+	<script type="text/javascript">
+		<!--
+		console.log('your resolution is ' + <?php echo APP_WIDTH; ?> + 'x' + <?php echo APP_HEIGHT; ?>);
+		//-->
+	</script>
 	<?php 
 	if (!isset($_GET['w']) || !isset($_GET['h'])) {
 		echo <<<_END
@@ -22,7 +27,21 @@ $slides = getFiles();
 				//-->
 			</script>
 _END;
-	};
+	} else {
+		$width = htmlspecialchars($_GET['w']);
+		$height = htmlspecialchars($_GET['h']);
+		echo <<<_END
+			<script>
+				<!--
+				var w = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+				var h = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
+				if (w <> $width) w = $width;
+				if (h <> $height) h = $height;
+				document.location = "$PHP_SELF?w=" + w + "&h=" + h;
+				// -->
+			</script>
+_END;
+	}
 	?>
 	<link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
 	<script src="js/slider.js"></script>
@@ -30,12 +49,6 @@ _END;
 
 <body onload="$('.slider .play').click()">
 	<div class="container">
-	
-	<script type="text/javascript">
-		<!--
-		console.log('your resolution is ' + <?php echo APP_WIDTH; ?> + 'x' + <?php echo APP_HEIGHT; ?>);
-		//-->
-	</script>
 		<div class="slider">
 			<ul>
 				<?php 

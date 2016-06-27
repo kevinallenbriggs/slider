@@ -1,13 +1,19 @@
 <?php
 header("Content-type: text/css; charset: UTF-8");
-include_once ('../../functions.php');
 ?>
 
 .container {
 	background-image:	url('../images/settings_bg.jpg');
 	background-repeat:	no-repeat;
-	background-size:	<?php echo APP_WIDTH; ?>px <?php echo APP_HEIGHT; ?>px;
+	<?php
+		if (defined(APP_WIDTH) || defined(APP_HEIGHT)) {
+			echo "	background-size:	" . APP_WIDTH . "px " . APP_HEIGHT . "px;";
+		} else {
+			echo "	background-size:	100% 100%;";
+		}
+	?>
 }
+
 .container h1 {
 	text-align:					center;
 	color: 						black;

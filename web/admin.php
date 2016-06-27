@@ -31,14 +31,9 @@ if (isset($_POST['slide_submitted']) && $_POST['slide_submitted'] == true) {
 	</div>
 </div> <!-- .container -->
 
-<div id="lightbox" onclick="toggleLightBox()">
-	<div class="lb_container">
-		<form action="<?= $_SERVER['PHP_SELF'];?>" method="post" enctype="multiport/form-data">
-		<h1>Add a Slide</h1>
-		<input type="hidden" name="slide_submitted" value="false">
-		<input type="text" value="URL">
-		<input type="file" value="search">
-		</form>
+<div id="lightbox" onclick="toggleLightBox();">
+	<div class="lb_container" onclick="childHandler(event);">
+		<!-- CONTENT HERE IS FILLED IN BY JAVASCRIPT FROM ADMIN.JS -->
 	</div>
 </div>
 </body>
