@@ -8,42 +8,38 @@ $slides = getFiles();
 <html>
 <head>
 	<title>Slider</title>
-	<link rel="stylesheet" href="css/slider.css" />
-	<link rel="stylesheet" href="css/style.css" />
+	<link rel="stylesheet" href="css/slider.css">
+	<link rel="stylesheet" href="css/style.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
 	<script type="text/javascript">
-		<!--
 		console.log('your resolution is ' + <?php echo APP_WIDTH; ?> + 'x' + <?php echo APP_HEIGHT; ?>);
-		//-->
 	</script>
 	<?php 
 	if (!isset($_GET['w']) || !isset($_GET['h'])) {
 		echo <<<_END
 			<script>
-				<!--
 				var w = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
 				var h = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
 				document.location = "$PHP_SELF?w=" + w + "&h=" + h;
-				//-->
 			</script>
 _END;
 	} else {
-		$width = htmlspecialchars($_GET['w']);
-		$height = htmlspecialchars($_GET['h']);
+		$width = $_GET['w'];
+		$height = $_GET['h'];
 		echo <<<_END
 			<script>
-				<!--
 				var w = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
 				var h = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
-				if (w <> $width) w = $width;
-				if (h <> $height) h = $height;
-				document.location = "$PHP_SELF?w=" + w + "&h=" + h;
-				// -->
+				console.log("detected w = " + w);
+				console.log("detected h = " + h);
+				if (w != $width || h != $height) {
+					document.location = "$PHP_SELF?w=" + w + "&h=" + h;
+				}
 			</script>
 _END;
 	}
 	?>
-	<link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
+	<link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css' >
 	<script src="js/slider.js"></script>
 </head>
 
