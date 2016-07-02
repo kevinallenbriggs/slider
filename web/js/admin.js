@@ -54,15 +54,36 @@ function toggleLightBox(content, id) {
 					// process the File objects
 					for (var i = 0, file; file = files[i]; i++) {
 						parseFile(file);
+						uploadFile(file);
 					}
 				}
 				
 				function parseFile(file) {
-					console.log("parseFile() called");
-					debug(	"<File information:<br" + 
-							"<b>Name: </b>" + file.name + "<br>" +
-							"<b>Type: </b>" + file.type + "<br>" +
-							"<b>Size: </b>" + file.size + " bytes");
+					if (file.type.indexOf("image") == 0) {
+						var reader = new FileReader();
+						/*reader.onload = function(e) {
+							debug(	"File name: " + file.name);
+						}*/
+						
+						reader.readAsDataURL(file);
+					}
+					debug(	"File information: \n" + 
+							"Name: " + file.name + "\n" +
+							"Type: " + file.type + "\n" +
+							"Size: " + file.size + " bytes");
+				}
+				
+				function uploadFile(file) {
+					var xhr = new XMLHttpRequest();
+					if (	xhr.upload &&
+							file.type == "image.jpeg" &&
+							file.size <= document.getElementById('MAX_FILE_SIZE').value) {
+						
+						// start upload
+						xhr.open("POST", document.getElementById('upload').action, true);
+						xhr.setRequestHeader("X_FILENAME", file.name);
+						xhr.send(file);
+					}
 				}
 			}
 			break;
@@ -115,5 +136,5 @@ function childHandler(e) {
 }
 
 function debug(msg) {
-	console.log("Debug: " + msg);
+	console.log("Debug: \n" + msg);
 }
