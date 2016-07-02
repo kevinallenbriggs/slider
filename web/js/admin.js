@@ -13,19 +13,58 @@ function toggleLightBox(content, id) {
 	
 	switch (content) {
 		case 'add':
-			$add_slide_form = 	'<h1>Add a Slide</h1>' +
-								'<form action="" method="post" id="url-form">' +
-								'<input type="hidden" name="url_submitted" value="true">' +
-								'<input type="url" value="URL">' +
-								'<input type="submit" value="Download">' +
-								'</form>' +
-								'<form action="" method="post" enctype="multiport/form-data" id="file-form">' +
-								'<input type="hidden" name="file_submitted" value="true">' +
-								'<input type="file" name="fileselect[]" id="file-select" multiple="multiple">' +
-								'<button type="submit" id="file-upload-button">Upload</button>' +
-								'</form>';
-			console.log(lightbox);
-			lb_container.innerHTML = $add_slide_form;
+			document.getElementById('add').style.display = "block";
+			
+			// check if the W3C File API is available in this browser
+			if (window.File && window.FileList && window.FileReader) {
+				var fileselect		= document.getElementById('file_select'),
+					filedrag		= document.getElementById('file_drag'),
+					submitbutton	= document.getElementById('submit_button');
+				
+				// add event listener to the file_select button
+				fileselect.addEventListener("change", fileSelectHandler, false);
+				
+				// check if AJAX is available
+				var xhr = new XMLHttpRequest();
+				if (xhr.upload) {
+					// add event handlers for file drag n drop
+					filedrag.addEventListener("dragover", fileDragHover, false);
+					filedrag.addEventListener("dragleave", fileDragHover, false);
+					filedrag.addEventListener("drop", fileSelectHandler, false);
+					filedrag.style.display = "block";
+					
+					// remove the submit button since we'll be doing it automatically
+					submitbutton.style.display = 'none';
+				}
+				
+				function fileDragHover(event) {
+					event.stopPropagation();		// cancel events
+					event.preventDefault();			// cancel events
+					
+					// change the pseudo class of the calling object
+					event.target.className = (event.type == "dragover" ? "hover" : "");
+				}
+				
+				function fileSelectHandler(event) {
+					fileDragHover(event);		// cancel events and remove hover styles
+					
+					// fetch the FileList object
+					var files = event.target.files || event.dataTransfer.files;
+					
+					// process the File objects
+					for (var i = 0, file; file = files[i]; i++) {
+						parseFile(file);
+					}
+				}
+				
+				function parseFile(file) {
+					console.log("parseFile() called");
+					debug(	"<File information:<br" + 
+							"<b>Name: </b>" + file.name + "<br>" +
+							"<b>Type: </b>" + file.type + "<br>" +
+							"<b>Size: </b>" + file.size + " bytes");
+				}
+			}
 			break;
 		case 'edit':
 			$edit_form = '';
@@ -47,54 +86,7 @@ function toggleLightBox(content, id) {
 // THIS FUNCTION ALLOWS USERS TO ADD A SLIDE TO THE SYSTEM
 function add_slide() {
 	toggleLightBox('add');
-	
-	var form =			document.getElementById('file-form');
-	var fileSelect =	document.getElementById('file-select');
-	
-	form.onsubmit = function(event) {
-						event.preventDefault();		// stop the form from submitting
-						document.getElementById('file-upload-button').innerHTML = 'Uploading...';		// THIS SHOULD BE REPLACED WITH A FANCY SPINNER OR SOMETHING
-						
-						var files = document.getElementById('file-select').files;	// get the selected files from the input element
-						var formData = new FormData();	// create the formData object that will construct the key/value pairs for AJAX
-						
-						// loop through each of the uploaded files
-						for (var i = 0; i < files.length; i++) {
-							var file = files[i];
-							
-							// check the file type
-							if(!file.type.match(/^(image)\/.*/ )) {
-								console.log('file.type is not an image: ' + file.type);
-								continue;
-							} else {
-								console.log('file.type is an image: ' + file.type);
-							}
-							
-							// add the file to the request
-							formData.append('uploads[]', file, file.name);
-							
-							// set up the AJAX request and open the connection
-							var ajax = new XMLHttpRequest();
-
-							ajax.open('POST', 'upload.php', true);
-							
-							// set up a handler for event completion
-							ajax.onload = function() {
-												if(ajax.status === 200) {
-													// files uploaded
-													uploadButton.innerHTML('Upload');
-												} else {
-													// ERROR HANDLING GOES HERE
-													console.log('An ajax error occurred. -KAB');
-												}
-										  };	// end of ajax.onload
-										  
-							// send the data
-							ajax.send(formData);
-						}
-					}	// end of form.onsubmit
 }
-
 
 
 
@@ -120,5 +112,8 @@ function childHandler(e) {
     if (e.stopPropagation) e.stopPropagation();    
 
     //alert('child clicked');
+}
 
-}; 
+function debug(msg) {
+	console.log("Debug: " + msg);
+}

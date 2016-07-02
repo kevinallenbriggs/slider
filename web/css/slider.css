@@ -3,7 +3,6 @@
 	overflow:			hidden;
 	height:				100%;
 	position:			relative;
-	cursor:				none;
 }
 
 .slider ul {
@@ -84,4 +83,52 @@
 	width:		4em;
 	height:		4em;
 	margin:		auto;
+}
+
+#hide_cursor {
+	position:			absolute;
+	top:				80%;
+	left:				20%;
+	width:				60%;
+	height:				20%;
+	opacity:			1;
+	transition:			opacity 1s ease-out .5s;
+	-webkit-transition:	opacity 1s ease-out .5s;
+	-moz-transition:	opacity 1s ease-out .5s;
+	-o-transition:		opacity 1s ease-out .5s;
+	background-color: 	rgba(43, 133, 199, 0.3);
+	
+		/* Safari 4, Chrome 1-9, iOS 3.2-4.3, Android 2.1-3.0 */
+	background-image:	-webkit-gradient(radial, from(rgba(43, 133, 199, 0.3)), to(rgb(204,204,204)));
+	
+		/* Safari 5.1, iOS 5.0-6.1, Chrome 10-25, Android 4.0-4.3 */
+	background-image:	-webkit-linear-gradient(bottom, rgba(43, 133, 199, 0.3), rgb(204,204,204));
+	background-image:	-webkit-radial-gradient(50% 50%, closest-side, rgba(43, 133, 199, 0.3), rgb(204,204,204));
+	
+		/* Firefox 3.6 - 15 */
+	background-image:	-moz-linear-gradient(left top, rgba(43, 133, 199, 0.3), rgb(204,204,204));
+	background-image:	-moz-radial-gradient(50% 50%, closest-side, rgba(43, 133, 199, 0.3), rgb(204,204,204));
+	
+		/* Opera 11.1 - 12 */
+	background-image:	-o-linear-gradient(left top, rgba(43, 133, 199, 0.3), rgb(204,204,204));
+	background-image:	-o-radial-gradient(50% 50%, closest-side, rgba(43, 133, 199, 0.3), rgb(204,204,204));
+	
+		/* Opera 15+, Chrome 25+, IE 10+, Firefox 16+, Safari 6.1+, iOS 7+, Android 4.4+ */
+	background-image:	linear-gradient(left top, rgba(43, 133, 199, 0.3), rgb(204,204,204));
+	background-image:	radial-gradient(closest-side at 50% 50%, rgba(43, 133, 199, 0.3), rgb(204,204,204));
+}
+
+#hide_cursor:hover {
+	opacity:	0;
+	cursor:		none;
+}
+
+#hide_cursor div {
+	margin: 		0;
+	position: 		absolute;
+	top: 			50%;
+	left: 			50%;
+	margin-right: 	-50%;
+	transform: 		translate(-50%, -50%);
+	text-shadow:	0 0 1em rgb(43, 133, 199);
 }

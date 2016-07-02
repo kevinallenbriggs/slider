@@ -37,3 +37,16 @@ input:focus {
 	box-shadow: 	inset 1px 1px 2px 0 #c9c9c9;
 	padding-right:	10px;
 }
+
+.close_button {
+	float:	right;
+	width:	2em;
+	height:	2em;
+}
+
+.debug {
+	background-color:	#FFB6C1;
+	border:				1px solid red;
+	border-radius:		5px;
+	color: 				red;
+}

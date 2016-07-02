@@ -31,17 +31,25 @@ if (isset($_POST['slide_submitted']) && $_POST['slide_submitted'] == true) {
 	</div>
 </div> <!-- .container -->
 
-<div id="lightbox" onclick="toggleLightBox();">
+			<div class="debug">
+			</div>
+
+<div id="lightbox">
 	<div class="lb_container" onclick="childHandler(event);">
-		<div>
+		<div id="add">
+			<img src="images/close.png" class="close_button" onclick="toggleLightBox();">
 			<h1>Add a Slide</h1>
-			<form action="upload.php" method="post" id="upload_form" enctype="multiport/form-data">
-				<input type="hidden" name="url_submitted" value="true">
-				<input type="url" value="URL">
-				<input type="submit" value="Download">
-				<input type="hidden" name="file_submitted" value="true">
-				<input type="file" name="fileselect[]" id="file_select" multiple="multiple">
-				<button type="submit" id="file_upload_button">Upload</button>
+			<form id="upload" action="upload.php" method="POST" enctype="multipart/form-data">
+				<input type="hidden" id="MAX_FILE_SIZE" name="MAX_FILE_SIZE" value="300000" />
+				<div>
+					<label for="file_select">Files to upload:</label>
+					<input type="file" id="file_select" name="fileselect[]" multiple="multiple" />
+					<div id="file_drag">or drop files here</div>
+				</div>
+			
+				<div id="submit_button">
+					<button type="submit">Upload Files</button>
+				</div>
 			</form>
 		</div>
 	</div>

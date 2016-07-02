@@ -103,3 +103,24 @@ header("Content-type: text/css; charset: UTF-8");
 	margin-bottom:	1em;
 	padding-bottom: .2em;
 }
+
+#file_drag {
+	display:		none;
+	text-align:		center;
+	padding:		1em 0;
+	margin:			1em 0;
+	border:			2px dashed #555;
+	border-radius:	7px;
+	cursor:			default;
+}
+
+#file_drag.hover {		/* this is a hover class that we will apply with js */
+	color:			#f00;
+	border-color:	#f00;
+	border-style:	solid;
+	box-shadow:		inset 0 3px 4px #888;
+}
+
+#add {
+	display:	none;
+}

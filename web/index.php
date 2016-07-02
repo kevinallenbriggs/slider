@@ -65,8 +65,12 @@ _END;
 			<button class="play"><img src="images/play.png"></button>
 			<!--<button class="admin" onclick="window.location.href='admin.php'"><img src="images/settings.png"></button> -->
 			<button class="admin" onclick="preserveGet('admin.php');"><img src="images/admin.png"></button>
+			<div id="hide_cursor">
+				<div>Leave the mouse cursor here while viewing slides</div>
+			</div>
 		</div>
 	</div>
+
 
 </body>
 </html>
