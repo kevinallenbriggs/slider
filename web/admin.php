@@ -33,7 +33,17 @@ if (isset($_POST['slide_submitted']) && $_POST['slide_submitted'] == true) {
 
 <div id="lightbox" onclick="toggleLightBox();">
 	<div class="lb_container" onclick="childHandler(event);">
-		<!-- CONTENT HERE IS FILLED IN BY JAVASCRIPT FROM ADMIN.JS -->
+		<div>
+			<h1>Add a Slide</h1>
+			<form action="upload.php" method="post" id="upload_form" enctype="multiport/form-data">
+				<input type="hidden" name="url_submitted" value="true">
+				<input type="url" value="URL">
+				<input type="submit" value="Download">
+				<input type="hidden" name="file_submitted" value="true">
+				<input type="file" name="fileselect[]" id="file_select" multiple="multiple">
+				<button type="submit" id="file_upload_button">Upload</button>
+			</form>
+		</div>
 	</div>
 </div>
 </body>

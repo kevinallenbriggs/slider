@@ -31,7 +31,7 @@ class slide {
  * @param string $dir - 
  * @return multitype:
  */
-function getFiles($dir = 'uploads/slides/') {
+function getFiles($dir = 'uploads/resized/') {
 	if (substr($dir, -1) != '/')  $dir .= '/';		// add a trailing slash to $dir if it doesn't have one
 	$files = scandir($dir);							// get all the file names from $dir
 	$slide_objects = array();	// initialize the array to store the return values in
@@ -221,14 +221,14 @@ function isPic($slide) {
  
  
  function upload_slide() {
-	 /*$param = 'uploads/' . $slide->name . '_' . APP_WIDTH . 'x' . APP_HEIGHT . '.' . $slide->type;
+	 $param = 'uploads/resized/' . $slide->name . '_' . APP_WIDTH . 'x' . APP_HEIGHT . '.' . $slide->type;
 	 resize_image($slide->path,		// path to the image
 	 		'',
 	 		APP_WIDTH,			// desired width
 	 		APP_HEIGHT,		// desired height
 	 		true,				// maintain proportionality
 	 		$param,			// output to file
-	 		false);			// don't delete original*/
+	 		false);			// don't delete original
  
  }
 ?>
