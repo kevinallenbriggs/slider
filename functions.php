@@ -218,17 +218,4 @@ function isPic($slide) {
  	print_r($var);
  	echo "</pre>";
  }
- 
- 
- function upload_slide() {
-	 $param = 'uploads/resized/' . $slide->name . '_' . APP_WIDTH . 'x' . APP_HEIGHT . '.' . $slide->type;
-	 resize_image($slide->path,		// path to the image
-	 		'',
-	 		APP_WIDTH,			// desired width
-	 		APP_HEIGHT,		// desired height
-	 		true,				// maintain proportionality
-	 		$param,			// output to file
-	 		false);			// don't delete original
- 
- }
 ?>

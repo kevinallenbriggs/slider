@@ -64,8 +64,8 @@ function toggleLightBox(content, id) {
 						/*reader.onload = function(e) {
 							debug(	"File name: " + file.name);
 						}*/
-						
-						reader.readAsDataURL(file);
+						console.log(reader.readAsDataURL(file));
+						//reader.readAsDataURL(file);
 					}
 					debug(	"File information: \n" + 
 							"Name: " + file.name + "\n" +

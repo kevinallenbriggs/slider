@@ -66,14 +66,15 @@ header("Content-type: text/css; charset: UTF-8");
 }
 
 
+
 .lb_container {
 	margin: 			5%;
 	padding:			.8em;
 	border-radius:		.45em .45em;
 	z-index:			2;
-	box-shadow:			.3em .3em .3em black;
-	-moz-box-shadow:	.25em .25em .3em black;
-	-webkit-box-shadow:	.25em .25em .6em black;
+	box-shadow:			0 0 .8em black;
+	-moz-box-shadow:	0 0 .8em black;
+	-webkit-box-shadow:	0 0 .8em black;
 	
 	background-color: 	rgba(43, 133, 199, 0.8);
 	
@@ -104,14 +105,19 @@ header("Content-type: text/css; charset: UTF-8");
 	padding-bottom: .2em;
 }
 
+#upload_form {
+	width:	60%;
+	float:	left;
+}
+
 #file_drag {
 	display:		none;
 	text-align:		center;
+	vertical-align:	middle;
 	padding:		1em 0;
-	margin:			1em 0;
+	margin:			2em 0;
 	border:			2px dashed #555;
-	border-radius:	7px;
-	cursor:			default;
+	border-radius:	.45em;
 }
 
 #file_drag.hover {		/* this is a hover class that we will apply with js */
@@ -119,8 +125,16 @@ header("Content-type: text/css; charset: UTF-8");
 	border-color:	#f00;
 	border-style:	solid;
 	box-shadow:		inset 0 3px 4px #888;
+	width:			60%;
+	height:			20%;
 }
 
-#add {
+#uploads {
+	float: right;
+	border: 1px solid red;
+	width: 37%;
+}
+
+#add, #edit, #remove {
 	display:	none;
 }
