@@ -14,11 +14,11 @@ function toggleLightBox(content) {
 			
 			break;
 		case 'edit':
-			debug("toggleLightBox('edit') called");
+			console.log("toggleLightBox('edit') called");
 			break;
 		
 		case 'del':
-			debug("toggleLightBox('del') called");
+			console.log("toggleLightBox('del') called");
 			break;
 			
 		default:
@@ -52,24 +52,50 @@ function add_slide() {
 			
 			// remove the submit button since we'll be doing it automatically
 			submitbutton.style.display = 'none';
-		}
-		
-		function fileDragHover(event) {
-			event.stopPropagation();		// cancel events
-			event.preventDefault();			// cancel events
 			
-			// change the pseudo class of the calling object
-			event.target.className = (event.type == "dragover" ? "hover" : "");
+			// define what to do when files are dragged into the #filedrag div
+			function fileDragHover(event) {
+				event.stopPropagation();		// cancel events
+				event.preventDefault();			// cancel events
+				
+				// change the pseudo class of the calling object
+				event.target.className = (event.type == "dragover" ? "hover" : "");
+			}
 		}
 		
 		function fileSelectHandler(event) {
 			fileDragHover(event);		// cancel events and remove hover styles
 			
-			uploadFiles();
+			var form = document.getElementById('upload_form');
+			form.addEventListener('submit', function(submitEvent) {
+				
+				var output = 'fileSelectHandler() called by ' + this + '\n',
+					form_data = new FormData(form);
+				
+				form_data.append('test_data', 'data goes here');
+				
+				console.log(form_data);
+				
+				/*var request = new XMLHttpRequest();
+				request.open("POST", 'upload.php', true);
+				request.onload = function(onloadEvent) {
+					request.status == 200 ? output += 'file uploaded successfully (status == 200)\n' : output += 'file upload failed (status == ' + request.status + '\n';
+				}
+				
+				request.send(form_data);*/
+				submitEvent.preventDefault();
+				console.log(output);
+				
+			}, false);
+			
+			uploadFiles(form);
 		}
 		
-		function uploadFiles(file) {
-			
+		
+		function uploadFiles(form) {
+			if (form) {
+				form.submit();
+			}
 		}
 	}
 }
@@ -98,8 +124,4 @@ function childHandler(e) {
     if (e.stopPropagation) e.stopPropagation();    
 
     //alert('child clicked');
-}
-
-function debug(msg) {
-	console.log("Debug: \n" + msg);
 }
