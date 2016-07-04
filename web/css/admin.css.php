@@ -125,8 +125,6 @@ header("Content-type: text/css; charset: UTF-8");
 	border-color:	#f00;
 	border-style:	solid;
 	box-shadow:		inset 0 3px 4px #888;
-	width:			60%;
-	height:			20%;
 }
 
 #uploads {
