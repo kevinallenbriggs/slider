@@ -63,20 +63,25 @@ function add_slide() {
 		filedrag.style.display = "block";
 	}
 	
-	function uploadFiles(submitEvent) {
-		form_data = new FormData(form);
-		
+	function uploadFiles(submitEvent) {		
 		if (request) {
-			console.log(request + '\n');
 			request.open("POST", form.getAttribute('action'), true);
+			form_data = new FormData();
+			form_data.append('file_drag', true);
+			var files = submitEvent.target.files || submitEvent.dataTransfer.files;
+			for (var i = 0, file; file = files[i]; i++) {
+				form_data.append('file' + (i + 1), file);
+			}
 			request.onload = function() {
-				console.log("request.onload function triggered\n");
 				if (request.status == 200) {
 					console.log('file uploaded successfully (status == 200)\n');
 				} else {
 					console.log('file upload failed (status == ' + request.status + '\n');
 				}
 			}
+			
+			request.send(form_data);
+			
 		} else {
 			// ajax is not available, submit form manually
 			form.submit();
