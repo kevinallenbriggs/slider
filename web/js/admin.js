@@ -64,14 +64,26 @@ function add_slide() {
 	}
 	
 	function uploadFiles(submitEvent) {		
-		if (request) {
-			request.open("POST", form.getAttribute('action'), true);
-			form_data = new FormData();
-			if (submitEvent.target.id == 'file_drag') form_data.append('file_drag', true);
+		if (request) {		// check to make sure XMLHttpRequest is supported
+			console.log(form.getAttribute('action'));
+			request.open("POST", form.getAttribute('action'), true);	// open the request
+			form_data = new FormData();		// create the FormData object
+			
+			// append information to the form so that the PHP backend
+			// knows if AJAX was used or the form was submitted normally
+			if (submitEvent.target.id == 'file_drag') {
+				form_data.append('file_drag', true);
+			} else {
+				form_data.append('file_select', true);
+			}
+			
+			// add all the files to the FormData object
 			var files = submitEvent.target.files || submitEvent.dataTransfer.files;
 			for (var i = 0, file; file = files[i]; i++) {
 				form_data.append('file' + (i + 1), file);
 			}
+			
+			// check the status of our upload
 			request.onload = function() {
 				if (request.status == 200) {
 					console.log('file uploaded successfully (status == 200)\n');
@@ -80,6 +92,7 @@ function add_slide() {
 				}
 			}
 			
+			// send the request to the server
 			request.send(form_data);
 			
 		} else {
