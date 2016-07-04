@@ -67,7 +67,7 @@ function add_slide() {
 		if (request) {
 			request.open("POST", form.getAttribute('action'), true);
 			form_data = new FormData();
-			form_data.append('file_drag', true);
+			if (submitEvent.target.id == 'file_drag') form_data.append('file_drag', true);
 			var files = submitEvent.target.files || submitEvent.dataTransfer.files;
 			for (var i = 0, file; file = files[i]; i++) {
 				form_data.append('file' + (i + 1), file);
