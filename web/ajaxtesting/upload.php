@@ -18,7 +18,7 @@ if(!getimagesize($_FILES['SelectedFile']['tmp_name'])){
 }
 
 // Check filetype
-if($_FILES['SelectedFile']['type'] != 'image/png'){
+if($_FILES['SelectedFile']['type'] != 'image/jpeg'){
     outputJSON('Unsupported filetype uploaded.');
 }
 
