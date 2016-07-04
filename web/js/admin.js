@@ -32,70 +32,54 @@ function toggleLightBox(content) {
 
 // THIS FUNCTION ALLOWS USERS TO ADD A SLIDE TO THE SYSTEM
 function add_slide() {
-	// check if the W3C File API is available in this browser
-	if (window.File && window.FileList && window.FileReader) {
-		var fileselect		= document.getElementById('file_select'),
-			filedrag		= document.getElementById('file_drag'),
-			submitbutton	= document.getElementById('submit_button');
+	var fileselect		= document.getElementById('file_select'),
+		filedrag		= document.getElementById('file_drag'),
+		submitbutton	= document.getElementById('submit_button'),
+		form			= document.getElementById('upload_form');
+	
+	// add event listener to the file_select button
+	fileselect.addEventListener("change", uploadFiles, false);
+	
+	// check if AJAX is available
+	var request = ''
+	if (request.upload) {
 		
-		// add event listener to the file_select button
-		fileselect.addEventListener("change", fileSelectHandler, false);
-		
-		// check if AJAX is available
-		var xhr = new XMLHttpRequest();
-		if (xhr.upload) {
-			// add event handlers for file drag n drop
-			filedrag.addEventListener("dragover", fileDragHover, false);
-			filedrag.addEventListener("dragleave", fileDragHover, false);
-			filedrag.addEventListener("drop", fileSelectHandler, false);
-			filedrag.style.display = "block";
+		// define what to do when files are dragged into the #filedrag div
+		function fileDragHandler(event) {
+			event.stopPropagation();	// prevents event bubbling
+			event.preventDefault();		// prevent default action (like opening the picture in the browser window)
 			
-			// remove the submit button since we'll be doing it automatically
-			submitbutton.style.display = 'none';
+			// change the pseudo class of the calling object
+			event.target.className = (event.type == "dragover" ? "hover" : "");
 			
-			// define what to do when files are dragged into the #filedrag div
-			function fileDragHover(event) {
-				event.stopPropagation();		// cancel events
-				event.preventDefault();			// cancel events
-				
-				// change the pseudo class of the calling object
-				event.target.className = (event.type == "dragover" ? "hover" : "");
-			}
+			// handle the file uploads if files were dropped on the element
+			if (event.type === 'drop') uploadFiles(event);
 		}
 		
-		function fileSelectHandler(event) {
-			fileDragHover(event);		// cancel events and remove hover styles
-			
-			var form = document.getElementById('upload_form');
-			form.addEventListener('submit', function(submitEvent) {
-				
-				var output = 'fileSelectHandler() called by ' + this + '\n',
-					form_data = new FormData(form);
-				
-				form_data.append('test_data', 'data goes here');
-				
-				console.log(form_data);
-				
-				/*var request = new XMLHttpRequest();
-				request.open("POST", 'upload.php', true);
-				request.onload = function(onloadEvent) {
-					request.status == 200 ? output += 'file uploaded successfully (status == 200)\n' : output += 'file upload failed (status == ' + request.status + '\n';
+		// add event handlers for file drag n drop
+		filedrag.addEventListener("dragover", fileDragHandler, false);
+		filedrag.addEventListener("dragleave", fileDragHandler, false);
+		filedrag.addEventListener("drop", fileDragHandler, false);
+		filedrag.style.display = "block";
+	}
+	
+	function uploadFiles(submitEvent) {
+		form_data = new FormData(form);
+		
+		if (request) {
+			console.log(request + '\n');
+			request.open("POST", form.getAttribute('action'), true);
+			request.onload = function() {
+				console.log("request.onload function triggered\n");
+				if (request.status == 200) {
+					console.log('file uploaded successfully (status == 200)\n');
+				} else {
+					console.log('file upload failed (status == ' + request.status + '\n');
 				}
-				
-				request.send(form_data);*/
-				submitEvent.preventDefault();
-				console.log(output);
-				
-			}, false);
-			
-			uploadFiles(form);
-		}
-		
-		
-		function uploadFiles(form) {
-			if (form) {
-				form.submit();
 			}
+		} else {
+			// ajax is not available, submit form manually
+			form.submit();
 		}
 	}
 }

@@ -41,7 +41,7 @@ if (isset($_POST['slide_submitted']) && $_POST['slide_submitted'] == true) {
 		
 		<div id="add">
 			<h1>Add a Slide</h1>
-			<form id="upload_form" action="upload.php" method="POST" enctype="multipart/form-data">
+			<form id="upload_form" method="POST" action="upload.php" enctype="multipart/form-data">
 				<input type="hidden" id="MAX_FILE_SIZE" name="MAX_FILE_SIZE" value="300000" />
 				<div class="lb_option">
 					<fieldset>
@@ -50,12 +50,7 @@ if (isset($_POST['slide_submitted']) && $_POST['slide_submitted'] == true) {
 					</fieldset>
 				</div>
 						
-				<div id="file_drag" class="lb_option">or drag and drop files here...</div>
-			
-				<div id="submit_button">
-					<button type="submit">Upload Files</button>
-				</div>
-				
+				<div id="file_drag" class="lb_option">or drag and drop files here...</div>	
 			</form>
 			
 			<div id="uploads">
