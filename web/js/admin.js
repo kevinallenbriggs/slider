@@ -3,96 +3,22 @@ function goHome() {
 }
 
 
-function toggleLightBox(content, id) {
-	if (id === undefined) {
-		id = 'lightbox';
-	}
-	
-	lightbox =		document.getElementById(id);
+function toggleLightBox(content) {
+	lightbox =		document.getElementById('lightbox');
 	lb_container =	lightbox.getElementsByClassName('lb_container')[0];
 	
 	switch (content) {
 		case 'add':
-			document.getElementById('add').style.display = "block";
+			document.getElementById(content).style.display = "block";
+			add_slide();
 			
-			// check if the W3C File API is available in this browser
-			if (window.File && window.FileList && window.FileReader) {
-				var fileselect		= document.getElementById('file_select'),
-					filedrag		= document.getElementById('file_drag'),
-					submitbutton	= document.getElementById('submit_button');
-				
-				// add event listener to the file_select button
-				fileselect.addEventListener("change", fileSelectHandler, false);
-				
-				// check if AJAX is available
-				var xhr = new XMLHttpRequest();
-				if (xhr.upload) {
-					// add event handlers for file drag n drop
-					filedrag.addEventListener("dragover", fileDragHover, false);
-					filedrag.addEventListener("dragleave", fileDragHover, false);
-					filedrag.addEventListener("drop", fileSelectHandler, false);
-					filedrag.style.display = "block";
-					
-					// remove the submit button since we'll be doing it automatically
-					submitbutton.style.display = 'none';
-				}
-				
-				function fileDragHover(event) {
-					event.stopPropagation();		// cancel events
-					event.preventDefault();			// cancel events
-					
-					// change the pseudo class of the calling object
-					event.target.className = (event.type == "dragover" ? "hover" : "");
-				}
-				
-				function fileSelectHandler(event) {
-					fileDragHover(event);		// cancel events and remove hover styles
-					
-					// fetch the FileList object
-					var files = event.target.files || event.dataTransfer.files;
-					
-					// process the File objects
-					for (var i = 0, file; file = files[i]; i++) {
-						parseFile(file);
-						uploadFile(file);
-					}
-				}
-				
-				function parseFile(file) {
-					if (file.type.indexOf("image") == 0) {
-						var reader = new FileReader();
-						/*reader.onload = function(e) {
-							debug(	"File name: " + file.name);
-						}*/
-						console.log(reader.readAsDataURL(file));
-						//reader.readAsDataURL(file);
-					}
-					debug(	"File information: \n" + 
-							"Name: " + file.name + "\n" +
-							"Type: " + file.type + "\n" +
-							"Size: " + file.size + " bytes");
-				}
-				
-				function uploadFile(file) {
-					var xhr = new XMLHttpRequest();
-					if (	xhr.upload &&
-							file.type == "image.jpeg" &&
-							file.size <= document.getElementById('MAX_FILE_SIZE').value) {
-						
-						// start upload
-						xhr.open("POST", document.getElementById('upload').action, true);
-						xhr.setRequestHeader("X_FILENAME", file.name);
-						xhr.send(file);
-					}
-				}
-			}
 			break;
 		case 'edit':
-			$edit_form = '';
+			debug("toggleLightBox('edit') called");
 			break;
 		
 		case 'del':
-			$del_form =	'';
+			debug("toggleLightBox('del') called");
 			break;
 			
 		default:
@@ -106,7 +32,46 @@ function toggleLightBox(content, id) {
 
 // THIS FUNCTION ALLOWS USERS TO ADD A SLIDE TO THE SYSTEM
 function add_slide() {
-	toggleLightBox('add');
+	// check if the W3C File API is available in this browser
+	if (window.File && window.FileList && window.FileReader) {
+		var fileselect		= document.getElementById('file_select'),
+			filedrag		= document.getElementById('file_drag'),
+			submitbutton	= document.getElementById('submit_button');
+		
+		// add event listener to the file_select button
+		fileselect.addEventListener("change", fileSelectHandler, false);
+		
+		// check if AJAX is available
+		var xhr = new XMLHttpRequest();
+		if (xhr.upload) {
+			// add event handlers for file drag n drop
+			filedrag.addEventListener("dragover", fileDragHover, false);
+			filedrag.addEventListener("dragleave", fileDragHover, false);
+			filedrag.addEventListener("drop", fileSelectHandler, false);
+			filedrag.style.display = "block";
+			
+			// remove the submit button since we'll be doing it automatically
+			submitbutton.style.display = 'none';
+		}
+		
+		function fileDragHover(event) {
+			event.stopPropagation();		// cancel events
+			event.preventDefault();			// cancel events
+			
+			// change the pseudo class of the calling object
+			event.target.className = (event.type == "dragover" ? "hover" : "");
+		}
+		
+		function fileSelectHandler(event) {
+			fileDragHover(event);		// cancel events and remove hover styles
+			
+			uploadFiles();
+		}
+		
+		function uploadFiles(file) {
+			
+		}
+	}
 }
 
 
