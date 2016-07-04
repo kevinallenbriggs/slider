@@ -41,7 +41,7 @@ function add_slide() {
 	fileselect.addEventListener("change", uploadFiles, false);
 	
 	// check if AJAX is available
-	var request = ''
+	var request = new XMLHttpRequest();
 	if (request.upload) {
 		
 		// define what to do when files are dragged into the #filedrag div
