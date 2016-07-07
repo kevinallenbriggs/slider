@@ -124,6 +124,7 @@ header("Content-type: text/css; charset: UTF-8");
 	margin:			2em 0;
 	border:			2px dashed #555;
 	border-radius:	.45em;
+	line-height:	4em;
 }
 
 #file_drag.hover {		/* this is a hover class that we will apply with js */

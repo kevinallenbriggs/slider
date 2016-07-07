@@ -29,7 +29,7 @@
 					continue;
 			}
 			
-			if (!$errors) {		// upload the file
+			if (!$errors) {		// no errors, process upload and save it
 				if (!move_uploaded_file($file['tmp_name'], 'uploads/' . $file['name'])) {
 					outputJSON('Error uploading file - ensure destination is writeable.');
 				} else {
