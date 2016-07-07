@@ -61,11 +61,13 @@ function add_slide() {
 		filedrag.addEventListener("dragleave", fileDragHandler, false);
 		filedrag.addEventListener("drop", fileDragHandler, false);
 		filedrag.style.display = "block";
+		
+	} else {		// automatic form submittal isn't going to work; display the submit button
+		submitbutton.style.display = 'inline-block';
 	}
 	
 	function uploadFiles(submitEvent) {		
 		if (request) {		// check to make sure XMLHttpRequest is supported
-			console.log(form.getAttribute('action'));
 			request.open("POST", form.getAttribute('action'), true);	// open the request
 			form_data = new FormData();		// create the FormData object
 			
@@ -84,13 +86,20 @@ function add_slide() {
 			}
 			
 			// check the status of our upload
-			request.onload = function() {
-				if (request.status == 200) {
-					console.log('file uploaded successfully (status == 200)\n');
-				} else {
-					console.log('file upload failed (status == ' + request.status + '\n');
+			request.onreadystatechange = function(){
+				if(request.readyState == 4){
+					try {
+						var resp = JSON.parse(request.response);
+					} catch (e){
+						var resp = {
+								status: 'error',
+								data: 'Unknown error occurred: [' + request.responseText + ']'
+						};
+					}
+					
+					console.log(resp.status + ': ' + resp.data);
 				}
-			}
+			};
 			
 			// send the request to the server
 			request.send(form_data);

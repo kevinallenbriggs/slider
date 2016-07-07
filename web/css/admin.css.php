@@ -110,6 +110,12 @@ header("Content-type: text/css; charset: UTF-8");
 	float:	left;
 }
 
+
+#submit_button {
+	display:	none;
+}
+
+
 #file_drag {
 	display:		none;
 	text-align:		center;

@@ -46,6 +46,7 @@ if (isset($_POST['slide_submitted']) && $_POST['slide_submitted'] == true) {
 					<fieldset>
 						<legend>Browse for files:</legend>
 						<input type="file" id="file_select" multiple="multiple">
+						<input type="submit" id="submit_button" value="Upload Files">
 					</fieldset>
 				</div>
 						

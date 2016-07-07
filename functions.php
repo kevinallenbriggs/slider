@@ -31,7 +31,7 @@ class slide {
  * @param string $dir - 
  * @return multitype:
  */
-function getFiles($dir = 'uploads/resized/') {
+function getFiles($dir = 'uploads/') {
 	if (substr($dir, -1) != '/')  $dir .= '/';		// add a trailing slash to $dir if it doesn't have one
 	$files = scandir($dir);							// get all the file names from $dir
 	$slide_objects = array();	// initialize the array to store the return values in
@@ -217,5 +217,14 @@ function isPic($slide) {
  	echo "<pre>";
  	print_r($var);
  	echo "</pre>";
+ }
+ 
+ 
+ function outputJSON($msg, $status = 'error') {
+ 	header('Content-Type: application/json');
+ 	die(json_encode(array(
+ 			'data' => $msg,
+ 			'status' => $status
+ 	)));
  }
 ?>
