@@ -13,6 +13,12 @@ h1 {
 	margin:		0;
 }
 
+fieldset {
+	border-radius:	.45em;
+}
+
+
+
 *:focus {
 	outline:	none;		/* Webkit automatically adds outlines to items in focus; disable it */
 }
