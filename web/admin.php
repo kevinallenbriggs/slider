@@ -1,9 +1,5 @@
 <?php 
-include_once '../functions.php';
-
-if (isset($_POST['slide_submitted']) && $_POST['slide_submitted'] == true) {
-	// process the uploaded file here
-}
+	include_once '../functions.php';
 ?>
 
 <html>
@@ -54,7 +50,7 @@ if (isset($_POST['slide_submitted']) && $_POST['slide_submitted'] == true) {
 			</form>
 			
 			<div id="uploads">
-				<ul id="upload_preview">
+				<ul id="upload_feedback">
 				</ul>
 			</div>
 			
