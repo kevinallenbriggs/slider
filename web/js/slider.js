@@ -8,15 +8,10 @@ $(function() {
 	var last_slide = ul.find("li:last-child");		// create a reference for the last slide
 	var playing = false;
 
-	/* 	We need to 'wrap' the current array of slides with the first and last ones in the array to
-	 	allow us to create the illusion of looping the slides */
-	
-	// Clone the last slide and add as first li element
+	// 'wrap' the current array of slides with the first and last ones in the array to allow
+	// the illusion of looping through the slides during each transition
 	last_slide.clone().prependTo(ul);
-
-	// Clone the first slide and add as last li element
 	first_slide.clone().appendTo(ul);
-
 	ul.css("margin-left", "-100%");		// hide the first slide of the array, which is really the last slide due to the above trickery
 	ul.css("width", slide_count * 100 + "%");	// set the width of the ul so that all slides fit
 
@@ -25,15 +20,11 @@ $(function() {
 		var left_percent = (slide_width_pc * indx) + "%";
 		$(this).css("left", left_percent);
 		$(this).css("width", (100 / slide_count) + "%");
-		console.log(this.firstChild);
-		var img = this.firstChild;
 		
 		// resize the slides to maintain proportionality
-		if (img.naturalWidth > img.naturalHeight) {
-			img.style.width = 100 + "%";	
-		} else {
-			img.style.height = 100 + "%";
-		}
+		var img = this.firstChild;
+		img.naturalWidth > img.naturalHeight ? img.style.width = 100 + "%" : img.style.height = 100 + "%";
+		
 	});
 
 	
@@ -43,24 +34,19 @@ $(function() {
 		if(!playing) {
 			slide(slide_index + 1);
 			interval = setInterval(function(){
-				slide(slide_index + 1)}, 4000);
-			}
-			playing = true;
-			//slide(slide_index + 1);
+				slide(slide_index + 1)}, 6000);
+		}
+		playing = true;
 	});
 	
 	// Listen for click of pause button
 	$(".slider .pause").click(function() {
-		//console.log("pause button clicked");
-		if (playing) {
-			clearInterval(interval);
-			playing = false;
-		}
+		playing ? clearInterval(interval) : playing = false;
 	})
 
 	function slide(new_slide_index) {
 		var margin_left_pc = (new_slide_index * (-100) - 100) + "%";
-		ul.animate({"margin-left": margin_left_pc}, 400, function() {
+		ul.animate({"margin-left": margin_left_pc}, 1200, function() {
 			// If new slide is before first slide
 			if(new_slide_index < 0) {
 				ul.css("margin-left", ((slide_count) * (-100)) + "%");
