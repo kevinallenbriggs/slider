@@ -3,26 +3,15 @@ function goHome() {
 }
 
 
-function toggleLightBox(content) {
+function toggleLightBox(content) {	
 	lightbox =		document.getElementById('lightbox');
 	lb_container =	lightbox.getElementsByClassName('lb_container')[0];
 	
 	switch (content) {
-		case 'add':
-			document.getElementById(content).style.display = "block";
-			add_slide();
-			
-			break;
-		case 'edit':
-			console.log("toggleLightBox('edit') called");
-			break;
-		
-		case 'del':
-			console.log("toggleLightBox('del') called");
-			break;
-			
-		default:
-			break;
+		case 'add': css(content); add_slides(); break;
+		case 'edit': css(content); console.log("toggleLightBox('edit') called"); break;
+		case 'del': css(content); console.log("toggleLightBox('del') called"); break;
+		default: break;
 	}
 	
 	lightbox.style.display == 'none' || lightbox.style.display == '' ? lightbox.style.display = 'initial' : lightbox.style.display = 'none';
@@ -31,7 +20,7 @@ function toggleLightBox(content) {
 }
 
 // THIS FUNCTION ALLOWS USERS TO ADD A SLIDE TO THE SYSTEM
-function add_slide() {
+function add_slides() {
 	var fileselect		= document.getElementById('file_select'),
 		filedrag		= document.getElementById('file_drag'),
 		submitbutton	= document.getElementById('submit_button'),
@@ -85,8 +74,10 @@ function add_slide() {
 				form_data.append('file' + (i + 1), file);
 			}
 			
-			// create an unordered list to store the successful image feedback (thumbnails) in
-			upload_feedback = document.getElementById('upload_feedback');
+			// prepare upload_feedback to receive previews of the uploaded images
+			upload_feedback = document.getElementById('upload_feedback');	// get the upload_feedback ul
+			elem = upload_feedback.cloneNode(true);		// clone upload feedback to mess with content
+			upload_feedback.innerHTML = '<div>Processing uploads...</div>';		// display message to user while we create previews
 			
 			
 			// check the status of our upload
@@ -101,14 +92,16 @@ function add_slide() {
 						};
 					}
 					
-					// fill in the upload_feedback ul with thumbnails
-					var textNodes = response.split('');
-					for (var i = 0; i <= textNodes.length; i++) {
-						
+					// create the preview of successfully uploaded files
+					elem.innerHTML = response;
+					var list_items = elem.getElementsByTagName('li');
+					for (var i = 0; i < list_items.length; i++) {
+						list_items[i].innerHTML = '<img src="uploads/' + list_items[i].innerHTML + '">';
+						upload_feedback.innerHTML = elem.innerHTML;
 					}
-					
 				}
 			};
+			
 			
 			// send the request to the server
 			request.send(form_data);
@@ -117,6 +110,9 @@ function add_slide() {
 			// ajax is not available, submit form manually
 			form.submit();
 		}
+		
+		console.log('upload_feedback.innerHTML: ' + upload_feedback.innerHTML);
+		console.log('elem.innerHTML: ' + elem.innerHTML);
 	}
 }
 
@@ -144,4 +140,16 @@ function childHandler(e) {
     if (e.stopPropagation) e.stopPropagation();    
 
     //alert('child clicked');
+}
+
+/**
+ * 
+ * @param content - the #id of the DOM element to act upon
+ * @param property - the CSS property to modify, default is 'display'
+ * @param value	- the value of the CSS property to modify, default is 'block'
+ */
+function css(content, property, value) {
+	!property ? property = 'display' : property = property;		// value is 'display' by default
+	!value ? value = 'block' : value = value;	// value is 'block' by default
+	document.getElementById(content).style[property] = value;
 }

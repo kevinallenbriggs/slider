@@ -10,15 +10,15 @@ REQUIREMENTS OF PROJECT:
 
 
 TODO (7/10/2016):
-2. Show thumbnails of successfully uploaded files on the Add Slide lightbox
 3. Add ability to set expiration date for each slide
 4. Add ability to rotate the images if they aren't displaying correctly
 5. Add preview slider when in the manage slides area
 6. Add ability to upload and display PDFs (iframes maybe?)
-7. 
+7. Optimize styles of #upload_feedback so that <li> elements always create a filled-in grid
 
 
 
 COMPLETED:
 1. Remove resolution detection components and resize image functions now that
 	slides resize natively using Javascript (slider.js)
+2. Show thumbnails of successfully uploaded files on the Add Slide lightbox

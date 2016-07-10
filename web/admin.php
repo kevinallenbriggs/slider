@@ -49,12 +49,11 @@
 				<div id="file_drag" class="lb_option">or drag and drop files here...</div>	
 			</form>
 			
-			<div id="uploads">
-				<ul id="upload_feedback">
-				</ul>
-			</div>
+			<ul id="upload_feedback">
+				<!-- CONTENTS FILLED BY JAVASCRIPT (ADMIN.JS) -->
+			</ul>
 			
-			<br style="clear: both;">
+			<br style="clear: both;"> <!--  necessary to resize the lightbox to whatever js has put in it -->
 		</div>
 		
 		<div id="edit">
