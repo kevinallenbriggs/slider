@@ -92,6 +92,7 @@
 	width:				60%;
 	height:				20%;
 	opacity:			1;
+	text-align:			center;
 	transition:			opacity 1s ease-out .5s;
 	-webkit-transition:	opacity 1s ease-out .5s;
 	-moz-transition:	opacity 1s ease-out .5s;
