@@ -3,6 +3,7 @@
 	// INCLUDING CALLING IMAGE_RESIZE() ON THEM :)
 	
 	include_once "../functions.php";
+	//debug($_FILES);
 	
 	// perform error checking
 	foreach ($_FILES as $file) {								// load each file's array
@@ -10,47 +11,44 @@
 			switch ($key) {
 				case 'error':
 					if ($value > 0) {
-						outputJSON('There was an error uploading the file.');
-						$errors = true;
+						echo "15";
 					}
 					
-				case 'tmp_name':
-					if (!getimagesize($value)) {
-						/* check for a pdf */
-					};
+				case 'type':
+					$regex = "/^image/";
+					if (preg_match($regex, $value)) {
+						try {
+							getimagesize($file['tmp_name']);
+							//echo "Width: $width Height: $height";
+						} catch (Exception $e) {
+							echo "Exception: " . $e.getMessage();
+						}
+					}
 					
 				case 'size':
-					if ($value > 1048576) {
-						outputJSON('File is larger than 10MB');
-						$errors = true;
+					if ($value > 10048576) {
+						echo "29";
 					}
 					
 				default:
 					continue;
 			}
-			
-			if (!$errors) {		// no errors, process upload and save it
-				if (!move_uploaded_file($file['tmp_name'], 'uploads/' . $file['name'])) {
-					outputJSON('Error uploading file - ensure destination is writeable.');
-				} else {
-					outputJSON('Successfully uploaded slide to upload/' . $file['name'], 'success');
-				}
-			}
-			
 		}
+		
+		$filename = $file['name'] . "_" . date("Y-m-d");		// add timestamp to filename
+		// resize the image
+		//if (resize_image($file['tmp_name'])) {
+		if (move_uploaded_file($file['tmp_name'], 'uploads/' . $filename)) {
+			echo file_exists('uploads/' . $filename);
+		} else {
+			echo "0";
+		}
+
+		
 	}
 	
-	echo '<h1>$_FILES:</h1>';
-	debug($_FILES);
 	
-	echo '<h1>$_POST:</h1>';
-	debug($_POST);
 	
-	echo '<h1>$_SERVER</h1>';
-	debug($_SERVER);
-		
-	echo '<h1>Headers:</h1>';
-	debug(getallheaders());
 	
 	
 ?>

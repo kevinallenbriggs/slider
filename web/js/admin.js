@@ -89,7 +89,7 @@ function add_slide() {
 			request.onreadystatechange = function(){
 				if(request.readyState == 4){
 					try {
-						var resp = JSON.parse(request.response);
+						console.log(request.responseText);
 					} catch (e){
 						var resp = {
 								status: 'error',
@@ -97,7 +97,10 @@ function add_slide() {
 						};
 					}
 					
-					console.log(resp.status + ': ' + resp.data);
+					var message = request.status + ': ' + request.statusText;
+					console.log(message);
+					$output = document.getElementById('uploads');
+					$output.innerHTML = message;
 				}
 			};
 			

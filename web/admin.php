@@ -44,7 +44,7 @@ if (isset($_POST['slide_submitted']) && $_POST['slide_submitted'] == true) {
 			<form id="upload_form" method="POST" action="upload.php" enctype="multipart/form-data">
 				<div class="lb_option">
 					<fieldset>
-						<legend>Browse for files:</legend>
+						<legend>Browse for files</legend>
 						<input type="file" id="file_select" multiple="multiple">
 						<input type="submit" id="submit_button" value="Upload Files">
 					</fieldset>
