@@ -9,16 +9,17 @@ REQUIREMENTS OF PROJECT:
 8. Portable and compatable with all major browsers
 
 
-TODO (7/10/2016):
-3. Add ability to set expiration date for each slide
-4. Add ability to rotate the images if they aren't displaying correctly
-5. Add preview slider when in the manage slides area
-6. Add ability to upload and display PDFs (iframes maybe?)
-7. Optimize styles of #upload_feedback so that <li> elements always create a filled-in grid
-
+TODO (in order of priority):
+1. Provide specific feedback to user if one of the uploads fails
+2. Add ability to set expiration date for each slide
+3. Add ability to rotate the images if they aren't displaying correctly
+4. Add preview slider when in the manage slides area
+5. Add ability to upload and display PDFs (iframes maybe?)
 
 
 COMPLETED:
-1. Remove resolution detection components and resize image functions now that
+- Remove resolution detection components and resize image functions now that
 	slides resize natively using Javascript (slider.js)
-2. Show thumbnails of successfully uploaded files on the Add Slide lightbox
+- Show thumbnails of successfully uploaded files on the Add Slide lightbox
+- Add check for proper content type when uploading files
+- Optimize styles of #upload_feedback so that <li> elements always create a filled-in grid

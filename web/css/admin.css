@@ -127,6 +127,7 @@
 	float:				right;
 	width:				37%;
 	list-style-type:	none;
+	overflow:			auto;
 }
 
 #upload_feedback li {
@@ -135,7 +136,10 @@
 }
 
 #upload_feedback img {
-	width: 4em;
+	min-width:	3em;
+	min-height:	3em;
+	max-width:	4em;
+	max-height:	4em;
 }
 
 #add, #edit, #remove {

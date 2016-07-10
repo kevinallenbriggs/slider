@@ -8,16 +8,11 @@
 	
 	// perform error checking
 	foreach ($_FILES as $file) {								// load each file's array
-		foreach($file as $key => $value) {						// load the key/value pairs for each file array
+		foreach ($file as $key => $value) {						// load the key/value pairs for each file array
 			switch ($key) {
-				case 'error': ($value > 0) ? "15" : "";
-				case 'type':
-					if (preg_match("/^image/", $value)) {
-						try { getimagesize($file['tmp_name']);
-							//echo "Width: $width Height: $height";
-						} catch (Exception $e) {echo "Exception: " . $e.getMessage();}
-					}	
-				case 'size': $value > 10048576 ? "29" : "";					
+				case 'error': ($value > 0) ? $errors[] = "case: 'error'" : ""; break;
+				case 'type': !preg_match("/^image/", $value) ? $errors[$key] = "$value" : ""; break;
+				case 'size': $value > 10048576 ? $errors[] = "case: 'size'" : ""; break;				
 				default: continue;
 			}
 		}
@@ -29,17 +24,18 @@
 		
 		// copy the file into the uploads directory
 		try {
-			move_uploaded_file($file[tmp_name], "uploads/" . $filename);
-			$files[] = $filename;
+			if (!$errors) {
+				move_uploaded_file($file[tmp_name], "uploads/" . $filename);
+				$files[] = $filename;
+			} else {
+				debug($errors);
+			}
 		} catch (Exception $e) {
-			echo "could not upload file: " + $e.getMessage;
+			echo "Error (30) could not upload file: " + $e.getMessage;
 		}
 		
 	}
 	
+	// return values for javascript to work with; these are not directly displayed to user
 	foreach ($files as $file) echo "<li>$file</li>";
-
-	
-	
-	
 ?>
