@@ -1,0 +1,19 @@
+REQUIREMENTS OF PROJECT:
+1. Easily manage the system with intuitive interface
+2. Displays both images and PDFs
+3. Maintains proportionality
+4. Responsive to any resolution
+5. Can set expiration dates for each slide
+6. Can change basic settings such as slide duration, transition time, etc.
+7. No database
+8. Portable and compatable with all major browsers
+
+
+TODO (7/10/2016):
+1. Remove resolution detection components and resize image functions now that
+	slides resize natively
+2. 
+
+
+
+COMPLETED:
