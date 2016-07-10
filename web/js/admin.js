@@ -85,11 +85,15 @@ function add_slide() {
 				form_data.append('file' + (i + 1), file);
 			}
 			
+			// create an unordered list to store the successful image feedback (thumbnails) in
+			upload_feedback = document.getElementById('upload_feedback');
+			
+			
 			// check the status of our upload
 			request.onreadystatechange = function(){
 				if(request.readyState == 4){
 					try {
-						console.log(request.responseText);
+						response = request.responseText;
 					} catch (e){
 						var resp = {
 								status: 'error',
@@ -97,10 +101,12 @@ function add_slide() {
 						};
 					}
 					
-					var message = request.status + ': ' + request.statusText;
-					console.log(message);
-					$output = document.getElementById('uploads');
-					$output.innerHTML = message;
+					// fill in the upload_feedback ul with thumbnails
+					var textNodes = response.split('');
+					for (var i = 0; i <= textNodes.length; i++) {
+						
+					}
+					
 				}
 			};
 			

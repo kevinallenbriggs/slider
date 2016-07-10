@@ -5,6 +5,8 @@
 	include_once "../functions.php";
 	//debug($_FILES);
 	
+	$files = array();
+	
 	// perform error checking
 	foreach ($_FILES as $file) {								// load each file's array
 		foreach($file as $key => $value) {						// load the key/value pairs for each file array
@@ -21,21 +23,23 @@
 			}
 		}
 		
-		$filename = $file['name'] . "_" . date("Y-m-d");		// add timestamp to filename
+		// format filename before saving
+		$filename = substr_replace($file['name'], "_" . date("Y-m-d"), strpos($file['name'], '.'), 0);		// add timestamp to filename
+		$filename = trim(strtolower($filename));
+		$filename = preg_replace("/\s+/", "_", $filename);
 		
 		// resize the image
 		try {
-			$resized_image = resize_image($file['tmp_name']);
+			move_uploaded_file($file[tmp_name], "uploads/" . $filename);
+			$files[] = $filename;
 		} catch (Exception $e) {
-			echo "resize image failed: " . $e.getMessage();
+			echo "could not upload file: " + $e.getMessage;
 		}
-		
-		debug($app_height);
-		debug(getimagesize($file['tmp_name']));
 		
 	}
 	
-	
+	foreach ($files as $file) echo "<li>$file</li>";
+
 	
 	
 	
