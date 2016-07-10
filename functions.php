@@ -3,8 +3,8 @@
 include_once('settings.php');		// load the application settings
 
 if((isset($_GET['w']) && isset($_GET['h'])) && ($_GET['w'] > 0 || $_GET['h'] > 0)) {		// resolution was detected
-		define('APP_WIDTH', htmlspecialchars($_GET['w']));
-		define('APP_HEIGHT', htmlspecialchars($_GET['h']));
+		$app_width = htmlspecialchars($_GET['w']);
+		$app_height = htmlspecialchars($_GET['h']);
 }
 else {
 	// Resolution not detected
@@ -96,10 +96,10 @@ function isPic($slide) {
  * resizes images and writes them to the filesystem
  * @param  $file - file name to resize
  * @param  $string - The image data, as a string
- * @param  $width - new image width, default is APP_WIDTH
- * @param  $height - new image height, default is APP_HEIGHT
+ * @param  $width - new image width, default is $app_width
+ * @param  $height - new image height, default is $app_height
  * @param  $proportional - keep image proportional, default is no
- * @param  $output - name of the new file (include path if needed)
+ * @param  $output - determines what is returned by the function, default is a file object
  * @param  $delete_original - if true the original image will be deleted
  * @param  $use_linux_commands - if set to true will use "rm" to delete the image, if false will use PHP unlink
  * @param  $quality - enter 1-100 (100 is best quality) default is 100
@@ -107,10 +107,10 @@ function isPic($slide) {
  */
   function resize_image($file,
                         $string             = null,
-                        $width              = APP_WIDTH, 
-                        $height             = APP_HEIGHT, 
+                        $width              = null,
+                        $height             = null,
                         $proportional       = true, 
-                        $output			  = 'file',
+                        $output			  	= 'return',
                         $delete_original    = true, 
                         $use_linux_commands = false,
   						$quality = 100) {

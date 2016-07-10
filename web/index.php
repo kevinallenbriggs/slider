@@ -12,7 +12,7 @@ $slides = getFiles();
 	<link rel="stylesheet" href="css/style.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
 	<script type="text/javascript">
-		console.log('your resolution is ' + <?php echo APP_WIDTH; ?> + 'x' + <?php echo APP_HEIGHT; ?>);
+		console.log('your resolution is ' + <?php echo $app_width; ?> + 'x' + <?php echo $app_height; ?>);
 	</script>
 	<?php 
 	if (!isset($_GET['w']) || !isset($_GET['h'])) {

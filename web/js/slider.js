@@ -23,8 +23,17 @@ $(function() {
 	// 'line up' the slides according to their index within the array
 	ul.find("li").each(function(indx) {
 		var left_percent = (slide_width_pc * indx) + "%";
-		$(this).css({"left":left_percent});
-		$(this).css({width:(100 / slide_count) + "%"});
+		$(this).css("left", left_percent);
+		$(this).css("width", (100 / slide_count) + "%");
+		console.log(this.firstChild);
+		var img = this.firstChild;
+		
+		// resize the slides to maintain proportionality
+		if (img.naturalWidth > img.naturalHeight) {
+			img.style.width = 100 + "%";	
+		} else {
+			img.style.height = 100 + "%";
+		}
 	});
 
 	

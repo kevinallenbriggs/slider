@@ -9,41 +9,29 @@
 	foreach ($_FILES as $file) {								// load each file's array
 		foreach($file as $key => $value) {						// load the key/value pairs for each file array
 			switch ($key) {
-				case 'error':
-					if ($value > 0) {
-						echo "15";
-					}
-					
+				case 'error': ($value > 0) ? "15" : "";
 				case 'type':
-					$regex = "/^image/";
-					if (preg_match($regex, $value)) {
-						try {
-							getimagesize($file['tmp_name']);
+					if (preg_match("/^image/", $value)) {
+						try { getimagesize($file['tmp_name']);
 							//echo "Width: $width Height: $height";
-						} catch (Exception $e) {
-							echo "Exception: " . $e.getMessage();
-						}
-					}
-					
-				case 'size':
-					if ($value > 10048576) {
-						echo "29";
-					}
-					
-				default:
-					continue;
+						} catch (Exception $e) {echo "Exception: " . $e.getMessage();}
+					}	
+				case 'size': $value > 10048576 ? "29" : "";					
+				default: continue;
 			}
 		}
 		
 		$filename = $file['name'] . "_" . date("Y-m-d");		// add timestamp to filename
+		
 		// resize the image
-		//if (resize_image($file['tmp_name'])) {
-		if (move_uploaded_file($file['tmp_name'], 'uploads/' . $filename)) {
-			echo file_exists('uploads/' . $filename);
-		} else {
-			echo "0";
+		try {
+			$resized_image = resize_image($file['tmp_name']);
+		} catch (Exception $e) {
+			echo "resize image failed: " . $e.getMessage();
 		}
-
+		
+		debug($app_height);
+		debug(getimagesize($file['tmp_name']));
 		
 	}
 	

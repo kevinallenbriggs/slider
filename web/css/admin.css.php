@@ -6,8 +6,8 @@ header("Content-type: text/css; charset: UTF-8");
 	background-image:	url('../images/settings_bg.jpg');
 	background-repeat:	no-repeat;
 	<?php
-		if (defined(APP_WIDTH) || defined(APP_HEIGHT)) {
-			echo "	background-size:	" . APP_WIDTH . "px " . APP_HEIGHT . "px;";
+		if (isset($app_width) || isset($app_height)) {
+			echo "	background-size:	" . $app_width . "px " . $app_height . "px;";
 		} else {
 			echo "	background-size:	100% 100%;";
 		}
