@@ -1,6 +1,5 @@
 <?php
-	// THIS SCRIPT NEEDS TO PROCESS THE POSTED FILES THAT WILL BECOME SLIDES,
-	// INCLUDING CALLING IMAGE_RESIZE() ON THEM :)
+	// THIS SCRIPT NEEDS TO PROCESS THE POSTED FILES THAT WILL BECOME SLIDES
 	
 	include_once "../functions.php";
 	//debug($_FILES);
@@ -24,11 +23,11 @@
 		}
 		
 		// format filename before saving
-		$filename = substr_replace($file['name'], "_" . date("Y-m-d"), strpos($file['name'], '.'), 0);		// add timestamp to filename
-		$filename = trim(strtolower($filename));
-		$filename = preg_replace("/\s+/", "_", $filename);
+		// this takes the name of the file and adds a date before the first file extension it finds
+		// i.e. "image.jpg" becomes "image_2016-3-4.jpg"
+		$filename = preg_replace("/\s+/", "_", trim(strtolower(substr_replace($file['name'], "_" . date("Y-m-d"), strpos($file['name'], '.'), 0))));
 		
-		// resize the image
+		// copy the file into the uploads directory
 		try {
 			move_uploaded_file($file[tmp_name], "uploads/" . $filename);
 			$files[] = $filename;

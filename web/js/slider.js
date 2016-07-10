@@ -64,8 +64,3 @@ $(function() {
 
 	}
 });
-
-function preserveGet($dest) {
-		$url = window.location.href.split('?');
-		window.location.href = $url[0] + $dest + '?' + $url[1];
-}

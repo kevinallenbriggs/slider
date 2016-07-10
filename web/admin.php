@@ -6,7 +6,7 @@
 <head>
 	<title>Settings</title>
 	<link rel="stylesheet" href="css/style.css" />
-	<link rel="stylesheet" href="css/admin.css.php" />
+	<link rel="stylesheet" href="css/admin.css" />
 	<link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
 	<script src="js/admin.js"></script>
 	
