@@ -2,6 +2,7 @@
 body {
 	background-color: #ccc;
 	margin: 0;
+	padding: 0;
 	font-family: Roboto, sans-serif;
 	/*width: 640px;
 	height: 480px;*/
@@ -13,7 +14,7 @@ h1 {
 	margin:		0;
 }
 
-ul {
+ul, form {
 	margin: 	0;
 	padding:	0;
 }

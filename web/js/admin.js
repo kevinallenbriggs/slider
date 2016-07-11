@@ -76,34 +76,30 @@ function add_slides() {
 			
 			// prepare upload_feedback to receive previews of the uploaded images
 			upload_feedback = document.getElementById('upload_feedback');	// get the upload_feedback ul
-			elem = upload_feedback.cloneNode(true);		// clone upload feedback to mess with content
+			var clone = upload_feedback.cloneNode(true);		// clone upload feedback to mess with content
 			upload_feedback.innerHTML = '<div>Processing uploads...</div>';		// display message to user while we create previews
 			
 			
-			// check the status of our upload
+			// check for upload completion
 			request.onreadystatechange = function(){
 				if(request.readyState == 4){
-					try {
-						response = request.responseText;
-					} catch (e){
-						var resp = {
-								status: 'error',
-								data: 'Unknown error occurred: [' + request.responseText + ']'
-						};
-					}
+					var response = request.responseText;	// grab the returned html from admin.php
 					
 					// create the preview of successfully uploaded files
-					elem.innerHTML = response;
-					var list_items = elem.getElementsByTagName('li');
-					if (list_items.length > 0) {
-						for (var i = 0; i < list_items.length; i++) {
-							list_items[i].innerHTML = '<img src="uploads/' + list_items[i].innerHTML + '">';
-							upload_feedback.innerHTML = elem.innerHTML;
+					clone.innerHTML = response;			// copy the response into our clone of #upload_feedback
+					var list_items = clone.getElementsByTagName('li');		// get all the li elements within the clone
+					if (list_items.length > 0) {			// make sure there were elements created
+						// go through each li to add the img tag
+						for (var i = 0, file; i < list_items.length; i++) {
+							file = list_items[i];
+							file.innerHTML = '<img src="uploads/' + file.innerHTML + '">';	// add img element to each li
+							var img = file.getElementsByTagName('img')[0];
+							//img.naturalWidth > img.naturalHeight ? img.style.width = "100%" : img.style.width = "100%";
+							upload_feedback.innerHTML = clone.innerHTML;		// copy our clone into the original element which is displayed
 						}
 					} else upload_feedback.innerHTML = "There was an error uploading at least one of the files.";
 				}
 			};
-			
 			
 			// send the request to the server
 			request.send(form_data);
@@ -112,9 +108,6 @@ function add_slides() {
 			// ajax is not available, submit form manually
 			form.submit();
 		}
-		
-		console.log('upload_feedback.innerHTML: ' + upload_feedback.innerHTML);
-		console.log('elem.innerHTML: ' + elem.innerHTML);
 	}
 }
 

@@ -110,7 +110,7 @@
 	text-align:		center;
 	vertical-align:	middle;
 	padding:		1em 0;
-	margin:			2em 0;
+	margin:			1.5em 0;
 	border:			2px dashed #555;
 	border-radius:	.45em;
 	line-height:	4em;
@@ -125,21 +125,19 @@
 
 #upload_feedback {
 	float:				right;
-	width:				37%;
+	width:				13.3em;
 	list-style-type:	none;
 	overflow:			auto;
 }
 
 #upload_feedback li {
 	float: left;
-	margin: .3em;
+	width: 29%;
+	padding: 2%;
 }
 
 #upload_feedback img {
-	min-width:	3em;
-	min-height:	3em;
-	max-width:	4em;
-	max-height:	4em;
+	width:	29%:
 }
 
 #add, #edit, #remove {
