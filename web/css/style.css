@@ -55,10 +55,3 @@ input:focus {
 	height:	2em;
 	cursor:	pointer;
 }
-
-.debug {
-	background-color:	#FFB6C1;
-	border:				1px solid red;
-	border-radius:		5px;
-	color: 				red;
-}

@@ -27,8 +27,6 @@
 	</div>
 </div> <!-- .container -->
 
-			<div class="debug">
-			</div>
 
 <div id="lightbox">
 	<div class="lb_container" onclick="childHandler(event);">
