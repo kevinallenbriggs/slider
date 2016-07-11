@@ -15,12 +15,12 @@ TODO (in order of priority):
 3. Add ability to rotate the images if they aren't displaying correctly
 4. Add preview slider when in the manage slides area
 5. Add ability to upload and display PDFs (iframes maybe?)
-6. Remove red div at bottom of screen that was to be used for debugging
 
 
 COMPLETED:
-- Remove resolution detection components and resize image functions now that
-	slides resize natively using Javascript (slider.js)
+- Remove resolution detection components and resize image functions now that slides resize natively using Javascript (slider.js)
 - Show thumbnails of successfully uploaded files on the Add Slide lightbox
 - Add check for proper content type when uploading files
 - Optimize styles of #upload_feedback so that <li> elements always create a filled-in grid
+- Remove red div at bottom of screen that was to be used for debugging
+- Handle overflow of #upload_feedback
