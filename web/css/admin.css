@@ -124,10 +124,13 @@
 }
 
 #upload_feedback {
+	margin-top:			1%;
 	float:				right;
-	width:				13.3em;
+	width:				39%;
 	list-style-type:	none;
 	overflow:			auto;
+	border-radius:		.45em;
+	color: 				green;
 }
 
 #upload_feedback li {
@@ -137,7 +140,12 @@
 }
 
 #upload_feedback img {
-	width:	29%:
+	width: 100%;
+}
+
+#upload_feedback p {
+	margin:		0 0 0 2%;
+	padding:	0;
 }
 
 #add, #edit, #remove {

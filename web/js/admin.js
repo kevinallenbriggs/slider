@@ -95,7 +95,11 @@ function add_slides() {
 							file.innerHTML = '<img src="uploads/' + file.innerHTML + '">';	// add img element to each li
 							var img = file.getElementsByTagName('img')[0];
 							//img.naturalWidth > img.naturalHeight ? img.style.width = "100%" : img.style.width = "100%";
-							upload_feedback.innerHTML = clone.innerHTML;		// copy our clone into the original element which is displayed
+							upload_feedback.innerHTML = "<p>Successful Uploads:</p>" + clone.innerHTML;		// copy our clone into the original element which is displayed
+							console.log("upload_feedback.style.border: " + upload_feedback.style.border);
+							if (upload_feedback.style.border == '') {
+								upload_feedback.style.border = '1px solid green';
+							}
 						}
 					} else upload_feedback.innerHTML = "There was an error uploading at least one of the files.";
 				}

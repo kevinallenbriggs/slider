@@ -10,12 +10,13 @@ REQUIREMENTS OF PROJECT:
 
 
 TODO (in order of priority):
-1. Provide specific feedback to user if one of the uploads fails
-2. Add ability to set expiration date for each slide
-3. Add ability to rotate the images after they've been uploaded
-4. Add preview slider when in the manage slides area
-5. Add ability to upload and display PDFs (iframes maybe?)
-6. Handle overflow of #upload_feedback
+1. Use JSON to send data between upload.php and admin.js
+2. Provide specific feedback to user if one of the uploads fails
+3. Add ability to set expiration date for each slide
+4. Add ability to rotate the images after they've been uploaded
+5. Add preview slider when in the manage slides area
+6. Add ability to upload and display PDFs (iframes maybe?)
+7. Handle overflow of #upload_feedback
 
 
 
