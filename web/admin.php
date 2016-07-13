@@ -18,7 +18,7 @@
 	
 	<div class="settings">
 		<button id="add_button" onclick="toggleLightBox('add');">Add</button>
-		<button id="edit_button" onclick="edit();">Edit</button>
+		<button id="edit_button" onclick="toggleLightBox('edit');">Edit</button>
 		<button id="remove_button" onclick="del();">Remove</button>
 	</div>
 	
@@ -55,6 +55,12 @@
 		</div>
 		
 		<div id="edit">
+			<h1>Edit Slides</h1>
+			<form id="edit_form" method="post" action="edit.php">
+				<fieldset>
+					<legend>Current Slides:</legend>
+				</fieldset>
+			</form>
 		</div>
 		
 		<div id="remove">

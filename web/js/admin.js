@@ -4,13 +4,14 @@ function goHome() {
 
 
 function toggleLightBox(content) {	
-	lightbox =		document.getElementById('lightbox');
-	lb_container =	lightbox.getElementsByClassName('lb_container')[0];
+	lightbox =	document.getElementById('lightbox');
+	lightbox_children = lightbox.getElementsByClassName('lb_container')[0].getElementsByTagName('div');
+	for (var i = 0; i < lightbox_children.length; i++) {lightbox_children[i].style.display = 'none';}
 	
 	switch (content) {
-		case 'add': css(content); add_slides(); break;
-		case 'edit': css(content); console.log("toggleLightBox('edit') called"); break;
-		case 'del': css(content); console.log("toggleLightBox('del') called"); break;
+		case 'add': document.getElementById('add').style.display = 'block'; add_slides(); console.log("toggleLightBox('add') called"); break;
+		case 'edit': document.getElementById('edit').style.display = 'block'; console.log("toggleLightBox('edit') called"); break;
+		case 'del': document.getElementById('remove').style.display = 'block'; console.log("toggleLightBox('del') called"); break;
 		default: break;
 	}
 	
