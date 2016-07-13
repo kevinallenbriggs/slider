@@ -10,14 +10,16 @@ REQUIREMENTS OF PROJECT:
 
 
 TODO (in order of priority):
-1. Create Edit Slides area of site / file system settings config
-2. Use JSON to send data between upload.php and admin.js
-3. Provide specific feedback to user if one of the uploads fails
-4. Add ability to set expiration date for each slide
-5. Add ability to rotate the images after they've been uploaded
-6. Add preview slider when in the manage slides area
-7. Add ability to upload and display PDFs (iframes maybe?)
-8. Handle overflow of #upload_feedback
+Create Edit Slides area of site / file system settings config
+Combine the Add/Edit/Remove Slides areas to a consolidated 'Manage Slides' area
+Add 'Options' area where app properties can be defined (default exp date, default slide display time, etc).
+Use JSON to send data between upload.php and admin.js
+Provide specific feedback to user if one of the uploads fails
+Add ability to set expiration date for each slide
+Add ability to rotate the images after they've been uploaded
+Add preview slider when in the manage slides area
+Add ability to upload and display PDFs (iframes maybe?)
+Handle overflow of #upload_feedback
 
 
 
