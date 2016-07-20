@@ -10,6 +10,7 @@ REQUIREMENTS OF PROJECT:
 
 
 TODO (in order of priority):
+Fix bug that displays more than one config option in the lightbox if one was previously selected between page refreshes
 Create Edit Slides area of site / file system settings config
 Combine the Add/Edit/Remove Slides areas to a consolidated 'Manage Slides' area
 Add 'Options' area where app properties can be defined (default exp date, default slide display time, etc).
