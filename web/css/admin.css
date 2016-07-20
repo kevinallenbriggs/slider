@@ -94,6 +94,10 @@
 	padding-bottom: .2em;
 }
 
+.lb_container .show {
+	display:	block;
+}
+
 #upload_form {
 	width:	60%;
 	float:	left;

@@ -3,15 +3,17 @@ function goHome() {
 }
 
 
-function toggleLightBox(content) {	
+function toggleLightBox(content) {
 	lightbox =	document.getElementById('lightbox');
-	lightbox_children = lightbox.getElementsByClassName('lb_container')[0].getElementsByTagName('div');
-	for (var i = 0; i < lightbox_children.length; i++) {lightbox_children[i].style.display = 'none';}
+	
+	// grab all the lightbox options and make sure they're all reset every time this is called
+	add = document.getElementById('add'), edit = document.getElementById('edit'), del = document.getElementById('remove');
+	add.style.display = edit.style.display = del.style.display = 'none';
 	
 	switch (content) {
-		case 'add': document.getElementById('add').style.display = 'block'; add_slides(); console.log("toggleLightBox('add') called"); break;
-		case 'edit': document.getElementById('edit').style.display = 'block'; console.log("toggleLightBox('edit') called"); break;
-		case 'del': document.getElementById('remove').style.display = 'block'; console.log("toggleLightBox('del') called"); break;
+		case 'add': add.style.display = 'block'; add_slides(); console.log("toggleLightBox('add') called"); break;
+		case 'edit': edit.style.display = 'block'; console.log("toggleLightBox('edit') called"); break;
+		case 'del': del.style.display = 'block'; console.log("toggleLightBox('del') called"); break;
 		default: break;
 	}
 	

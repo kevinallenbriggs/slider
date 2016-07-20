@@ -10,7 +10,6 @@ REQUIREMENTS OF PROJECT:
 
 
 TODO (in order of priority):
-Fix bug that displays more than one config option in the lightbox if one was previously selected between page refreshes
 Create Edit Slides area of site / file system settings config
 Combine the Add/Edit/Remove Slides areas to a consolidated 'Manage Slides' area
 Add 'Options' area where app properties can be defined (default exp date, default slide display time, etc).
@@ -19,7 +18,7 @@ Provide specific feedback to user if one of the uploads fails
 Add ability to set expiration date for each slide
 Add ability to rotate the images after they've been uploaded
 Add preview slider when in the manage slides area
-Add ability to upload and display PDFs (iframes maybe?)
+Add ability to upload and display PDFs (display with iframe or  convert to jpg with imagemagick maybe?)
 Handle overflow of #upload_feedback
 
 
@@ -30,4 +29,4 @@ COMPLETED:
 - Add check for proper content type when uploading files
 - Optimize styles of #upload_feedback so that <li> elements always create a filled-in grid
 - Remove red div at bottom of screen that was to be used for debugging
-- 
+- Fix bug that displays more than one config option in the lightbox if one was previously selected between page refreshes
