@@ -59,11 +59,15 @@
 			<form id="edit_form" method="post" action="edit.php">
 				<fieldset>
 					<legend>Current Slides:</legend>
+					<div id="slide_management">
+						<!-- CONTENTS FILLED BY JAVASCRIPT (ADMIN.JS) -->
+					</div>
 				</fieldset>
 			</form>
 		</div>
 		
 		<div id="remove">
+			<!-- CONTENTS FILLED BY JAVASCRIPT (ADMIN.JS) -->
 		</div>
 		
 	</div>
