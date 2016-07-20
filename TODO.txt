@@ -10,8 +10,8 @@ REQUIREMENTS OF PROJECT:
 
 
 TODO (in order of priority):
-Create Edit Slides area of site / file system settings config
 Combine the Add/Edit/Remove Slides areas to a consolidated 'Manage Slides' area
+Create Edit Slides area of site / file system settings config
 Add 'Options' area where app properties can be defined (default exp date, default slide display time, etc).
 Use JSON to send data between upload.php and admin.js
 Provide specific feedback to user if one of the uploads fails
