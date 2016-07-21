@@ -4,9 +4,10 @@
 }
 
 .container h1 {
-	text-align:					center;
-	color: 						black;
-	text-shadow:				0px 0px .3em rgb(43,133,199);
+	text-align:			center;
+	color: 				black;
+	text-shadow:		0px 0px .3em rgb(43,133,199);
+	margin-bottom:		1em;
 
 }
 
@@ -152,6 +153,6 @@
 	padding:	0;
 }
 
-#add, #edit, #remove {
+#manage {
 	display:	none;
 }
