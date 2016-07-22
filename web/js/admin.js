@@ -5,7 +5,7 @@ function goHome() {
 
 function toggleLightBox(content) {
 	lightbox =	document.getElementById('lightbox');
-	
+/*	
 	// grab all the lightbox options and make sure they're all reset every time this is called
 	add = document.getElementById('add'), edit = document.getElementById('edit'), del = document.getElementById('remove');
 	add.style.display = edit.style.display = del.style.display = 'none';
@@ -16,9 +16,19 @@ function toggleLightBox(content) {
 		case 'del': del.style.display = 'block'; console.log("toggleLightBox('del') called"); break;
 		default: break;
 	}
-	
+*/
 	lightbox.style.display == 'none' || lightbox.style.display == '' ? lightbox.style.display = 'initial' : lightbox.style.display = 'none';
 
+	
+	switch(content) {
+		case 'manage':
+			document.getElementById(content).style.display = 'block';
+			console.log(document.getElementById(content));
+			break;
+		case 'settings': document.getElementById(content).style.display = 'block'; break;
+		default: break;
+	}
+	
 	return lightbox;
 }
 
