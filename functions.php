@@ -48,8 +48,8 @@ function getFiles($dir = 'uploads/') {
 	
 		$info = pathinfo($dir . $file);
 	
-		$$var_name->path =	strtolower($dir . $info['basename']);
-		$ext = strtolower($info['extension']);
+		$$var_name->path =	$dir . $info['basename'];
+		$ext = $info['extension'];
 		if ($ext) {
 			$$var_name->type = $ext;
 		} else {
