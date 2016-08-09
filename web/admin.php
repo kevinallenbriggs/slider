@@ -47,14 +47,27 @@
 		<div id="manage">
 			<div>
 				<h1>Manage Slides</h1>
-				<fieldset>
-					<legend>This is where thumbnails of all the slides go</legend>
-					Clicking on them should bring up their 'options' (length to diplay, rotate, expiration date)<br>
-					The first thumbnail will be a plus sign that when clicked will upload a slide.<br>
-					User can drag a file anywhere on this screen to upload it as well.
-				</fieldset>
+				<div id="uploaded_slides">
+					<ul>
+						<li id="add_slide" onclick="addSlides()"><img src="images/plus.png"></li>
+						<?php
+							$slides = getFiles();
+							foreach ($slides as $slide) {
+								if (isPic($slide)) {
+									echo "<li><img src='$slide->path'></li>";
+								}
+							}
+						?>
+					</ul>
+				</div>
 			</div>
 		</div>	<!-- #manage -->
+		
+		<div id="settings">
+		</div>
+		
+		<div style="clear:both;"></div>
+		
 	</div>	<!-- #lb_container -->
 </div>
 </body>

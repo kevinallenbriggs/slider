@@ -91,7 +91,7 @@
 
 .lb_container h1 {
 	border-bottom: 1px solid black;
-	margin-bottom:	1em;
+	margin-bottom:	.6em;
 	padding-bottom: .2em;
 }
 
@@ -121,12 +121,14 @@
 	line-height:	4em;
 }
 
+
 #file_drag.hover {		/* this is a hover class that we will apply with js */
 	color:			#f00;
 	border-color:	#f00;
 	border-style:	solid;
 	box-shadow:		inset 0 3px 4px #888;
 }
+
 
 #upload_feedback {
 	margin-top:			1%;
@@ -138,21 +140,46 @@
 	color: 				green;
 }
 
+
 #upload_feedback li {
 	float: left;
 	width: 29%;
 	padding: 2%;
 }
 
+
 #upload_feedback img {
 	width: 100%;
 }
+
 
 #upload_feedback p {
 	margin:		0 0 0 2%;
 	padding:	0;
 }
 
+
 #manage {
 	display:	none;
+}
+
+
+#uploaded_slides > ul > li {
+	float:			left;
+	margin-left:	.25em;
+	width:			4em;
+	height:			4em;
+	border-radius:	.5em;
+}
+
+
+#uploaded_slides img {
+	width:			4em;
+	height:			4em;
+	border-radius:	.5em;
+}
+
+
+#uploaded_slides #add_slide {
+	border:		.2em dotted #3366ff;
 }

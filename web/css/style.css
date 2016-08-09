@@ -19,6 +19,10 @@ ul, form {
 	padding:	0;
 }
 
+ul {
+	list-style:	none;
+}
+
 fieldset {
 	border-radius:	.45em;
 }

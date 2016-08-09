@@ -4,26 +4,30 @@ function goHome() {
 
 
 function toggleLightBox(content) {
-	lightbox =	document.getElementById('lightbox');
-/*	
+/*	lightbox =	document.getElementById('lightbox');
+	CAN REMOVE AFTER UPDATING SLIDE UPLOAD PROCESS
 	// grab all the lightbox options and make sure they're all reset every time this is called
-	add = document.getElementById('add'), edit = document.getElementById('edit'), del = document.getElementById('remove');
+	add = document.getElementById('manage'), edit = document.getElementById('edit'), del = document.getElementById('remove');
 	add.style.display = edit.style.display = del.style.display = 'none';
 	
 	switch (content) {
-		case 'add': add.style.display = 'block'; add_slides(); console.log("toggleLightBox('add') called"); break;
+		case 'add': add.style.display = 'block'; addSlides(); console.log("toggleLightBox('add') called"); break;
 		case 'edit': edit.style.display = 'block'; console.log("toggleLightBox('edit') called"); break;
 		case 'del': del.style.display = 'block'; console.log("toggleLightBox('del') called"); break;
 		default: break;
 	}
 */
-	lightbox.style.display == 'none' || lightbox.style.display == '' ? lightbox.style.display = 'initial' : lightbox.style.display = 'none';
 
+
+	// grab all the lightbox options and make sure they're all reset every time this is called
+	lightbox =	document.getElementById('lightbox');
+	lightbox.style.display == 'none' || lightbox.style.display == '' ? lightbox.style.display = 'initial' : lightbox.style.display = 'none';
+	manage = document.getElementById('manage'), settings = document.getElementById('settings');
+	manage.style.display = settings.style.display = 'none';
 	
 	switch(content) {
 		case 'manage':
-			document.getElementById(content).style.display = 'block';
-			console.log(document.getElementById(content));
+			showSlideManagement(content);
 			break;
 		case 'settings': document.getElementById(content).style.display = 'block'; break;
 		default: break;
@@ -33,14 +37,16 @@ function toggleLightBox(content) {
 }
 
 // THIS FUNCTION ALLOWS USERS TO ADD A SLIDE TO THE SYSTEM
-function add_slides() {
-	var fileselect		= document.getElementById('file_select'),
+function addSlides() {
+/*	CAN REMOVE AFTER UPDATING SLIDE UPLOAD PROCESS 
+		var fileselect		= document.getElementById('file_select'),
 		filedrag		= document.getElementById('file_drag'),
 		submitbutton	= document.getElementById('submit_button'),
 		form			= document.getElementById('upload_form');
 	
 	// add event listener to the file_select button
-	fileselect.addEventListener("change", uploadFiles, false);
+	//fileselect.addEventListener("change", uploadFiles, false);
+*/
 	
 	// check if AJAX is available
 	var request = new XMLHttpRequest();
@@ -58,11 +64,13 @@ function add_slides() {
 			if (event.type === 'drop') uploadFiles(event);
 		}
 		
+/*	CAN REMOVE AFTER UPDATING SLIDE UPLOAD PROCESS
 		// add event handlers for file drag n drop
-		filedrag.addEventListener("dragover", fileDragHandler, false);
-		filedrag.addEventListener("dragleave", fileDragHandler, false);
-		filedrag.addEventListener("drop", fileDragHandler, false);
-		filedrag.style.display = "block";
+		//filedrag.addEventListener("dragover", fileDragHandler, false);
+		//filedrag.addEventListener("dragleave", fileDragHandler, false);
+		//filedrag.addEventListener("drop", fileDragHandler, false);
+		//filedrag.style.display = "block";
+*/
 		
 	} else {		// automatic form submittal isn't going to work; display the submit button
 		submitbutton.style.display = 'inline-block';
@@ -155,13 +163,12 @@ function childHandler(e) {
 }
 
 /**
- * 
- * @param content - the #id of the DOM element to act upon
- * @param property - the CSS property to modify, default is 'display'
- * @param value	- the value of the CSS property to modify, default is 'block'
+ * inserts all the slide management content into the lightbox
  */
-function css(content, property, value) {
-	!property ? property = 'display' : property = property;		// value is 'display' by default
-	!value ? value = 'block' : value = value;	// value is 'block' by default
-	document.getElementById(content).style[property] = value;
+function showSlideManagement(content) {
+	document.getElementById(content).style.display = 'block';		// display the #manage div
+	console.log(document.getElementById(content));					// debugging message, can be commented out for production
+	
+	slides = document.getElementById('uploaded_slides');
+	
 }

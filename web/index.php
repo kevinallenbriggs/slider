@@ -22,15 +22,9 @@ $slides = getFiles();
 			<ul>
 				<?php 
 					foreach ($slides as $slide) {
-						echo '<li>';
 						if (isPic($slide)) {
-							echo "<img src='$slide->path'>";
-							
-						} else {
-							echo "<iframe src='$slide->path' width='100%' style='height:100%'></iframe>";
+							echo "<li><img src='$slide->path'></li>";
 						}
-						echo '</li>';
-						
 					}
 				?>
 			</ul>
