@@ -1,5 +1,3 @@
-.buildpath
-.project
-.settings/
-.DS_Store .
-.[Th]umbs.db
+/.settings/
+/.buildpath
+/.project

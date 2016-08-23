@@ -57,7 +57,7 @@
 
 
 
-.lb_container {
+#lb_container {
 	margin: 			5%;
 	padding:			.8em;
 	border-radius:		.45em .45em;
@@ -89,13 +89,13 @@
 	background-image:	radial-gradient(circle, rgba(43, 133, 199, 0.9), rgba(255, 255, 255, 0.4));
 }
 
-.lb_container h1 {
+#lb_container h1 {
 	border-bottom: 1px solid black;
 	margin-bottom:	.6em;
 	padding-bottom: .2em;
 }
 
-.lb_container .show {
+#lb_container .show {
 	display:	block;
 }
 
@@ -177,9 +177,18 @@
 	width:			4em;
 	height:			4em;
 	border-radius:	.5em;
+	cursor:			pointer;
 }
 
 
 #uploaded_slides #add_slide {
 	border:		.2em dotted #3366ff;
+}
+
+.uploads_lightbox {
+	/*display:		none;*/
+}
+
+.uploads_lightbox img {
+	width: 100%;
 }

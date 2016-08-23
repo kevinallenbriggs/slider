@@ -19,18 +19,20 @@ function toggleLightBox(content) {
 */
 
 
-	// grab all the lightbox options and make sure they're all reset every time this is called
+	// grab all the lightbox options and make sure each is reset every time this is called
 	lightbox =	document.getElementById('lightbox');
 	lightbox.style.display == 'none' || lightbox.style.display == '' ? lightbox.style.display = 'initial' : lightbox.style.display = 'none';
 	manage = document.getElementById('manage'), settings = document.getElementById('settings');
 	manage.style.display = settings.style.display = 'none';
+	uploaded = document.getElementsByClassName('uploads_lightbox');
+	/*for (var i = 0; i < uploaded.length; i++) {
+		uploaded[i].style.display = 'none';
+	}*/
 	
 	switch(content) {
-		case 'manage':
-			showSlideManagement(content);
-			break;
-		case 'settings': document.getElementById(content).style.display = 'block'; break;
-		default: break;
+		case 'manage':		showSlideManagement(content); break;
+		case 'settings':	document.getElementById(content).style.display = 'block'; break;
+		default:		 	showSlideSettings(content, lightbox); break;
 	}
 	
 	return lightbox;
@@ -138,18 +140,6 @@ function addSlides() {
 
 
 
-// THIS FUNCTION ALLOWS USERS TO EDIT THE PARAMETERS OF A SLIDE
-function edit() {
-	toggleLightBox('edit');
-}
-
-
-// THIS FUNCTION REMOVES A SLIDE (AND ITS ASSOCIATED PARAMETERS) FROM THE SYSTEM
-function del() {
-	toggleLightBox('del');
-}
-
-
 /**
  * cancels out javascript event handler bubbling
  * @param e - the triggering event (i.e. onclick="childHandler(event);")
@@ -162,13 +152,18 @@ function childHandler(e) {
     //alert('child clicked');
 }
 
+
 /**
  * inserts all the slide management content into the lightbox
  */
-function showSlideManagement(content) {
-	document.getElementById(content).style.display = 'block';		// display the #manage div
-	console.log(document.getElementById(content));					// debugging message, can be commented out for production
-	
-	slides = document.getElementById('uploaded_slides');
+function showSlideManagement(id) {
+	document.getElementById(id).style.display = 'block';		// display the #manage div
+	slides = document.getElementById('uploaded_slides');		// get all the slides
+}
+
+
+function showSlideSettings(id, lb) {
+	document.getElementById('manage').style.display = 'none';
+	document.getElementById('settings').style.display = 'none';
 	
 }

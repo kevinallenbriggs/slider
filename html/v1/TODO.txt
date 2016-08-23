@@ -10,6 +10,7 @@ REQUIREMENTS OF PROJECT:
 
 
 TODO (in order of priority):
+Add a GET variable check to admin area which shows the lightbox if set
 Combine the Add/Edit/Remove Slides areas to a consolidated 'Manage Slides' area
 Create Edit Slides area of site / file system settings config
 Add 'Options' area where app properties can be defined (default exp date, default slide display time, etc).

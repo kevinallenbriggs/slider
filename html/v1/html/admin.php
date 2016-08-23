@@ -41,7 +41,7 @@
 
 
 <div id="lightbox">
-	<div class="lb_container" onclick="childHandler(event);">
+	<div id="lb_container" onclick="childHandler(event);">
 	
 		<img src="images/close.png" class="close_button" onclick="toggleLightBox();">
 		<div id="manage">
@@ -54,7 +54,7 @@
 							$slides = getFiles();
 							foreach ($slides as $slide) {
 								if (isPic($slide)) {
-									echo "<li><img src='$slide->path'></li>";
+									echo "<li><img src=\"$slide->path\"></li>";
 								}
 							}
 						?>
@@ -65,6 +65,13 @@
 		
 		<div id="settings">
 		</div>
+		
+		<?php
+			foreach ($slides as $slide) {
+				echo "<div class=\"uploads_lightbox\" id=\"$slide->name\" onclick=\"toggleLightBox($slide->name);\">" .
+					 "<h1>$slide->name.$slide->type</h1><img src=\"$slide->path\"></div>";
+			}
+		?>
 		
 		<div style="clear:both;"></div>
 		
