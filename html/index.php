@@ -1,7 +1,6 @@
 <?php
 
 include_once '../functions.php';
-$slides = getFiles();
 
 ?>
 
@@ -10,10 +9,7 @@ $slides = getFiles();
 	<title>Slider</title>
 	
 	<link rel="stylesheet" href="css/style.css">
-	<link rel="stylesheet" href="css/slider.css">
 	<link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css' >
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
-	<script src="js/slider.js"></script>
 </head>
 
 <body onload="$('.slider .play').click()">
