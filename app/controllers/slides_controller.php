@@ -1,9 +1,9 @@
 <?php
-  class PostsController {
+  class SlideController {
     public function index() {
       // we store all the posts in a variable
-      $posts = Post::all();
-      require_once('views/posts/list.php');
+      $slides = Slide::all();
+      require_once('views/slides/index.php');
     }
 
     public function show() {
@@ -13,8 +13,8 @@
         return call('pages', 'error');
 
       // we use the given id to get the right post
-      $post = Post::find($_GET['id']);
-      require_once('views/posts/show.php');
+      $slide = Slide::find($_GET['id']);
+      require_once('views/slides/show.php');
     }
   }
 ?>

@@ -11,14 +11,10 @@
   <body>
     <header>
       <a href='/'>Home</a>
-      <a href='?controller=posts&action=index'>Posts</a>
+      <a href='?controller=slides&action=index'>Slides</a>
     </header>
 
-    <?php 
-    	$path = "routes.php";
-    	if(file_exists($path)) {
-    		require_once ($path);
-    	}?>
+    <?php require_once ("routes.php"); ?>
 
     <footer>
       Footer text

@@ -1,7 +1,7 @@
 <?php
   // Every controller and it's actions needs an entry in this array
   $controllers = array('pages' => ['home', 'error'],
-                       'posts' => ['index', 'show']);
+                       'slides' => ['index', 'show']);
 
   if (array_key_exists($controller, $controllers)) {
     if (in_array($action, $controllers[$controller])) {
@@ -22,10 +22,10 @@
       case 'pages':
         $controller = new PagesController();
       	break;
-      case 'posts':
+      case 'slides':
         // we need the model to query the database later in the controller
-        require_once('models/post.php');
-        $controller = new PostsController();
+        require_once('models/slide.php');
+        $controller = new SlideController();
       	break;
     }
 

@@ -9,6 +9,7 @@
     public static function getInstance() {
       if (!isset(self::$instance)) {
         $pdo_options[PDO::ATTR_ERRMODE] = PDO::ERRMODE_EXCEPTION;
+        $pdo_options[PDO::ATTR_DEFAULT_FETCH_MODE] = PDO::FETCH_ASSOC;
         $database	=	'slider';
         $username	=	'slider';
         $password	=	'nFTsX8GjQzYbKV6a';
