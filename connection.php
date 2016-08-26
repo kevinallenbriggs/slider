@@ -11,7 +11,7 @@
         $pdo_options[PDO::ATTR_ERRMODE] = PDO::ERRMODE_EXCEPTION;
         $database	=	'slider';
         $username	=	'slider';
-        $password	=	'EU69RewFUG238xwH';
+        $password	=	'nFTsX8GjQzYbKV6a';
         self::$instance = new PDO("mysql:host=localhost;dbname=$database", $username, $password, $pdo_options);
       }
       return self::$instance;

@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
   <head>
 		<?php
@@ -15,7 +15,7 @@
     </header>
 
     <?php 
-    	$path = __DIR__ . "/../../routes.php";
+    	$path = "routes.php";
     	if(file_exists($path)) {
     		require_once ($path);
     	}?>
