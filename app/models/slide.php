@@ -11,10 +11,15 @@
     public $expiration_date;
     public $tmp_name;
 
+    /**
+     * CREATES A NEW SLIDE OBJECT WITH EITHER JUST A NAME OR UP TO 4 OTHER PROPERTIES
+     * @param unknown $param
+     */
     public function __construct($param) {
+    	// check to see if only a name was given
     	if (is_string($param)) {
     		$this->name = $param;
-    	} else if (is_array($param)) {
+    	} else if (is_array($param)) {		// an array of property values was supplied
 			isset($param['id']) ? $this->id = $param['id'] : '';
     		isset($param['name']) ? $this->name = $param['name'] : '';
     		isset($param['type']) ? $this->type = $param['type'] : '';
@@ -23,51 +28,70 @@
     	}
     }
 
+    
+    
     /**
-     * Returns all slide objects from the database as an array
-     * @return Post[]
+     * RETURNS ALL SLIDE OBJECTS FROM THE DATABASE AS AN ARRAY
+     * @return Post[] on success
+     * @return PDOException message on failure
      */
     public static function all() {
       $list = [];
-      $db = Db::getInstance();
-      $req = $db->query('SELECT * FROM slides');
-	  
-      // we create a list of slide objects from the database results
-      foreach($req->fetchAll() as $slide) {
-      	$params = array('id'=>$slide['id'],
-        				'name'=>$slide['name'],
-        				'caption'=>$slide['caption'],
-        				'path_to_image'=>$slide['path_to_image'],
-        				'publication_status'=>$slide['publication_status'],
-        				'expiration_date'=>$slide['expiration_date']);
-		$list[] = new Slide($params);
+      $db = Db::getInstance();		// connect to database
+      
+      // query database
+      try {
+	      $req = $db->query('SELECT * FROM slides');
+	
+	      // loop through query results to get the property values for each Slide object that will be created
+	      foreach($req->fetchAll() as $slide) {
+			$params = array('id'					=>	$slide['id'],
+	        				'name'					=>	$slide['name'],
+	        				'caption'				=>	$slide['caption'],
+	        				'path_to_image'			=>	$slide['path_to_image'],
+	        				'publication_status'	=>	$slide['publication_status'],
+	        				'expiration_date'		=>	$slide['expiration_date']);
+			
+			// create the Slide object and add it to the array of results to return
+			$list[] = new Slide($params);
+	      }
+      } catch (PDOException $e) {
+      	return $e->getMessage();	// something went wrong, return the error
       }
+      
+      $db = null;		// disconnect from database
       
       return $list;
     }
 
+    
+    
     /**
      * Retrieves a single slide from the database
      * @param integer $id
      * @return Slide
      */
     public static function find($id) {
-      $db = Db::getInstance();
-      // we make sure $id is an integer
-      $id = intval($id);
-      $req = $db->prepare('SELECT * FROM slides WHERE id = :id');
-      // the query was prepared, now we replace :id with our actual $id value
-      $req->execute(array('id' => $id));
-      $slide = $req->fetch();
-      $db = null;
-      $params = array('id' 				   => $slide['id'],
-      				  'name'			   => $slide['name'],
-      				  'caption'			   => $slide['caption'],
-      				  'path_to_image'	   => $slide['path_to_image'],
-      				  'publication_status' => $slide['publication_status'],
-      				  'expiration_date'	   => $slide['expiration_date']);
+      $db = Db::getInstance();		// connect to database
+      $id = intval($id);			// validate input
       
-      return new Slide($params);
+      // query database
+      try {
+	      $req = $db->prepare('SELECT * FROM slides WHERE id = :id');
+	      $req->execute(array('id' => $id));
+	      $slide = $req->fetch();
+      } catch (PDOException $e) {
+			return $e->getMessage();
+      }
+      
+      $db = null;		// disconnect from database
+      
+      return new Slide(array('id' 				   	=> $slide['id'],
+      				  		 'name'			   		=> $slide['name'],
+      						 'caption'			   	=> $slide['caption'],
+      						 'path_to_image'	  	=> $slide['path_to_image'],
+      						 'publication_status'	=> $slide['publication_status'],
+      						 'expiration_date'	   	=> $slide['expiration_date']));
     }
     
     
@@ -77,7 +101,7 @@
     	
     	// insert the record into the database
     	try {
-	    	$db = Db::getInstance();
+	    	$db = Db::getInstance();	// connect to database
 	    	$req = $db->prepare("INSERT INTO slides (name, path_to_image, type) VALUES (:name, :path, :type)");
 	    	$req->execute(array('name' => $this->name,
 	    						'path' => $this->path_to_image,
@@ -85,10 +109,10 @@
 	    	));
 	    	
     	} catch (PDOException $e) {
-    		return $e->getMessage();
+    		return $e->getMessage();	// something went wrong, return the error
     	}
     	
-    	$db = null;
+    	$db = null;		// disconnect from the database
     }
   }
 ?>
