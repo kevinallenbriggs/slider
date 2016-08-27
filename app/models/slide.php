@@ -10,6 +10,7 @@
     public $publication_status;
     public $expiration_date;
     public $tmp_name;
+    public $size;
 
     /**
      * CREATES A NEW SLIDE OBJECT WITH EITHER JUST A NAME OR UP TO 4 OTHER PROPERTIES
@@ -25,6 +26,7 @@
     		isset($param['type']) ? $this->type = $param['type'] : '';
     		isset($param['path_to_image']) ? $this->path_to_image = $param['path_to_image'] : '';
     		isset($param['tmp_name']) ? $this->tmp_name = $param['tmp_name'] : '';
+    		isset($param['size']) ? $this->size = $param['size'] : '';
     	}
     }
 
@@ -102,10 +104,11 @@
     	// insert the record into the database
     	try {
 	    	$db = Db::getInstance();	// connect to database
-	    	$req = $db->prepare("INSERT INTO slides (name, path_to_image, type) VALUES (:name, :path, :type)");
+	    	$req = $db->prepare("INSERT INTO slides (name, path_to_image, type, size) VALUES (:name, :path, :type, :size)");
 	    	$req->execute(array('name' => $this->name,
 	    						'path' => $this->path_to_image,
-	    						'type' => $this->type
+	    						'type' => $this->type,
+	    						'size' => $this->size
 	    	));
 	    	
     	} catch (PDOException $e) {
