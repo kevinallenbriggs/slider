@@ -1,8 +1,13 @@
 <p>Here is a list of all slides:</p>
 
-<?php foreach($slides as $slide) { ?>
-  <p>
-    <?php echo $slide->name; ?>
-    <a href='?controller=slides&action=show&id=<?php echo $slide->id; ?>'>See content</a>
-  </p>
-<?php } ?>
+<?php
+	foreach($slides as $slide) {
+		echo "<p>$slide->name <a href='?controller=slides&action=show&id=$slide->id'>See content</a></p>";
+	}
+?>
+
+<form name="formUpload" action="/?controller=slides&action=upload" method="post" enctype="multipart/form-data">
+	<input type="file" name="inFile">
+	<input type="hidden" name="inSubmitted" value="true">
+	<button type="submit">Upload File</button>
+</form>

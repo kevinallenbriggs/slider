@@ -5,9 +5,11 @@
     public $id;
     public $name;
     public $caption;
+    public $type;
     public $path_to_image;
     public $publication_status;
     public $expiration_date;
+    public $tmp_name;
 
     public function __construct($param) {
     	if (is_string($param)) {
@@ -15,10 +17,9 @@
     	} else if (is_array($param)) {
 			isset($param['id']) ? $this->id = $param['id'] : '';
     		isset($param['name']) ? $this->name = $param['name'] : '';
-    		isset($param['caption']) ? $this->caption = $param['caption'] : '';
+    		isset($param['type']) ? $this->type = $param['type'] : '';
     		isset($param['path_to_image']) ? $this->path_to_image = $param['path_to_image'] : '';
-    		isset($param['publication_status']) ? $this->publication_status = $param['publication_status'] : '';
-    		isset($param['expiration_date']) ? $this->expiration_date = $param['expiration_date'] : '';
+    		isset($param['tmp_name']) ? $this->tmp_name = $param['tmp_name'] : '';
     	}
     }
 
@@ -58,6 +59,7 @@
       // the query was prepared, now we replace :id with our actual $id value
       $req->execute(array('id' => $id));
       $slide = $req->fetch();
+      $db = null;
       $params = array('id' 				   => $slide['id'],
       				  'name'			   => $slide['name'],
       				  'caption'			   => $slide['caption'],
@@ -66,6 +68,27 @@
       				  'expiration_date'	   => $slide['expiration_date']);
       
       return new Slide($params);
+    }
+    
+    
+    public function upload() {
+    	// copy the file from it's temporary location in PHP
+    	move_uploaded_file($this->tmp_name, 'uploads/' . $this->name);
+    	
+    	// insert the record into the database
+    	try {
+	    	$db = Db::getInstance();
+	    	$req = $db->prepare("INSERT INTO slides (name, path_to_image, type) VALUES (:name, :path, :type)");
+	    	$req->execute(array('name' => $this->name,
+	    						'path' => $this->path_to_image,
+	    						'type' => $this->type
+	    	));
+	    	
+    	} catch (PDOException $e) {
+    		return $e->getMessage();
+    	}
+    	
+    	$db = null;
     }
   }
 ?>
