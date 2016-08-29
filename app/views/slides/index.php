@@ -2,7 +2,7 @@
 
 <?php
 	foreach($slides as $slide) {
-		echo "<p>$slide->name <a href='?controller=slides&action=show&id=$slide->id'>See content</a></p>";
+		echo "<p><img src='$slide->path_to_image'> $slide->name <a href='?controller=slides&action=show&id=$slide->id'>See content</a></p>";
 	}
 ?>
 

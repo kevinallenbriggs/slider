@@ -12,12 +12,13 @@
     <header>
       <a href='/'>Home</a>
       <a href='?controller=slides&action=index'>Slides</a>
+      <a href='?controller=settings&action=edit'>Settings</a>
+      <hr>
     </header>
 
     <?php require_once ("routes.php"); ?>
 
     <footer>
-      Footer text
     </footer>
   <body>
 </html>

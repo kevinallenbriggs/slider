@@ -1,5 +1,4 @@
-<p>This is the requested slide:</p>
-
+<p>
 <?php 
 	$path = '';
 	
@@ -16,3 +15,4 @@
 	
 	echo "<img src='$path' />";		// display the slide
 ?>
+</p>
