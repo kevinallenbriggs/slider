@@ -104,7 +104,7 @@
     	// insert the record into the database
     	try {
 	    	$db = Db::getInstance();	// connect to database
-	    	$req = $db->prepare("INSERT INTO slides (name, path_to_image, type, size) VALUES (:name, :path, :type, :size)");
+	    	$req = $db->prepare("INSERT INTO `slides` (`name`, `path_to_image`, `type`, `size`) VALUES (:name, :path, :type, :size)");
 	    	$req->execute(array('name' => $this->name,
 	    						'path' => $this->path_to_image,
 	    						'type' => $this->type,
