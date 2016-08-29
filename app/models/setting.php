@@ -67,11 +67,11 @@
 		
 			// query database
 			try {
-				$req = $db->prepare('SELECT * FROM settings WHERE id = :id');
+				$req = $db->prepare('SELECT * FROM `settings` WHERE `id` = :id');
 				$req->execute(array('id' => $id));
 				$setting = $req->fetch();
 			} catch (PDOException $e) {
-				return $e->getMessage();
+				return $e->getMessage();		// something went wrong, return the mysql error
 			}
 		
 			$db = null;		// disconnect from database
@@ -82,20 +82,27 @@
 		}
 		
 		
-		
+		/**
+		 * UPDATES A SINGLE SETTING IN THE DATABASE
+		 * @param unknown $post_value
+		 * @return the updated Setting object on success
+		 * @return PDOException message on failure
+		 */
 		public function update($post_value) {
-			$db = Db::getInstance();
-			$str = strval($post_value);
+			$db = Db::getInstance();		// connect to database
+			$str = strval($post_value);		// validate input (TODO: sanitize input)
+			$id = intval($_GET['id']);
 			
+			// query database
 			try {
 				$r = $db->prepare("UPDATE `settings` SET `value`='$str' WHERE `id` = :id");
-				print_r($r);
-				if ($r->execute(array('id' => $_GET['id']))) $this->value = $str;
+				if ($r->execute(array('id' => $id))) $this->value = $str;
 			} catch (PDOException $e) {
-				return $e->getMessage();
+				return $e->getMessage();		// something went wrong, return the mysql error
 			}
 			
-			$db = null;
+			$db = null;		// disconnect from database
+			return $this->find($id);
 		}
 	}
 ?>

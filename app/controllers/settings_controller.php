@@ -22,9 +22,7 @@
 	      $setting = Setting::find($_GET['id']);		// retrieve the setting from the database
 	      
 	      // check to see if a setting was updated (form submitted)
-		  if (isset($_POST['inSubmitted'])) {
-			$setting->update($_POST['value']);
-		  }
+		  if (isset($_POST['inSubmitted'])) $setting->update($_POST['value']);
 		  
 		  require_once('views/settings/edit.php');
 	    }
