@@ -3,7 +3,7 @@
 		// define the attributes stored in the database (columns)
 		// they are public so that we can access them using $setting->attribute directly
 		public $id;
-		public $name;
+		public $setting;
 		public $value;
 		
 		
@@ -13,7 +13,7 @@
 		 */
 		public function __construct($param) {
 			if (is_array($param)) {		// an array of property values was supplied
-				isset($param['name']) ? $this->name = $param['name'] : '';
+				isset($param['setting']) ? $this->setting = $param['setting'] : '';
 				isset($param['value']) ? $this->value = $param['value'] : '';
 				isset($param['id']) ? $this->id = $param['id'] : '';
 			}
@@ -37,7 +37,7 @@
 				// loop through query results to get the property values for each Setting object that will be created
 				foreach($r->fetchAll() as $setting) {
 					$params = array('id'		=> $setting['id'],
-									'name'		=> $setting['name'],
+									'setting'		=> $setting['setting'],
 									'value'		=> $setting['value']
 					);
 						
@@ -77,8 +77,25 @@
 			$db = null;		// disconnect from database
 		
 			return new Setting(array('id'		=> $setting['id'],
-									 'name'		=> $setting['name'],
+									 'setting'		=> $setting['setting'],
 									 'value'	=> $setting['value']));
+		}
+		
+		
+		
+		public function update($post_value) {
+			$db = Db::getInstance();
+			$str = strval($post_value);
+			
+			try {
+				$r = $db->prepare("UPDATE `settings` SET `value`='$str' WHERE `id` = :id");
+				print_r($r);
+				if ($r->execute(array('id' => $_GET['id']))) $this->value = $str;
+			} catch (PDOException $e) {
+				return $e->getMessage();
+			}
+			
+			$db = null;
 		}
 	}
 ?>

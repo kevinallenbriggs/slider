@@ -2,7 +2,7 @@
   // Every controller and it's actions needs an entry in this array
   $controllers = array('pages' => ['home', 'error'],
                        'slides' => ['index', 'show', 'upload'],
-  					   'settings' => ['edit']
+  					   'settings' => ['index', 'edit']
   );
 
   if (array_key_exists($controller, $controllers)) {

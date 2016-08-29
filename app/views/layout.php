@@ -12,7 +12,7 @@
     <header>
       <a href='/'>Home</a>
       <a href='?controller=slides&action=index'>Slides</a>
-      <a href='?controller=settings&action=edit'>Settings</a>
+      <a href='?controller=settings&action=index'>Settings</a>
       <hr>
     </header>
 
