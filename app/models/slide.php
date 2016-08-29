@@ -43,10 +43,10 @@
       
       // query database
       try {
-	      $req = $db->query('SELECT * FROM slides');
+	      $r = $db->query('SELECT * FROM slides');
 	
 	      // loop through query results to get the property values for each Slide object that will be created
-	      foreach($req->fetchAll() as $slide) {
+	      foreach($r->fetchAll() as $slide) {
 			$params = array('id'					=>	$slide['id'],
 	        				'name'					=>	$slide['name'],
 	        				'caption'				=>	$slide['caption'],
@@ -96,7 +96,11 @@
       						 'expiration_date'	   	=> $slide['expiration_date']));
     }
     
-    
+    /**
+     * UPLOAD A NEW SLIDE INTO THE DATABASE AND FILESYSTEM
+     * @return 1 on success
+     * @return PDOException message on failure
+     */
     public function upload() {
     	// copy the file from it's temporary location in PHP
     	move_uploaded_file($this->tmp_name, 'uploads/' . $this->name);
@@ -104,18 +108,17 @@
     	// insert the record into the database
     	try {
 	    	$db = Db::getInstance();	// connect to database
-	    	$req = $db->prepare("INSERT INTO `slides` (`name`, `path_to_image`, `type`, `size`) VALUES (:name, :path, :type, :size)");
-	    	$req->execute(array('name' => $this->name,
+	    	$r = $db->prepare("INSERT INTO `slides` (`name`, `path_to_image`, `type`, `size`) VALUES (:name, :path, :type, :size)");
+	    	$r->execute(array('name' => $this->name,
 	    						'path' => $this->path_to_image,
 	    						'type' => $this->type,
-	    						'size' => $this->size
-	    	));
-	    	
+	    						'size' => $this->size));
     	} catch (PDOException $e) {
     		return $e->getMessage();	// something went wrong, return the error
     	}
     	
     	$db = null;		// disconnect from the database
+    	return 1;
     }
   }
 ?>

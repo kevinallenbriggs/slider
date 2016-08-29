@@ -5,37 +5,42 @@
   					   'settings' => ['index', 'edit']
   );
 
+  // ensure that the controller and action being called exists
   if (array_key_exists($controller, $controllers)) {
     if (in_array($action, $controllers[$controller])) {
-      call($controller, $action);
+      call($controller, $action);		// the controller exists, direct the app to it
     } else {
-      call('pages', 'error');
+      call('pages', 'error');		// the action doesn't exist, direct to error page
     }
   } else {
-    call('pages', 'error');
+    call('pages', 'error');			// the controller doesn't exist, direct to error page
   }
   
   
-
-  function call($controller, $action) {
-    require_once('controllers/' . $controller . '_controller.php');		// include the controller being called upon
-
-    switch($controller) {
-      case 'pages':
-        $controller = new PagesController();	// set the controller
-      	break;
-      case 'slides':
-        require_once('models/slide.php');	// include the model so that we can access it with the new controller object
-        $controller = new SlideController();	// set the controller
-      	break;
-      case 'settings':
-      	require_once('models/setting.php');	// include the model so that we can access it with the new controller object
-      	$controller = new SettingsController();	// set the controller
-      	break;
+	/**
+	 * CREATE THE CALLED CONTROLLER OBJECT
+	 * @param unknown $controller
+	 * @param unknown $action
+	 */
+	function call($controller, $action) {
+		require_once('controllers/' . $controller . '_controller.php');		// include the controller being called upon
+		
+		switch($controller) {
+			case 'pages':
+			$controller = new PagesController();	// set the controller
+			break;
+		case 'slides':
+			require_once('models/slide.php');		// include the model so that we can access it with the new controller object
+			$controller = new SlideController();	// set the controller
+			break;
+		case 'settings':
+			require_once('models/setting.php');		// include the model so that we can access it with the new controller object
+			$controller = new SettingsController();	// set the controller
+			break;
     }
 
     $controller->{ $action }();		// call the requested action now that the controller is set
-  }
+	}
 
 
 ?>

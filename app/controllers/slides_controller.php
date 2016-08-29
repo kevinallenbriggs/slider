@@ -2,11 +2,11 @@
   class SlideController {
   	
   	/**
-  	 * RETRIEVES ALL THE SLIDES IN THE DATABASE TO PASS TO THE VIEW
+  	 * RETRIEVES ALL THE SLIDES IN THE DATABASE AND PASSES THEM TO THE VIEW
   	 */
     public function index() {
-      $slides = Slide::all();
-      require_once('views/slides/index.php');
+      $slides = Slide::all();		// use the model to get all the slides
+      require_once('views/slides/index.php');		// call the view
     }
 
     
@@ -18,10 +18,10 @@
      * WITHOUT AN ID REDIRECT TO THE ERROR PAGE
      */
     public function show() {
-      if (!isset($_GET['id'])) return call('pages', 'error');
+      if (!isset($_GET['id'])) return call('pages', 'error');		// ensure that the ID is included in the request
 
-      $slide = Slide::find($_GET['id']);
-      require_once('views/slides/show.php');
+      $slide = Slide::find(intval($_GET['id']));		// validate the input and call the Slide model to pull up the specific slide
+      require_once('views/slides/show.php');			// call the view
     }
    
     
@@ -31,8 +31,8 @@
      * WE WILL ALSO CALL UPON THE VIEW TO PROVIDE USER WITH FEEDBACK
      */
     public function upload() {
-    	if ($_POST['inSubmitted'] && !empty($_FILES)) {
-    		$file = $_FILES['inFile'];
+    	if ($_POST['inSubmitted'] && !empty($_FILES)) {		// make sure the form was submitted and a file was uploaded to PHP
+    		$file = $_FILES['inFile'];		// grab the file
     		
     		// validate the submitted data
     		if ($file['type'] == 'image/jpeg') {
@@ -45,8 +45,9 @@
     									 'size' => $file['size']
     			));
     			
-    			echo $slide->upload();
-    			$slide->upload() ? require_once('views/slides/show.php') : $result;
+    			// upload the slide
+    			// if successfull, call the view.  otherwise output the result
+    			$slide->upload() ? require_once('views/slides/show.php') : '';
     		}
     	}
     }
