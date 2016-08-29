@@ -17,9 +17,6 @@
 				isset($param['value']) ? $this->value = $param['value'] : '';
 				isset($param['id']) ? $this->id = $param['id'] : '';
 			}
-			
-			echo 'Setting contstructed:';
-			print_r($this);
 		}
 		
 		
