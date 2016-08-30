@@ -79,8 +79,8 @@
       
       // query database
       try {
-	      $req = $db->prepare('SELECT * FROM slides WHERE id = :id');
-	      $req->execute(array('id' => $id));
+	      $r = $db->prepare('SELECT * FROM slides WHERE id = :id');
+	      $r->execute(array('id' => $id));
 	      $slide = $req->fetch();
       } catch (PDOException $e) {
 			return $e->getMessage();
