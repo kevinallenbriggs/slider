@@ -17,7 +17,7 @@
      * URI FORMAT EXPECTED IS ?controller=slides&action=show&id=x
      * WITHOUT AN ID REDIRECT TO THE ERROR PAGE
      */
-    public function show() {
+    public function get() {
       if (!isset($_GET['id'])) return call('pages', 'error');		// ensure that the ID is included in the request
 
       $slide = Slide::find(intval($_GET['id']));		// validate the input and call the Slide model to pull up the specific slide
