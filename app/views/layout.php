@@ -2,7 +2,9 @@
 <html>
   <head>
 	<?php
-		$stylesheets = dirScan('views/');
+		// include all the style sheets within the views/ directory
+		// eventually I'd like this to only include the style sheets necessary for the view being shown
+		$stylesheets = StyleHelper::scan('views/');
 		foreach ($stylesheets as $stylesheet) {
 			echo "<link rel='stylesheet' type='text/css' href='views/$stylesheet'>";
 		}
