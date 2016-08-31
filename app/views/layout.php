@@ -1,7 +1,12 @@
 <!DOCTYPE html>
 <html>
   <head>
-
+	<?php
+		$stylesheets = dirScan('views/');
+		foreach ($stylesheets as $stylesheet) {
+			echo "<link rel='stylesheet' type='text/css' href='views/$stylesheet'>";
+		}
+	?>
   </head>
   <body>
     <header>

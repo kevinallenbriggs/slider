@@ -1,13 +1,14 @@
 <?php
-  require_once('../connection.php');
+  require_once('../connection.php');		// allows us to connect to the database from any page
+  require_once('../style_helper.php');
 
-  if (isset($_GET['controller']) && isset($_GET['action'])) {
-    $controller = $_GET['controller'];
-    $action     = $_GET['action'];
-  }	else {
+  if (isset($_GET['controller']) && isset($_GET['action'])) {		// check to see if the controller and action are in the URI
+    $controller = strval($_GET['controller']);		// validate and store GET requests
+    $action     = strval($_GET['action']);
+  }	else {					// redirect invalid URIs to the home page
     $controller = 'pages';
-    $action     = 'home';
+    $action     = 'slider';
   }
   
-  require_once('views/layout.php');
+  require_once('views/layout.php');		// call the master view which starts outputting HTML
 ?>

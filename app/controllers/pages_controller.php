@@ -4,8 +4,8 @@
   	/**
   	 * CALLS THE VIEW FOR THE HOME PAGE
   	 */
-    public function home() {
-      require_once('views/pages/home.php');
+	public function slider() {
+		require_once('views/pages/slider.php');
     }
 
     
