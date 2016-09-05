@@ -5,7 +5,13 @@
   	 * CALLS THE VIEW FOR THE SLIDER (HOME) PAGE
   	 */
 	public function slider() {
-		SliderView::displaySlider();
+		// grab all the slides from the model
+		require_once 'models/slide.php';
+		$slides = Slide::all();
+		
+		// display the view
+		require_once 'views/pages/slider.php';
+		SliderView::displaySlider($slides);
     }
 
     
@@ -13,7 +19,8 @@
      * CALLS THE VIEW FOR THE ERROR PAGE
      */
     public function error() {
-      ErrorView::displayError();
+    	require_once 'views/pages/error.php';
+		ErrorView::displayError();
     }
   }
 ?>

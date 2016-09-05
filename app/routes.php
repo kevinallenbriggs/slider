@@ -18,7 +18,7 @@
   
   
 	/**
-	 * CREATE THE CALLED CONTROLLER OBJECT
+	 * CREATE THE REQUESTED CONTROLLER OBJECT
 	 * @param unknown $controller
 	 * @param unknown $action
 	 */
