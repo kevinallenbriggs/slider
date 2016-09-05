@@ -1,6 +1,6 @@
 <?php
   require_once('../connection.php');		// allows us to connect to the database from any page
-  require_once('../style_helper.php');
+  require_once('../style_helper.php');		// allows us to load all the style sheets dynamically
 
   if (isset($_GET['controller']) && isset($_GET['action'])) {		// check to see if the controller and action are in the URI
     $controller = strval($_GET['controller']);		// validate and store GET requests
