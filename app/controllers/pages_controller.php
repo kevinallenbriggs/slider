@@ -2,10 +2,10 @@
   class PagesController {
   	
   	/**
-  	 * CALLS THE VIEW FOR THE HOME PAGE
+  	 * CALLS THE VIEW FOR THE SLIDER (HOME) PAGE
   	 */
 	public function slider() {
-		require_once('views/pages/slider.php');
+		SliderView::displaySlider();
     }
 
     
@@ -13,7 +13,7 @@
      * CALLS THE VIEW FOR THE ERROR PAGE
      */
     public function error() {
-      require_once('views/pages/error.php');
+      ErrorView::displayError();
     }
   }
 ?>

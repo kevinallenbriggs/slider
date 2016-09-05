@@ -1,3 +1,12 @@
+<?php
+	class SliderView {
+		
+		public function __construct() {
+			
+		}
+		
+		public static function displaySlider() {
+			echo <<< _EOT
 <p>You successfully landed on the home page. Congrats!</p>
 
 <p>This is where the slide functionality will display the uploaded files.</p>
@@ -31,3 +40,9 @@
   <span class="dot" onclick="currentSlide(2)"></span> 
   <span class="dot" onclick="currentSlide(3)"></span> 
 </div>
+_EOT;
+		}
+		
+	}
+	
+?>
