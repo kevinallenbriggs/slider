@@ -23,7 +23,7 @@
 		
 		/**
 		 * RETURNS ALL SETTING OBJECTS FROM THE DATABASE AS AN ARRAY
-		 * @return Post[] on success
+		 * @return an array of Setting objects on success
 		 * @return PDOException message on failure
 		 */
 		public static function all() {
@@ -59,7 +59,7 @@
 		/**
 		 * RETRIEVES A SINGLE SETTING FROM THE DATABASE
 		 * @param integer $id
-		 * @return Setting
+		 * @return a single Setting object on success
 		 */
 		public static function find($id) {
 			$db = Db::getInstance();		// connect to database
@@ -67,9 +67,9 @@
 		
 			// query database
 			try {
-				$req = $db->prepare('SELECT * FROM `settings` WHERE `id` = :id');
-				$req->execute(array('id' => $id));
-				$setting = $req->fetch();
+				$r = $db->prepare('SELECT * FROM `settings` WHERE `id` = :id');
+				$r->execute(array('id' => $id));
+				$setting = $r->fetch();
 			} catch (PDOException $e) {
 				return $e->getMessage();		// something went wrong, return the mysql error
 			}
@@ -90,7 +90,7 @@
 		 */
 		public function update($post_value) {
 			$db = Db::getInstance();		// connect to database
-			$str = strval($post_value);		// validate input (TODO: sanitize input)
+			$str = strval($post_value);		// validate input TODO: sanitize input
 			$id = intval($_GET['id']);
 			
 			// query database
