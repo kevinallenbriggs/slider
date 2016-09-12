@@ -9,13 +9,13 @@
 		
 		/**
 		 * CREATES A NEW SETTING OBJECT THAT REQUIRES BOTH A NAME AND VALUE
-		 * @param unknown $param
+		 * @param array $array
 		 */
-		public function __construct($param) {
-			if (is_array($param)) {		// an array of property values was supplied
-				isset($param['setting']) ? $this->setting = $param['setting'] : '';
-				isset($param['value']) ? $this->value = $param['value'] : '';
-				isset($param['id']) ? $this->id = $param['id'] : '';
+		public function __construct($arr) {
+			if (is_array($arr)) {		// an array of property values was supplied
+				isset($arr['setting']) ? $this->setting = $arr['setting'] : '';
+				isset($arr['value']) ? $this->value = $arr['value'] : '';
+				isset($arr['id']) ? $this->id = $arr['id'] : '';
 			}
 		}
 		
@@ -84,14 +84,14 @@
 		
 		/**
 		 * UPDATES A SINGLE SETTING IN THE DATABASE
-		 * @param unknown $post_value
+		 * @param string $setting_value
 		 * @return the updated Setting object on success
 		 * @return PDOException message on failure
 		 */
-		public function update($post_value) {
+		public function update($setting_value) {
 			$db = Db::getInstance();		// connect to database
-			$str = strval($post_value);		// validate input TODO: sanitize input
-			$id = intval($_GET['id']);
+			$str = strval($setting_value);		// sanitize setting value
+			$id = intval($_GET['id']);			// sanitize setting ID from URI
 			
 			// query database
 			try {

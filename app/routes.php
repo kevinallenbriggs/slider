@@ -16,13 +16,13 @@
     call('pages', 'error');			// the controller doesn't exist, direct to error page
   }
   
-  
 	/**
 	 * CREATE THE REQUESTED CONTROLLER OBJECT
 	 * @param unknown $controller
 	 * @param unknown $action
 	 */
 	function call($controller, $action) {
+
 		require_once('controllers/' . $controller . '_controller.php');		// include the controller being called upon
 		
 		switch($controller) {
