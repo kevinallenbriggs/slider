@@ -1,10 +1,37 @@
 @CHARSET "UTF-8";
+/*********************************************/
+/************* TABLE OF CONTENTS *************/
+/*********************************************/
+/*  1. GLOBAL STYLES                         */
+/*  2. SLIDESHOW STYLES                      */
+/*                                           */
+/*********************************************/
+
+
+/*********************/
+/*  1. GLOBAL STYLES */
+/*********************/
+
+body {
+  margin: 0;
+}
+
+
+/*************************/
+/*  2. SLIDESHOW STYLES  */
+/*************************/
 
 /* Slideshow container */
 .slideshow-container {
   /*max-width: 1000px;*/
   position: relative;
   margin: auto;
+}
+
+/* Slideshow images */
+.mySlides > .slideImg {
+  width:  100%;
+  height: 100%;
 }
 
 /* Next & previous buttons */
