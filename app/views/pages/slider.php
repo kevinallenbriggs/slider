@@ -13,9 +13,12 @@
 			echo '<div class="slideshow-container">';
 			
 			foreach ($slides as $slide) {
+
+				// TODO: add check for aspect ratio so that image can be displayed without scrolling
+
 				echo '<div class="mySlides fade">' .
 					 "<div class='numbertext'>$i / $numSlides</div>" .
-					 "<img src='$slide->path_to_image' style='width:100%'>" .
+					 "<img src='$slide->path_to_image'>" .
 					 "<div class='text'>$slide->caption</div>" .
 					 "</div>";
 				$i++;

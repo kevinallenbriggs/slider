@@ -11,9 +11,10 @@
     public $expiration_date;
     public $tmp_name;
     public $size;
+    public $aspect;
 
     /**
-     * CREATES A NEW SLIDE OBJECT WITH EITHER JUST A NAME OR UP TO 4 OTHER PROPERTIES
+     * CREATES A NEW SLIDE OBJECT REQUIRING AT LEAST A NAME BUT WITH UP TO 6 OTHER PROPERTIES
      * @param unknown $param
      */
     public function __construct($param) {
@@ -27,6 +28,7 @@
     		isset($param['path_to_image']) ? $this->path_to_image = $param['path_to_image'] : '';
     		isset($param['tmp_name']) ? $this->tmp_name = $param['tmp_name'] : '';
     		isset($param['size']) ? $this->size = $param['size'] : '';
+        isset($param['aspect']) ? $this->aspect = $param['aspect'] : '';
     	}
     }
 
@@ -52,7 +54,8 @@
 	        				'caption'				=>	$slide['caption'],
 	        				'path_to_image'			=>	$slide['path_to_image'],
 	        				'publication_status'	=>	$slide['publication_status'],
-	        				'expiration_date'		=>	$slide['expiration_date']);
+	        				'expiration_date'		=>	$slide['expiration_date'],
+                  'aspect'            => $slide['aspect']);
 			
 			// create the Slide object and add it to the array of results to return
 			$list[] = new Slide($params);
@@ -73,27 +76,26 @@
      * @param integer $id
      * @return Slide
      */
-    public static function find($id) {
+    public static function get($id) {
       $db = Db::getInstance();		// connect to database
-      $id = intval($id);			// validate input
       
-      // query database
+      // query database to find the slide requested
       try {
 	      $r = $db->prepare('SELECT * FROM slides WHERE id = :id');
 	      $r->execute(array('id' => $id));
-	      $slide = $req->fetch();
+	      $slide = $r->fetch();
       } catch (PDOException $e) {
-			return $e->getMessage();
+			 return $e->getMessage();
       }
       
       $db = null;		// disconnect from database
       
-      return new Slide(array('id' 				   	=> $slide['id'],
-      				  		 'name'			   		=> $slide['name'],
-      						 'caption'			   	=> $slide['caption'],
-      						 'path_to_image'	  	=> $slide['path_to_image'],
-      						 'publication_status'	=> $slide['publication_status'],
-      						 'expiration_date'	   	=> $slide['expiration_date']));
+      $slide_properties = [];
+      foreach ($slide as $key => $value) {
+        (!empty($value)) ? $slide_properties[$key] = $value : '';
+      }
+
+      return new Slide($slide_properties);
     }
     
     /**
@@ -108,7 +110,7 @@
     	// insert the record into the database
     	try {
 	    	$db = Db::getInstance();	// connect to database
-	    	$r = $db->prepare("INSERT INTO `slides` (`name`, `path_to_image`, `type`, `size`) VALUES (:name, :path, :type, :size)");
+	    	$r = $db->prepare("INSERT INTO `slides` (`name`, `path_to_image`, `type`, `size`, `aspect`) VALUES (:name, :path, :type, :size, :aspect)");
 	    	$r->execute(array('name' => $this->name,
 	    						'path' => $this->path_to_image,
 	    						'type' => $this->type,
