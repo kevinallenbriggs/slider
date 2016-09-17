@@ -6,7 +6,7 @@
   	 */
     public function index() {
       $slides = Slide::all();		// use the model to get all the slides
-      require_once('views/slides/index.php');		// call the view
+      SlideView::index($slides);    // call the view
     }
 
     
@@ -20,8 +20,8 @@
     public function get() {
       if (!isset($_GET['id'])) return call('pages', 'error');		// ensure that the ID is included in the request
 
-      $slide = Slide::find(intval($_GET['id']));		// validate the input and call the Slide model to pull up the specific slide
-      require_once('views/slides/show.php');			// call the view
+      $slide = Slide::get(intval($_GET['id']));		// validate the input and call the Slide model to pull up the specific slide
+      SlideView::displayForm($slide);   // call the view
     }
    
     
@@ -46,8 +46,8 @@
     			));
     			
     			// upload the slide
-    			// if successfull, call the view.  otherwise output the result
-    			$slide->upload() ? require_once('views/slides/show.php') : '';
+    			// if successfull, call the view.
+    			$slide->upload() ? SlideView::index() : '';
     		}
     	}
     }

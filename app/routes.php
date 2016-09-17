@@ -31,6 +31,7 @@
 				break;
 			case 'slides':
 				require_once('models/slide.php');		// include the model so that we can access it with the new controller object
+				require_once('views/slides/slide_view.php');		// include the view so that we can access it with the new controller object
 				$controller = new SlideController();	// set the controller
 				break;
 			case 'settings':
