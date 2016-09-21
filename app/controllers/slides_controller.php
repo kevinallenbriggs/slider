@@ -31,8 +31,8 @@
      * WE WILL ALSO CALL UPON THE VIEW TO PROVIDE USER WITH FEEDBACK
      */
     public function upload() {
-    	if ($_POST['inSubmitted'] && !empty($_FILES)) {		// make sure the form was submitted and a file was uploaded to PHP
-    		$file = $_FILES['inFile'];		// grab the file
+    	if ($_POST['submitted'] && !empty($_FILES)) {		// make sure the form was submitted and a file was uploaded to PHP
+    		$file = $_FILES['file'];		// grab the file
     		
     		// validate the submitted data
     		if ($file['type'] == 'image/jpeg') {
@@ -46,10 +46,17 @@
     			));
     			
     			// upload the slide
-    			// if successfull, call the view.
-    			$slide->upload() ? SlideView::index() : '';
+          // TODO: provide a redirection to the slide index page if upload was a success
+    			$slide->upload();
     		}
     	}
+    }
+
+
+    public function remove() {
+      if (!isset($_GET['id'])) return call('pages', 'error');    // ensure that the ID is included in the request
+
+      Slide::get(intval($_GET['id']))->remove();  // retrieve the slide info from the database and remove it
     }
   }
 ?>

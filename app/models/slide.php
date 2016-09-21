@@ -11,7 +11,6 @@
     public $expiration_date;
     public $tmp_name;
     public $size;
-    public $aspect;
 
     /**
      * CREATES A NEW SLIDE OBJECT REQUIRING AT LEAST A NAME BUT WITH UP TO 6 OTHER PROPERTIES
@@ -28,7 +27,6 @@
     		isset($param['path_to_image']) ? $this->path_to_image = $param['path_to_image'] : '';
     		isset($param['tmp_name']) ? $this->tmp_name = $param['tmp_name'] : '';
     		isset($param['size']) ? $this->size = $param['size'] : '';
-        isset($param['aspect']) ? $this->aspect = $param['aspect'] : '';
     	}
     }
 
@@ -54,8 +52,7 @@
 	        				'caption'				=>	$slide['caption'],
 	        				'path_to_image'			=>	$slide['path_to_image'],
 	        				'publication_status'	=>	$slide['publication_status'],
-	        				'expiration_date'		=>	$slide['expiration_date'],
-                  'aspect'            => $slide['aspect']);
+	        				'expiration_date'		=>	$slide['expiration_date']);
 			
 			// create the Slide object and add it to the array of results to return
 			$list[] = new Slide($params);
@@ -110,9 +107,9 @@
     	// insert the record into the database
     	try {
 	    	$db = Db::getInstance();	// connect to database
-	    	$r = $db->prepare("INSERT INTO `slides` (`name`, `path_to_image`, `type`, `size`, `aspect`) VALUES (:name, :path, :type, :size, :aspect)");
+	    	$r = $db->prepare("INSERT INTO `slides` (`name`, `path_to_image`, `type`, `size`) VALUES (:name, :path_to_image, :type, :size)");
 	    	$r->execute(array('name' => $this->name,
-	    						'path' => $this->path_to_image,
+	    						'path_to_image' => $this->path_to_image,
 	    						'type' => $this->type,
 	    						'size' => $this->size));
     	} catch (PDOException $e) {
@@ -121,6 +118,33 @@
     	
     	$db = null;		// disconnect from the database
     	return 1;
+    }
+
+
+    /**
+    * REMOVE A SLIDE FROM THE DATABASE AND FILESYSTEM
+    * @return 1 on success
+    * @return PDOException message on failure
+    */
+    public function remove() {
+      // remove the slide from the filesystem
+      if (file_exists($this->path_to_image)) {    // delete file if it exists otherwise return 0
+        unlink($this->path_to_image);
+      } else {
+        return 0;
+      }  
+
+      // delete the record from the database
+      try {
+        $db = Db::getInstance();    // connect to database
+        $r = $db->prepare("DELETE FROM `slides` WHERE `id` = :id");
+        $r->execute(array('id' => $this->id));
+      } catch (PDOException $e) {
+        return $e->getMessage();    // something went wrong, return the error
+      }
+
+      $db = null;   // disconnect from the database
+      return 1;
     }
   }
 ?>

@@ -6,14 +6,14 @@
 
 		public static function index($slides) {
 			foreach($slides as $slide) {
-				echo "<p><img src='$slide->path_to_image'> $slide->name <a href='?controller=slides&action=get&id=$slide->id'>See content</a></p>";
+				echo "<p><img src='$slide->path_to_image'> <a href='?controller=slides&action=get&id=$slide->id'>$slide->name</a></p>";
 			}
 
 			?>
 		
 			<form name="formUpload" action="/?controller=slides&action=upload" method="post" enctype="multipart/form-data">
-				<input type="file" name="inFile">
-				<input type="hidden" name="inSubmitted" value="true">
+				<input type="file" name="file">
+				<input type="hidden" name="submitted" value="true">
 				<button type="submit">Upload File</button>
 			</form>
 
@@ -33,6 +33,10 @@
 				// after all of the Slide properties are done being read
 				if ($key == 'path_to_image' && !empty($value)) {
 					$path = $value;
+				}
+
+				if ($key == 'id') {
+					echo "<a href='?controller=slides&action=remove&id=$value'>delete</a>";
 				}
 			}
 
