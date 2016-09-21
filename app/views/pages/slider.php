@@ -25,7 +25,7 @@
 			
 			?>
 
-			</div>
+			</div> <!-- .slideshow-container -->
 			<br>
 
 			<script src="views/pages/slider.js"></script>
