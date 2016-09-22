@@ -4,7 +4,7 @@
 /*********************************************/
 /*  1. GLOBAL STYLES                         */
 /*  2. SLIDESHOW STYLES                      */
-/*                                           */
+/*  3. NAVIGATION BUTTONS                    */
 /*********************************************/
 
 
@@ -14,6 +14,15 @@
 
 body {
   margin: 0;
+  font: 1em Roboto, sans-serif;
+}
+
+p {
+  margin: 0;
+}
+
+a {
+  text-decoration: none;
 }
 
 
@@ -65,4 +74,48 @@ body {
 @keyframes fade {
   from {opacity: .4} 
   to {opacity: 1}
+}
+
+
+/***************************/
+/*  3. NAVIGATION BUTTONS  */
+/***************************/
+
+/* Buttons */
+#navWrapper {
+  width: 100%;
+}
+
+.navButtons {
+  background-color: rgba(0,0,0,0.5);
+  position: fixed;
+  top: 0;
+  padding: 1em 0;
+  width: 33%;
+  text-align: center;
+  z-index: 2;
+  opacity: 1;
+  border: .2em solid black;
+}
+
+.navButtons a {
+  color: white;
+}
+
+.navButton1 {
+  left: 0;
+}
+
+.navButton2 {
+  left: 33%;
+  float: left;
+  border-left: 0;
+  border-right: 0;
+  margin-left: .2em;
+  margin-right: .2em;
+}
+
+.navButton3 {
+  left: 66%;
+  float: left;
 }

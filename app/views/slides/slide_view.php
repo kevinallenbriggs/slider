@@ -36,11 +36,12 @@
 				}
 
 				if ($key == 'id') {
-					echo "<a href='?controller=slides&action=remove&id=$value'>delete</a>";
+					$deleteLink = "<div><a href='?controller=slides&action=remove&id=$value'>delete</a></div>";
 				}
 			}
 
 			echo "<img src='$path' />";		// display the slide
+			echo $deleteLink;
 			echo "<div><a href='?controller=slides&action=index'>Back</a></div>";
 		}
 	}
