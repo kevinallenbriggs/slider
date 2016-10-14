@@ -82,40 +82,35 @@ a {
 /***************************/
 
 /* Buttons */
-#navWrapper {
-  width: 100%;
+.navWrapper {
+  /*position: fixed;*/
 }
-
 .navButtons {
-  background-color: rgba(0,0,0,0.5);
-  position: fixed;
+  background-color: white;
   top: 0;
   padding: 1em 0;
-  width: 33%;
+  width: 33.3333%;
   text-align: center;
   z-index: 2;
-  opacity: 1;
-  border: .2em solid black;
+  opacity: 0.75;
+  /*border: .2em solid black;*/
 }
 
 .navButtons a {
-  color: white;
+  color: black;
 }
 
 .navButton1 {
+  position: fixed;
   left: 0;
 }
 
 .navButton2 {
-  left: 33%;
-  float: left;
-  border-left: 0;
-  border-right: 0;
-  margin-left: .2em;
-  margin-right: .2em;
+  position: fixed;
+  left: 33.3333%;
 }
 
 .navButton3 {
-  left: 66%;
-  float: left;
+  position: fixed;
+  left: 66.6666%;
 }

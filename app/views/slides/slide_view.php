@@ -36,7 +36,7 @@
 				}
 
 				if ($key == 'id') {
-					$deleteLink = "<div><a href='?controller=slides&action=remove&id=$value'>delete</a></div>";
+					$deleteLink = "<div><a href='?controller=slides&action=remove&id=$value'>delete</a></";
 				}
 			}
 
