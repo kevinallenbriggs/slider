@@ -16,7 +16,7 @@
   <body>
     <header>
       <div id="navWrapper">
-        <div class="navButtons navButton1"><a href='/'>Home</a></div>
+        <div class="navButtons navButton1"><a href="/">Home</a></div>
         <div class="navButtons navButton2"><a href='?controller=slides&action=index'>Slides</a></div>
         <div class="navButtons navButton3"><a href='?controller=settings&action=index'>Settings</a></div>
       </div>
