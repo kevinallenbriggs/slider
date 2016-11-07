@@ -2,6 +2,7 @@
  * ALL JAVASCRIPT LOCATED IN THIS FILE ONLY AFFECTS THE slider.php VIEW
  */
 
+// slide functionality
 var slideIndex = 0;
 showSlides();
 
@@ -16,3 +17,28 @@ function showSlides() {
     slides[slideIndex-1].style.display = "block"; 
     setTimeout(showSlides, 6000); // Change image every 6 seconds
 }
+
+
+// hide the menu when the mouse is inactive
+var interval = 1;
+var nav = document.getElementsByClassName("navButtons");
+console.log(nav);
+
+setInterval(function() {
+	if (interval == 5) {
+		for (var i = 0; i < nav.length; i++) {
+			nav[i].style.display = "none";
+		}
+	}
+
+	interval = interval + 1;
+	console.log(interval);
+}, 1000);
+
+document.addEventListener("mousemove", function() {
+		for (var i = 0; i < nav.length; i++) {
+			nav[i].style.display = "";
+		}
+
+	interval = 1;
+})
