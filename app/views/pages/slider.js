@@ -30,8 +30,6 @@ setInterval(function() {
 		for (var i = 0; i < nav.length; i++) {
 			nav[i].style.top = "-10%";
 		}
-
-		body.style.cursor = "none";
 	}
 
 	interval = interval + 1;
@@ -42,8 +40,6 @@ body.addEventListener("mousemove", function(e) {
     	for (var i = 0; i < nav.length; i++) {
 			nav[i].style.top = "0";
 		}
-
-		body.style.cursor = "";
     }   
     window.lastX = e.clientX
     window.lastY = e.clientY
