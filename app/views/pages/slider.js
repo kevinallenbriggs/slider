@@ -19,7 +19,7 @@ function showSlides() {
 }
 
 
-// hide the menu when the mouse is inactive
+// hide the menu and cursor when the mouse is inactive
 var interval = 1;
 var nav = document.getElementsByClassName("navButtons");
 var body = document.getElementsByTagName("body")[0]
