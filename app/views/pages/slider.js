@@ -13,8 +13,8 @@ function showSlides() {
         slides[i].style.display = "none"; 
     }
     slideIndex++;
-    if (slideIndex > slides.length) {slideIndex = 1} 
-    slides[slideIndex-1].style.display = "block"; 
+    if (slideIndex > slides.length) slideIndex = 1;
+    slides[slideIndex - 1].style.display = "block"; 
     setTimeout(showSlides, 6000); // Change image every 6 seconds
 }
 
@@ -22,23 +22,27 @@ function showSlides() {
 // hide the menu when the mouse is inactive
 var interval = 1;
 var nav = document.getElementsByClassName("navButtons");
+var body = document.getElementsByTagName("body")[0]
 console.log(nav);
 
 setInterval(function() {
 	if (interval == 5) {
 		for (var i = 0; i < nav.length; i++) {
-			nav[i].style.display = "none";
+			nav[i].style.top = "-10%";
 		}
 	}
 
 	interval = interval + 1;
-	console.log(interval);
 }, 1000);
 
-document.addEventListener("mousemove", function() {
-		for (var i = 0; i < nav.length; i++) {
-			nav[i].style.display = "";
+body.addEventListener("mousemove", function(e) {
+	if(window.lastX !== e.clientX || window.lastY !== e.clientY){
+    	for (var i = 0; i < nav.length; i++) {
+			nav[i].style.top = "0";
 		}
+    }   
+    window.lastX = e.clientX
+    window.lastY = e.clientY
 
 	interval = 1;
 })

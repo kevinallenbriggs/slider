@@ -82,18 +82,17 @@ a {
 /***************************/
 
 /* Buttons */
-.navWrapper {
-  /*position: fixed;*/
-}
 .navButtons {
   background-color: white;
-  top: 0;
-  padding: 1em 0;
-  width: 33.3333%;
-  text-align: center;
-  z-index: 2;
-  opacity: 0.75;
-  /*border: .2em solid black;*/
+  top:                -10%;  /* Hide the menu by default. Use JS to show it. */
+  padding:            1em 0;
+  width:              33.3333%;
+  text-align:         center;
+  z-index:            2;
+  opacity:            0.75;
+  position:           fixed;
+  -webkit-transition: top 1s;
+  transition:         top 1s;
 }
 
 .navButtons a {
@@ -101,16 +100,13 @@ a {
 }
 
 .navButton1 {
-  position: fixed;
   left: 0;
 }
 
 .navButton2 {
-  position: fixed;
   left: 33.3333%;
 }
 
 .navButton3 {
-  position: fixed;
   left: 66.6666%;
 }
