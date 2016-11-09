@@ -1,15 +1,8 @@
 <!DOCTYPE html>
 <html>
   <head>
-	<?php
-		// include all the style sheets within the views/ directory
-		// eventually I'd like this to only include the style sheets necessary for the view being shown
-		$stylesheets = StyleHelper::scan('views/');
-		foreach ($stylesheets as $stylesheet) {
-			echo "<link rel='stylesheet' type='text/css' href='views/$stylesheet'>";
-		}
-	?>
 
+  <link rel='stylesheet' type='text/css' href='views/style.css'>
   <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
 
   </head>
@@ -24,5 +17,8 @@
 
     <footer>
     </footer>
+
+    <script src="views/slider.js"></script>
+    
   <body>
 </html>

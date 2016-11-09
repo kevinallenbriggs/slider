@@ -28,10 +28,7 @@
 			</div> <!-- .slideshow-container -->
 			<br>
 
-			<script src="views/pages/slider.js"></script>
-
 			<?php
-		
 		}		// end of function displaySlider
 	}
 ?>

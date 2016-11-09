@@ -14,6 +14,7 @@ function showSlides() {
     }
     slideIndex++;
     if (slideIndex > slides.length) slideIndex = 1;
+
     slides[slideIndex - 1].style.display = "block"; 
     setTimeout(showSlides, 6000); // Change image every 6 seconds
 }
@@ -22,8 +23,7 @@ function showSlides() {
 // hide the menu and cursor when the mouse is inactive
 var interval = 1;
 var nav = document.getElementsByClassName("navButtons");
-var body = document.getElementsByTagName("body")[0]
-console.log(nav);
+var body = document.getElementsByTagName("body")[0];
 
 setInterval(function() {
 	if (interval == 5) {
