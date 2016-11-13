@@ -13,9 +13,11 @@
 /*  1. GLOBAL STYLES */
 /*********************/
 
-body {
+html, body {
   margin: 0;
+  height: 100%;
   font: 1em Roboto, sans-serif;
+  background-color: lightgrey;
 }
 
 p {
@@ -123,7 +125,6 @@ a {
 
 /* index of all slides */
 .slideList {
-  background-color: grey;
   list-style-type: none;
   margin: 0;
   padding: 4em 0 0 0;
@@ -137,6 +138,7 @@ a {
 
 .slideList li > a > img {
   width: 18%;
+  max-height: 4em;
   border-radius: 1em;
 }
 
