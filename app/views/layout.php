@@ -17,8 +17,6 @@
 
     <footer>
     </footer>
-
-    <script src="views/slider.js"></script>
     
   <body>
 </html>

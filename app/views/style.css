@@ -5,6 +5,7 @@
 /*  1. GLOBAL STYLES                         */
 /*  2. SLIDESHOW STYLES                      */
 /*  3. NAVIGATION BUTTONS                    */
+/*  4. SLIDE MANAGEMENT                      */
 /*********************************************/
 
 
@@ -81,18 +82,19 @@ a {
 /*  3. NAVIGATION BUTTONS  */
 /***************************/
 
-/* Buttons */
+/* Buttons / Links */
 .navButtons {
   background-color: white;
-  top:                -10%;  /* Hide the menu by default. Use JS to show it. */
-  padding:            1em 0;
-  width:              33.3333%;
-  text-align:         center;
-  z-index:            2;
-  opacity:            0.75;
-  position:           fixed;
+  top: 0;
+  padding: 1em 0;
+  width: 33.3333%;
+  text-align: center;
+  z-index: 2;
+  opacity: 0.75;
+  transition: top 1s;
   -webkit-transition: top 1s;
-  transition:         top 1s;
+  -moz-transition: top 1s;
+  -o-transition: top 1s;
 }
 
 .navButtons a {
@@ -100,13 +102,46 @@ a {
 }
 
 .navButton1 {
+  position: fixed;
   left: 0;
 }
 
 .navButton2 {
+  position: fixed;
   left: 33.3333%;
 }
 
 .navButton3 {
+  position: fixed;
   left: 66.6666%;
+}
+
+
+/*************************/
+/*  4. SLIDE MANAGEMENT  */
+/*************************/
+
+/* index of all slides */
+.slideList {
+  background-color: grey;
+  list-style-type: none;
+  margin: 0;
+  padding: 4em 0 0 0;
+  overflow: hidden;
+}
+
+.slideList li {
+  display: inline;
+  padding: .25em;
+}
+
+.slideList li > a > img {
+  width: 18%;
+  border-radius: 1em;
+}
+
+/* slide upload form */
+#slideUpload {
+  margin-top: 1em;
+  border-top: .1em solid black;
 }

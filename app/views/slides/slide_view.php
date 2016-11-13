@@ -5,13 +5,14 @@
 		private function __clone() {}
 
 		public static function index($slides) {
+			echo "<ul class='slideList'>";
 			foreach($slides as $slide) {
-				echo "<p><img src='$slide->path_to_image'> <a href='?controller=slides&action=get&id=$slide->id'>$slide->name</a></p>";
+				echo  "<li><a href='?controller=slides&action=get&id=$slide->id'><img src='$slide->path_to_image'></a></li>";
 			}
 
 			?>
 		
-			<form name="formUpload" action="/?controller=slides&action=upload" method="post" enctype="multipart/form-data">
+			<form name="formUpload" action="/?controller=slides&action=upload" method="post" enctype="multipart/form-data" id="slideUpload">
 				<input type="file" name="file">
 				<input type="hidden" name="submitted" value="true">
 				<button type="submit">Upload File</button>
