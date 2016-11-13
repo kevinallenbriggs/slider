@@ -102,6 +102,7 @@ a {
 
 .navButtons a {
   color: black;
+  display: block;
 }
 
 .navButton1 {
