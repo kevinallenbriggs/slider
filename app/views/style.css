@@ -84,15 +84,20 @@ a {
 /* Buttons */
 .navButtons {
   background-color: white;
-  top:                -10%;  /* Hide the menu by default. Use JS to show it. */
   padding:            1em 0;
   width:              33.3333%;
   text-align:         center;
   z-index:            2;
   opacity:            0.75;
   position:           fixed;
-  -webkit-transition: top 1s;
-  transition:         top 1s;
+  -webkit-transition: top 1s, opacity .5s;
+  -moz-transition:    top 1s, opacity .5s;
+  -o-transition:      top 1s, opacity .5s;
+  transition:         top 1s, opacity .5s;
+}
+
+.navButtons:hover {
+  opacity:  0.90;
 }
 
 .navButtons a {

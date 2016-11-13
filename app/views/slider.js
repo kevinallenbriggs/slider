@@ -28,7 +28,7 @@ var body = document.getElementsByTagName("body")[0];
 setInterval(function() {
 	if (interval == 5) {
 		for (var i = 0; i < nav.length; i++) {
-			nav[i].style.top = "-10%";
+			nav[i].style.top = "-4em";
 		}
 	}
 
