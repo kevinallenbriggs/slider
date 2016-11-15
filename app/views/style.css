@@ -5,7 +5,9 @@
 /*  1. GLOBAL STYLES                         */
 /*  2. SLIDESHOW STYLES                      */
 /*  3. NAVIGATION BUTTONS                    */
-/*  4. SLIDE MANAGEMENT                      */
+/*  4. SLIDE SETTINGS                        */
+/*  4. SLIDE UPLOADS                         */
+/*  4. SETTINGS PAGE                         */
 /*********************************************/
 
 
@@ -17,7 +19,7 @@ html, body {
   margin: 0;
   height: 100%;
   font: 1em Roboto, sans-serif;
-  background-color: lightgrey;
+  background-color: #d3d3d3;
 }
 
 p {
@@ -119,31 +121,45 @@ a {
 }
 
 
-/*************************/
-/*  4. SLIDE MANAGEMENT  */
-/*************************/
-
-/* index of all slides */
+/***********************/
+/*  4. SLIDE SETTINGS  */
+/***********************/
 .slideList {
   list-style-type: none;
   margin: 0;
   padding: 4em 0 0 0;
-  overflow: hidden;
 }
 
 .slideList li {
-  display: inline;
+  display: inline-block;
   padding: .25em;
+  max-width: 18%;
 }
 
-.slideList li > a > img {
-  width: 18%;
+.slideList li img {
   max-height: 4em;
+  width: 100%;
   border-radius: 1em;
+  box-shadow: 0 6px 8px 0 black;
 }
 
-/* slide upload form */
+
+
+/********************/
+/* 6. SLIDE UPLOADS */
+/********************/
 #slideUpload {
   margin-top: 1em;
   border-top: .1em solid black;
+  padding-top: 1em;
+}
+
+
+
+/**************************/
+/* 6. SETTINGS MANAGEMENT */
+/**************************/
+#settingsHeading {
+  margin: 0;
+  padding: 4em 0 0 0;
 }

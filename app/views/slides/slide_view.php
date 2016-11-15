@@ -10,6 +10,8 @@
 				echo  "<li><a href='?controller=slides&action=get&id=$slide->id'><img src='$slide->path_to_image'></a></li>";
 			}
 
+			echo "</ul>";
+
 			?>
 		
 			<form name="formUpload" action="/?controller=slides&action=upload" method="post" enctype="multipart/form-data" id="slideUpload">
