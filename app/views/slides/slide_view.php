@@ -10,7 +10,7 @@
 				echo  "<li><a href='?controller=slides&action=get&id=$slide->id'><img src='$slide->path_to_image'></a></li>";
 			}
 
-			echo "</ul>";
+			echo "<li class='addSlide'><a href=''><img src='assets/plus.png'></a></li></ul>";
 
 			?>
 		
@@ -25,6 +25,8 @@
 
 		public static function displayForm($slide) {
 			$path = '';
+
+			echo "<div id='slideSettings'>";
 
 			// display the properties of the slide object
 			foreach($slide as $key => $value) {
