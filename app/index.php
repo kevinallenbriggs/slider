@@ -3,12 +3,10 @@
   require_once('../style_helper.php');		// allows us to load all the style sheets dynamically
   /*require_once('models/setting.php');   // allows us to access all the settings from anywhere in the app*/
 
+
   if (isset($_GET['controller']) && isset($_GET['action'])) {		// check to see if the controller and action are in the URI
     $controller = strval($_GET['controller']);		// validate and store GET requests
     $action     = strval($_GET['action']);
-  } else if ($_SERVER['REQUEST_URI'] == '/slides') {
-    $controller = 'slides';
-    isset($_POST) ? $action = 'create' : $action = 'index';
   }	else {					// redirect everything else to the home page
     $controller = 'pages';
     $action     = 'slider';
