@@ -23,6 +23,9 @@
       $slide = Slide::get(intval($_GET['id']));		// validate the input and call the Slide model to pull up the specific slide
       SlideView::displayForm($slide);   // call the view
     }
+
+
+    public function create()
    
     
     

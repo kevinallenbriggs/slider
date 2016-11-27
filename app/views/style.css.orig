@@ -1,0 +1,188 @@
+@CHARSET "UTF-8";
+/*********************************************/
+/************* TABLE OF CONTENTS *************/
+/*********************************************/
+/*  1. GLOBAL STYLES                         */
+/*  2. SLIDESHOW STYLES                      */
+/*  3. NAVIGATION BUTTONS                    */
+/*  4. SLIDE SETTINGS                        */
+/*  4. SLIDE UPLOADS                         */
+/*  4. SETTINGS PAGE                         */
+/*********************************************/
+
+
+/*********************/
+/*  1. GLOBAL STYLES */
+/*********************/
+
+html, body {
+  margin: 0;
+  height: 100%;
+  font: 1em Roboto, sans-serif;
+  background-color: #d3d3d3;
+}
+
+p {
+  margin: 0;
+}
+
+a {
+  text-decoration: none;
+}
+
+
+/*************************/
+/*  2. SLIDESHOW STYLES  */
+/*************************/
+
+/* Slideshow container */
+.slideshow-container {
+  /*max-width: 1000px;*/
+  position: relative;
+  margin: auto;
+}
+
+
+/* Slideshow images */
+.mySlides > img {
+  width:  100%;
+}
+
+
+/* Caption text */
+.text {
+  color: #f2f2f2;
+  font-size: 15px;
+  /*padding: 8px 12px;*/
+  position: absolute;
+  bottom: 8px;
+  width: 100%;
+  text-align: center;
+}
+
+
+/* Fading animation */
+.fade {
+  -webkit-animation-name: fade;
+  -webkit-animation-duration: 1.5s;
+  animation-name: fade;
+  animation-duration: 1.5s;
+}
+
+
+@-webkit-keyframes fade {
+  from {opacity: .4} 
+  to {opacity: 1}
+}
+
+
+@keyframes fade {
+  from {opacity: .4} 
+  to {opacity: 1}
+}
+
+
+/***************************/
+/*  3. NAVIGATION BUTTONS  */
+/***************************/
+
+/* Buttons / Links */
+.navButtons {
+  background-color: white;
+<<<<<<< HEAD
+  padding:            1em 0;
+  width:              33.3333%;
+  text-align:         center;
+  z-index:            2;
+  opacity:            0.75;
+  position:           fixed;
+  -webkit-transition: top 1s, opacity .5s;
+  -moz-transition:    top 1s, opacity .5s;
+  -o-transition:      top 1s, opacity .5s;
+  transition:         top 1s, opacity .5s;
+}
+
+.navButtons:hover {
+  opacity:  0.90;
+=======
+  top: 0;
+  padding: 1em 0;
+  width: 33.3333%;
+  text-align: center;
+  z-index: 2;
+  opacity: 0.75;
+  transition: top 1s;
+  -webkit-transition: top 1s;
+  -moz-transition: top 1s;
+  -o-transition: top 1s;
+>>>>>>> style-slide-views
+}
+
+.navButtons a {
+  color: black;
+  display: block;
+}
+
+.navButton1 {
+  position: fixed;
+  left: 0;
+}
+
+.navButton2 {
+  position: fixed;
+  left: 33.3333%;
+}
+
+.navButton3 {
+  position: fixed;
+  left: 66.6666%;
+}
+
+
+/***********************/
+/*  4. SLIDE SETTINGS  */
+/***********************/
+.slideList {
+  list-style-type: none;
+  margin: 0;
+  padding: 4em 0 0 0;
+}
+
+.slideList li {
+  display: inline-block;
+  padding: .25em;
+  max-width: 8em;
+}
+
+.slideList li img {
+  max-height: 4em;
+  width: 100%;
+  border-radius: .8em;
+  box-shadow: 0 6px 8px 0 black;
+}
+
+.slideList .addSlide {
+  width: 4em;
+  height: 4em;
+}
+
+
+
+/********************/
+/* 6. SLIDE UPLOADS */
+/********************/
+#slideUpload {
+  margin-top: 1em;
+  border-top: .1em solid black;
+  padding-top: 1em;
+}
+
+
+
+/**************************/
+/* 6. SETTINGS MANAGEMENT */
+/**************************/
+#settingsHeading {
+  margin: 0;
+  padding: 4em 0 0 0;
+}

@@ -1,0 +1,7 @@
+HTTP Request	Controller		Action			Purpose
+GET				slides			index			Show all slides as links to their config URLs
+GET				slides			show, edit 		List the options for a slide
+GET				slides			new				Page to upload a new slide
+POST			slides			create			Create a new slide in the database
+PATCH			slides			update			Update the options for an existing slide
+DELETE			slides			destroy			Delete a slide from the system
