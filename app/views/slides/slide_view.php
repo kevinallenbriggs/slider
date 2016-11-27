@@ -7,23 +7,26 @@
 		public static function index($slides) {
 			echo "<ul class='slideList'>";
 			foreach($slides as $slide) {
-				echo  "<li><a href='?controller=slides&action=get&id=$slide->id'><img src='$slide->path_to_image'></a></li>";
+				echo  "<li><a href='?controller=slides&action=edit&id=$slide->id'><img src='$slide->path_to_image'></a></li>";
 			}
 
-			echo "<li class='addSlide'><a href='?controller=slides&action=create'><img src='assets/plus.png'></a></li></ul>";
-
-			?>
-		
-			<form name="formUpload" action="/?controller=slides&action=upload" method="post" enctype="multipart/form-data" id="slideUpload">
-				<input type="file" name="file">
-				<input type="hidden" name="submitted" value="true">
-				<button type="submit">Upload File</button>
-			</form>
-
-			<?php
+			echo "<li class='addSlide'><a href='?controller=slides&action=new'><img src='assets/plus.png'></a></li></ul>";
 		}
 
-		public static function displayForm($slide) {
+
+
+		public static function display_new_slide_form() {
+			echo <<<EOT
+<form name="formUpload" action="/?controller=slides&action=upload" method="post" enctype="multipart/form-data" id="slideUpload">
+	<input type="file" name="file">
+	<input type="hidden" name="submitted" value="true">
+	<button type="submit">Upload File</button>
+</form>
+EOT;
+		}
+
+
+		public static function display_slide_options($slide) {
 			$path = '';
 
 			echo "<div id='slideSettings'>";
@@ -45,7 +48,7 @@
 				}
 			}
 
-			echo "<img src='$path' />";		// display the slide
+			echo "<img class='slide' src='$path' />";		// display the slide
 			echo $deleteLink;
 			echo "<div><a href='?controller=slides&action=index'>Back</a></div>";
 		}

@@ -1,11 +1,11 @@
 HTTP Request	Controller		Action			Purpose
 GET				slides			index			Show all slides as links to their config URLs
-GET				slides(id)		show, edit 		Display options form for a slide
+GET				slides(id)		edit 		Display options form for a slide
 GET				slides			new				Page to upload a new slide
 POST			slides			create			Create a new slide in the database
 PATCH			slides(id)		update			Update the options for an existing slide
 DELETE			slides(id)		destroy			Delete a slide from the system
 
 GET				settings		index			Show all the settings
-GET				settings(id)	show, edit		Display a form for a setting
+GET				settings(id)	edit		Display a form for a setting
 PATCH			settings(id)	update 			Update the value of a setting	

@@ -166,6 +166,13 @@ a {
   height: 4em;
 }
 
+.slide {
+  width: 50%;
+  position: absolute;
+  left: 50%;
+  padding: 2em;
+}
+
 
 
 /********************/
