@@ -10,7 +10,7 @@
 				echo  "<li><a href='?controller=slides&action=get&id=$slide->id'><img src='$slide->path_to_image'></a></li>";
 			}
 
-			echo "<li class='addSlide'><a href=''><img src='assets/plus.png'></a></li></ul>";
+			echo "<li class='addSlide'><a href='?controller=slides&action=create'><img src='assets/plus.png'></a></li></ul>";
 
 			?>
 		
