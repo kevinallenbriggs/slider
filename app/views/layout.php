@@ -18,9 +18,11 @@
     <footer>
       <?php
         if (!empty($_GET) || !empty($_POST)) {
-          echo "<hr>";
-          print_r($_GET);
-          print_r($_POST);
+          echo '<hr><pre>$_GET: ';
+          var_dump($_GET);
+          echo '$_POST: ';
+          var_dump($_POST);
+          echo "</pre>";
         }
         ?>
     </footer>
