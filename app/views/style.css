@@ -6,8 +6,8 @@
 /*  2. SLIDESHOW STYLES                      */
 /*  3. NAVIGATION BUTTONS                    */
 /*  4. SLIDE SETTINGS                        */
-/*  4. SLIDE UPLOADS                         */
-/*  4. SETTINGS PAGE                         */
+/*  5. SLIDE UPLOADS                         */
+/*  6. SETTINGS PAGE                         */
 /*********************************************/
 
 
@@ -29,6 +29,17 @@ p {
 a {
   text-decoration: none;
 }
+
+footer {
+  display: block;
+}
+
+input {
+  box-shadow: .15em .15em .5em .1em;
+  border-radius: .3em;
+  margin: 0 1em;
+}
+
 
 
 /*************************/
@@ -89,7 +100,6 @@ a {
 /* Buttons / Links */
 .navButtons {
   background-color: white;
-<<<<<<< HEAD
   padding:            1em 0;
   width:              33.3333%;
   text-align:         center;
@@ -104,7 +114,6 @@ a {
 
 .navButtons:hover {
   opacity:  0.90;
-=======
   top: 0;
   padding: 1em 0;
   width: 33.3333%;
@@ -115,7 +124,6 @@ a {
   -webkit-transition: top 1s;
   -moz-transition: top 1s;
   -o-transition: top 1s;
->>>>>>> style-slide-views
 }
 
 .navButtons a {
@@ -166,11 +174,19 @@ a {
   height: 4em;
 }
 
+#slideOptions {
+  margin: 0;
+  padding: 4em 0 0 2em;
+  width: 35%;
+  float: left;
+  line-height: 2em;
+  font-size: 1.2em;
+}
+
 .slide {
-  width: 50%;
-  position: absolute;
-  left: 50%;
-  padding: 2em;
+  width: 60%;
+  display: inline-block;
+  padding: 4em 0 0 0;
 }
 
 
@@ -179,9 +195,8 @@ a {
 /* 6. SLIDE UPLOADS */
 /********************/
 #slideUpload {
-  margin-top: 1em;
-  border-top: .1em solid black;
-  padding-top: 1em;
+  margin: 0;
+  padding: 4em 0 0 0;
 }
 
 
@@ -189,7 +204,4 @@ a {
 /**************************/
 /* 6. SETTINGS MANAGEMENT */
 /**************************/
-#settingsHeading {
-  margin: 0;
-  padding: 4em 0 0 0;
-}
+

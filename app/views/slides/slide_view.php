@@ -27,30 +27,46 @@ EOT;
 
 
 		public static function display_slide_options($slide) {
-			$path = '';
+			?>
 
-			echo "<div id='slideSettings'>";
+			<form name='slide_options' action='?controller=slides&action=update&id=<?php echo $slide->id; ?>' method='post' id='slideOptions'>
+				<div>
+					<label for='slideName'>Name: </label>
+					<input type='text' value='<?php echo $slide->name; ?>' name='slideName'>
+				</div>
+				<div>
+					<label>Filename: </label><?php echo $slide->name; ?>
+				</div>
+				<div>
+					<label>Type: </label> <?php echo $slide->type; ?>
+				</div>
+				<div>
+					<label for='published'>Published? </label>
+					<input type="radio" name='published' value='true'>Yes
+					<input type="radio" name='published' value='false' checked>No
+				</div>
+				<div>
+					<label for='expires'>Expires: </label>
+					<input type='date' name='expires' value='<?php echo date("Y-m-j"); ?>'>
+				</div>
+				<div>
+					<label for='caption'>Caption: </label>
+					<input type='text' name='caption'>
+				</div>
+				<div>
+					<label>Size: </label><?php echo round($slide->size/1024/1024, 2, PHP_ROUND_HALF_UP); ?> MB
+				</div>
+				<div>
+					<input type='submit' name='submit' value='Save Changes'>
+				</div>
+				<div>
+					<input type='button' name='delete' value='Delete Slide'>
+				</div>
+				<input type='hidden' name='submitted' value='true'>
+			</form>
+			<img class='slide' src='<?php echo $slide->path_to_image; ?>'>
 
-			// display the properties of the slide object
-			foreach($slide as $key => $value) {
-				if (!empty($value)) {
-					echo "<div>$key: $value</div>";
-				}
-
-				// remember the path so that it can be used to display the image
-				// after all of the Slide properties are done being read
-				if ($key == 'path_to_image' && !empty($value)) {
-					$path = $value;
-				}
-
-				if ($key == 'id') {
-					$deleteLink = "<div><a href='?controller=slides&action=remove&id=$value'>delete</a></";
-				}
-			}
-
-			echo "<img class='slide' src='$path' />";		// display the slide
-			echo $deleteLink;
-			echo "<div><a href='?controller=slides&action=index'>Back</a></div>";
+			<?php
 		}
 	}
 ?>

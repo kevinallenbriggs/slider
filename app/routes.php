@@ -1,7 +1,7 @@
 <?php
   // Every controller and it's actions needs an entry in this array
   $controllers = array('pages' => ['slider', 'error'],
-                       'slides' => ['index', 'edit', 'new', 'create', 'remove'],
+                       'slides' => ['index', 'edit', 'new', 'create', 'update', 'remove'],
   					   'settings' => ['index', 'edit']
   );
 
