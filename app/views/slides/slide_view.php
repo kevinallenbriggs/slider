@@ -51,7 +51,8 @@ EOT;
 					</div>
 					<div>
 						<label for='caption'>Caption: </label>
-						<textarea class='input' name='caption' onfocus="this.value=''; this.onfocus=null;">Put any text that you want overlaid on the picture when it displays here.</textarea>
+						<?php $default_value = 'Put any text that you want overlaid on the picture when it displays here.'; ?>
+						<textarea class='input' name='caption' onfocus='if(this.value == "<?php echo $default_value; ?>") this.value=""; this.onfocus=null;'>Put any text that you want overlaid on the picture when it displays here.</textarea>
 					</div>
 					<div>
 						<label>Size: </label><span> <?php echo round($slide->size/1024/1024, 2, PHP_ROUND_HALF_UP); ?> MB</span>
