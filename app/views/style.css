@@ -2,18 +2,19 @@
 /*********************************************/
 /************* TABLE OF CONTENTS *************/
 /*********************************************/
-/*  1. GLOBAL STYLES                         */
-/*  2. SLIDESHOW STYLES                      */
-/*  3. NAVIGATION BUTTONS                    */
+/*  1. GLOBAL                                */
+/*  2. SLIDESHOW                             */
+/*  3. NAVIGATION MENU                       */
 /*  4. SLIDE OPTIONS                         */
 /*  5. SLIDE UPLOAD FORM                     */
 /*  6. SETTINGS PAGE                         */
+/*  7. FOOTER / DEBUG                        */
 /*********************************************/
 
 
-/*********************/
-/*  1. GLOBAL STYLES */
-/*********************/
+/***************/
+/*  1. GLOBAL  */
+/***************/
 
 html, body {
   margin: 0;
@@ -51,9 +52,9 @@ label {
 
 
 
-/*************************/
-/*  2. SLIDESHOW STYLES  */
-/*************************/
+/******************/
+/*  2. SLIDESHOW  */
+/******************/
 
 /* Slideshow container */
 .slideshow-container {
@@ -102,9 +103,9 @@ label {
 }
 
 
-/***************************/
-/*  3. NAVIGATION BUTTONS  */
-/***************************/
+/************************/
+/*  3. NAVIGATION MENU  */
+/************************/
 
 /* Buttons / Links */
 .navButtons {
@@ -156,9 +157,10 @@ label {
 }
 
 
-/***********************/
-/*  4. SLIDE OPTIONS   */
-/***********************/
+
+/**********************/
+/*  4. SLIDE OPTIONS  */
+/**********************/
 .slideList {
   list-style-type: none;
   margin: 0;
@@ -238,9 +240,9 @@ label {
 
 
 
-/************************/
-/* 6. SLIDE UPLOAD FORM */
-/************************/
+/*************************/
+/* 5. SLIDE UPLOAD FORM  */
+/*************************/
 #slideUpload {
   margin: 0;
   padding: 4em 0 0 0;
@@ -252,4 +254,27 @@ label {
 /**************************/
 /* 6. SETTINGS MANAGEMENT */
 /**************************/
+#settingsHeading {
+  margin: 0;
+  padding: 4em 0 0 0;
+}
 
+
+
+/********************/
+/*  FOOTER / DEBUG  */
+/********************/
+footer {
+  display: block;
+  clear: both;
+  text-align: center;
+  font-size: .6em;
+}
+
+.debug {
+  text-align: initial;
+  font-size: 1.8em;
+  border-radius: .5em;
+  border: .2em solid red;
+  background-color: pink;
+}

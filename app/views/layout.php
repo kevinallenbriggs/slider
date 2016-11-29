@@ -20,7 +20,7 @@
       Developed & maintained by the Loveland Public Library - Loveland, CO
       <?php
         if (!empty($_GET) || !empty($_POST)) {
-          echo '<pre>$_GET: ';
+          echo '<pre class="debug">$_GET: ';
           var_dump($_GET);
           echo '$_POST: ';
           var_dump($_POST);
