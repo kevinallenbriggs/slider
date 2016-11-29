@@ -29,10 +29,10 @@ EOT;
 		public static function display_slide_options($slide) {
 			?>
 			<div id="slideOptionsContainer">
-				<form name='slide_options' action='?controller=slides&action=update&id=<?php echo $slide->id; ?>' method='post' id='slideOptions'>
+				<form name='slideOptions' action='?controller=slides&action=update&id=<?php echo $slide->id; ?>' method='post' id='slideOptions'>
 					<div>
-						<label for='slideName'>Name: </label>
-						<input class='input' type='text' value='<?php echo $slide->name; ?>' name='slideName'>
+						<label for='name'>Name: </label>
+						<input id='name' class='input' type='text' value='<?php echo $slide->name; ?>' name='name'>
 					</div>
 					<div>
 						<label>Filename: </label><span> <?php echo $slide->name; ?></span>
@@ -51,14 +51,14 @@ EOT;
 					</div>
 					<div>
 						<label for='caption'>Caption: </label>
-						<?php $default_value = 'Put any text that you want overlaid on the picture when it displays here.'; ?>
-						<textarea class='input' name='caption' onfocus='if(this.value == "<?php echo $default_value; ?>") this.value=""; this.onfocus=null;'>Put any text that you want overlaid on the picture when it displays here.</textarea>
+						<?php $default_value = 'If you want to overlay the image with any text, enter it here.'; ?>
+						<textarea class='input' name='caption' onfocus='if(this.value == "<?php echo $default_value; ?>") this.value=""; this.onfocus=null;'><?php echo $default_value; ?></textarea>
 					</div>
 					<div>
 						<label>Size: </label><span> <?php echo round($slide->size/1024/1024, 2, PHP_ROUND_HALF_UP); ?> MB</span>
 					</div>
 					<div>
-						<input class='input buttons' type='submit' name='submit' value='Save Changes'>
+						<input class='input buttons' type='submit' name='btnSubmit' value='Save Changes'>
 					</div>
 					<input type='hidden' name='submitted' value='true'>
 				</form>
@@ -70,6 +70,7 @@ EOT;
 				</form>
 			</div>
 			<img class='slide' src='<?php echo $slide->path_to_image; ?>'>
+			<script src="views/slides/slide_view.js"></script>
 			<?php
 		}
 	}

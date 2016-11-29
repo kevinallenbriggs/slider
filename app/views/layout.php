@@ -16,9 +16,11 @@
     <?php require_once ("routes.php"); ?>
 
     <footer>
+      <hr>
+      Developed & maintained by the Loveland Public Library - Loveland, CO
       <?php
         if (!empty($_GET) || !empty($_POST)) {
-          echo '<hr><pre>$_GET: ';
+          echo '<pre>$_GET: ';
           var_dump($_GET);
           echo '$_POST: ';
           var_dump($_POST);

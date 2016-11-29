@@ -95,6 +95,8 @@
       return new Slide($slide_properties);
     }
     
+
+
     /**
      * UPLOAD A NEW SLIDE INTO THE DATABASE AND FILESYSTEM
      * @return 1 on success
@@ -145,6 +147,25 @@
 
       $db = null;   // disconnect from the database
       return 1;
+    }
+
+
+
+    public function update($id) {
+      try {
+        $db = Db::getInstance();
+        $sql = "UPDATE `slides` SET ";
+        foreach ($_POST as $key => $value) {
+          $sql .= "`$key` = '$value'";
+          $i < sizeof($_POST) ? $sql .= ', ' : '';
+        }
+        $sql .= " WHERE `slides`.`id` = $id";
+      } catch (PDOException $e) {
+        return $e->getMessage();
+      }
+
+      $db = null;
+      return $sql;
     }
   }
 ?>
