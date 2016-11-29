@@ -197,4 +197,17 @@ a {
 /********************/
 /*  FOOTER / DEBUG  */
 /********************/
+footer {
+  display: block;
+  clear: both;
+  text-align: center;
+  font-size: .6em;
+}
 
+.debug {
+  text-align: initial;
+  font-size: 1.8em;
+  border-radius: .5em;
+  border: .2em solid red;
+  background-color: pink;
+}
