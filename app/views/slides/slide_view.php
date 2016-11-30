@@ -52,13 +52,7 @@ EOT;
 					<div>
 						<label for='caption'>Caption: </label>
 						<?php $default_value = 'If you want to overlay the image with any text, enter it here.'; ?>
-						<textarea class='input' name='caption' onfocus='if(this.value == "<?php echo $default_value; ?>") this.value=""; this.onfocus=null;'><?php echo (empty($slide->caption) ? $default_value : $slide->caption);/*
-								if (empty($slide->caption)) {
-									echo $default_value;
-								} else {
-									echo $slide->caption;
-								}?>
-						*/?></textarea>
+						<textarea class='input' name='caption' onfocus='if(this.value == "<?php echo $default_value; ?>") this.value=""; this.onfocus=null;'><?php echo (empty($slide->caption) ? $default_value : $slide->caption);?></textarea>
 					</div>
 					<div>
 						<label>Size: </label><span> <?php echo round($slide->size/1024/1024, 2, PHP_ROUND_HALF_UP); ?> MB</span>
