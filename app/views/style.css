@@ -277,4 +277,5 @@ footer {
   border-radius: .5em;
   border: .2em solid red;
   background-color: pink;
+  float: left;
 }

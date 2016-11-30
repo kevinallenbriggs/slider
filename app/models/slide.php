@@ -151,21 +151,37 @@
 
 
 
-    public function update($id) {
-      try {
-        $db = Db::getInstance();
-        $sql = "UPDATE `slides` SET ";
-        foreach ($_POST as $key => $value) {
-          $sql .= "`$key` = '$value'";
-          $i < sizeof($_POST) ? $sql .= ', ' : '';
+    public function update($params) {
+      $i = 0;   // initialize index necessary inside foreach loop below
+      $sql = "UPDATE `slides` SET ";  // all update statements will begin the same way
+
+      // loop through the parameters to build the statement
+      foreach ($params as $key => $value) {
+        $sql .= "`$key` = '$value'";
+
+        // include a comma and space after every parameter except the last one
+        if (++$i === count($params)) {
+          $sql .= ' ';
+        } else {
+          $sql .= ', ';
         }
-        $sql .= " WHERE `slides`.`id` = $id";
-      } catch (PDOException $e) {
-        return $e->getMessage();
       }
 
-      $db = null;
-      return $sql;
+      // finish building the prepared statement
+      $sql .= " WHERE `slides`.`id` = :id";
+
+      // execute the prepared statement
+      try {
+        $db = Db::getInstance();    // connect to database
+        $r = $db->prepare($sql);    // create the PDO object
+        $r->execute(array(':id' => $this->id));   // execute the PDO object
+      } catch (PDOException $e) {   // catch any errors
+        return $e->getMessage();
+        //return false;
+      }
+
+      $db = null;   // close the connection to the database
+      return true;
     }
   }
 ?>

@@ -98,6 +98,7 @@
     public function update() {
       if (!empty($_POST) && isset($_GET['id']) && $_POST['submitted'] = 'true') {
         $params = [];
+        $slide = Slide::get(strval($_GET['id']));
         foreach ($_POST as $key => $value) {
           switch($key) {
             case 'name': $params[$key] = strval($value); break;
@@ -107,11 +108,12 @@
             default: break;
           }
         }
-        print_r($params);
-        if ($sql = Slide::update(strval($_GET['id']))) {
+
+        if ($slide->update($params)) {
           $slides = Slide::all();
           SlideView::index($slides);
-          echo $sql;
+        } else {
+          // display an error to the user
         }
       }
     }
