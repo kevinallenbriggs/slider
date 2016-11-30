@@ -104,7 +104,7 @@
             case 'name': $params[$key] = strval($value); break;
             case 'published': $value == 'false' ? $params[$key] = 0 : $params[$key] = 1; break;
             case 'expires': $params[$key] = date("Y-m-d", strtotime($value)); break;
-            case 'caption': empty($value) ? $params[$key] = NULL : $params[$key] = $value; break;
+            case 'caption': empty($value) ? $params[$key] = NULL : $params[$key] = trim($value); break;
             default: break;
           }
         }

@@ -21,12 +21,17 @@
     	if (is_string($param)) {
     		$this->name = $param;
     	} else if (is_array($param)) {		// an array of property values was supplied
-			isset($param['id']) ? $this->id = $param['id'] : '';
+			 foreach ($param as $key => $value) {
+        isset($param[$key]) ? $this->$key = $value : '';
+       }
+      /*isset($param['id']) ? $this->id = $param['id'] : '';
     		isset($param['name']) ? $this->name = $param['name'] : '';
     		isset($param['type']) ? $this->type = $param['type'] : '';
     		isset($param['path_to_image']) ? $this->path_to_image = $param['path_to_image'] : '';
     		isset($param['tmp_name']) ? $this->tmp_name = $param['tmp_name'] : '';
     		isset($param['size']) ? $this->size = $param['size'] : '';
+        isset($param['caption']) ? $this->caption = $param['caption'] : '';
+*/
     	}
     }
 
@@ -34,7 +39,7 @@
     
     /**
      * RETURNS ALL SLIDE OBJECTS FROM THE DATABASE AS AN ARRAY
-     * @return Post[] on success
+     * @return an array of slide objects on success
      * @return PDOException message on failure
      */
     public static function all() {
@@ -78,7 +83,7 @@
       
       // query database to find the slide requested
       try {
-	      $r = $db->prepare('SELECT * FROM slides WHERE id = :id');
+	      $r = $db->prepare('SELECT * FROM slides WHERE id = :id LIMIT 1');
 	      $r->execute(array('id' => $id));
 	      $slide = $r->fetch();
       } catch (PDOException $e) {
