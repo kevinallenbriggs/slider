@@ -7,8 +7,8 @@
     public $caption;
     public $type;
     public $path_to_image;
-    public $publication_status;
-    public $expiration_date;
+    public $published;
+    public $expires;
     public $tmp_name;
     public $size;
 
@@ -16,22 +16,14 @@
      * CREATES A NEW SLIDE OBJECT REQUIRING AT LEAST A NAME BUT WITH UP TO 6 OTHER PROPERTIES
      * @param unknown $param
      */
-    public function __construct($param) {
+    public function __construct($params) {
       // check to see if only a name was given
-      if (is_string($param)) {
-        $this->name = $param;
-      } else if (is_array($param)) {    // an array of property values was supplied
-       foreach ($param as $key => $value) {
-        isset($param[$key]) ? $this->$key = $value : '';
-       }
-      /*isset($param['id']) ? $this->id = $param['id'] : '';
-        isset($param['name']) ? $this->name = $param['name'] : '';
-        isset($param['type']) ? $this->type = $param['type'] : '';
-        isset($param['path_to_image']) ? $this->path_to_image = $param['path_to_image'] : '';
-        isset($param['tmp_name']) ? $this->tmp_name = $param['tmp_name'] : '';
-        isset($param['size']) ? $this->size = $param['size'] : '';
-        isset($param['caption']) ? $this->caption = $param['caption'] : '';
-*/
+      if (is_string($params)) {
+        $this->name = $params;
+      } else if (is_array($params)) {    // an array of property values was supplied
+         foreach ($params as $key => $value) {
+          isset($params[$key]) ? $this->$key = $value : '';
+         }
       }
     }
 
@@ -52,12 +44,12 @@
 	
 	      // loop through query results to get the property values for each Slide object that will be created
 	      foreach($r->fetchAll() as $slide) {
-			$params = array('id'					=>	$slide['id'],
+			         $params = array('id'					=>	$slide['id'],
 	        				'name'					=>	$slide['name'],
 	        				'caption'				=>	$slide['caption'],
 	        				'path_to_image'			=>	$slide['path_to_image'],
-	        				'publication_status'	=>	$slide['publication_status'],
-	        				'expiration_date'		=>	$slide['expiration_date']);
+	        				'published'	=>	$slide['published'],
+	        				'expires'		=>	$slide['expires']);
 			
 			// create the Slide object and add it to the array of results to return
 			$list[] = new Slide($params);
@@ -83,9 +75,10 @@
       
       // query database to find the slide requested
       try {
-	      $r = $db->prepare('SELECT * FROM slides WHERE id = :id');
+	      $r = $db->prepare('SELECT * FROM slides WHERE id = :id LIMIT 1');
 	      $r->execute(array('id' => $id));
-	      $slide = $r->fetch();
+        $slide = $r->fetch();
+        if (!$slide) return 0;
       } catch (PDOException $e) {
 			 return $e->getMessage();
       }
@@ -114,17 +107,19 @@
     	// insert the record into the database
     	try {
 	    	$db = Db::getInstance();	// connect to database
-	    	$r = $db->prepare("INSERT INTO `slides` (`name`, `path_to_image`, `type`, `size`) VALUES (:name, :path_to_image, :type, :size)");
+	    	$r = $db->prepare("INSERT INTO `slides` (`name`, `path_to_image`, `type`, `size`, `caption`) VALUES (:name, :path_to_image, :type, :size, :caption)");
 	    	$r->execute(array('name' => $this->name,
 	    						'path_to_image' => $this->path_to_image,
 	    						'type' => $this->type,
-	    						'size' => $this->size));
+	    						'size' => $this->size,
+                  'caption' => $this->caption));
     	} catch (PDOException $e) {
     		return $e->getMessage();	// something went wrong, return the error
     	}
     	
+      $id = (int)$db->lastInsertId('id');
     	$db = null;		// disconnect from the database
-    	return 1;
+    	return $id;
     }
 
 
@@ -133,12 +128,12 @@
     * @return 1 on success
     * @return PDOException message on failure
     */
-    public function remove() {
+    public function remove($skip_filesystem = false) {
       // remove the slide from the filesystem
       if (file_exists($this->path_to_image)) {    // delete file if it exists otherwise return 0
         unlink($this->path_to_image);
-      } else {
-        return 0;
+      } elseif (!$skip_filesystem) {
+        return 'Could not find file';
       }  
 
       // delete the record from the database
