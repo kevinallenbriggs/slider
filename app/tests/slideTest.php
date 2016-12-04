@@ -1,34 +1,74 @@
 <?php
 
 require_once "app/models/slide.php";
+require_once "connection.php";
+
 
 class SlideTest extends PHPUnit_Framework_TestCase {
 
-	// create a new slide with only a name
-	public function testNewSlideObjectWithNameOnly() {
-		$slideName = 'test name';
-		$slide = new Slide($slideName);
-		$this->assertTrue($slide->name == $slideName);
+	// setup the test fixture
+	public function setUp() {
+		$this->slide_properties = array( 'id'				=> 1,
+										 'name'				=> 'test slide',
+										 'caption'			=> 'test caption',
+										 'type'				=> 'image/jpeg',
+										 'path_to_image'	=> 'test/path/to/image',
+									 	 'published' 		=> true,
+									 	 'expires'	 		=> date('Y-m-d'),
+										 'size'				=> 1000000);
+
+		$this->slide = new Slide($this->slide_properties);
 	}
 
-	// create a new slide with a partial list of parameters
-	public function testNewSlideObjectWithParams() {
-		$params = array('id'				 => 1,
-						'name'				 => 'test slide',
-						'caption'			 => 'test caption',
-						'type'				 => 'image/jpeg',
-						'path_to_image'		 => '/some_directory',
-						'publication_status' => true,
-						'expiration_date'	 => date('Y-m-d'),
-						'tmp_name'			 => 'this is where php stores me',
-						'size'				 => 1000000);
-		
-		$slide = new Slide($params);
 
-		foreach ($slide as $key => $value) {
+	// tearDown the test fixture
+	public function tearDown() {
+		unset($this->slide_properties);
+	}
+
+
+	// create a new slide with only a name
+	public function testNewSlideObjectWithNameOnly() {
+		$this->slide = new Slide($this->slide_properties['name']);
+		$this->assertTrue($this->slide->name == $this->slide_properties['name']);
+	}
+
+
+	// create a new slide with an array of parameters
+	public function testNewSlideObjectWithParams() {
+		
+		foreach ($this->slide as $key => $value) {
 			$slide_params[$key] = $value;
 		}
-		$this->assertEquals($slide_params, $params);
+		$this->assertArraySubset($this->slide_properties, $slide_params);
+	}
+
+
+	// retrieve all of the slides in the database
+	public function testRetrieveAllSlidesFromDB() {
+		$slides = Slide::all();
+		foreach ($slides as $slide) {
+			foreach ($this->slide_properties as $key => $value) {
+				$this->assertArrayHasKey($key, (array)$slide);
+			}
+		}
+	}
+
+
+	// save a slide to the database
+	public function testSaveSlide() {
+		foreach ($this->slide as $key => $value) {
+			switch ($key) {
+				case 'name': break;
+				case 'caption': break;
+				case 'path_to_image': break;
+				default: $this->slide->$key = null;
+			}
+		}
+
+		$this->slide->id = $this->slide->upload();
+		$this->assertInternalType('int', $this->slide->id);
+		$this->assertEquals($this->slide->remove(true), 1);
 	}
 }
 ?>
