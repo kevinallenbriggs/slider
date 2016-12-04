@@ -21,7 +21,7 @@
         $password	=	'oUQtr3QnNYIotiBB';
         
         // create the new singleton instance (connection to database)
-        self::$instance = new PDO("mysql:host=localhost;dbname=$database;port=$port", $username, $password, $pdo_options);
+        self::$instance = new PDO("mysql:host=127.0.0.1;dbname=$database;port=$port", $username, $password, $pdo_options);
       }
       
       return self::$instance;
