@@ -12,19 +12,23 @@ class SlideTest extends PHPUnit_Framework_TestCase {
 	}
 
 	// create a new slide with a partial list of parameters
-	public function testNewSlideObjectWithPartialParams() {
-		$params = array('name' => 'test slide',
-						'caption' => 'test caption',
-						'publication_status' => true);
+	public function testNewSlideObjectWithParams() {
+		$params = array('id'				 => 1,
+						'name'				 => 'test slide',
+						'caption'			 => 'test caption',
+						'type'				 => 'image/jpeg',
+						'path_to_image'		 => '/some_directory',
+						'publication_status' => true,
+						'expiration_date'	 => date('Y-m-d'),
+						'tmp_name'			 => 'this is where php stores me',
+						'size'				 => 1000000);
+		
 		$slide = new Slide($params);
-		$this->assertTrue($slide->name == 'test slide');
-		$this->assertTrue($slide->caption == 'test caption');
-		$this->assertTrue($slide->publication_status == true);
 
 		foreach ($slide as $key => $value) {
 			$slide_params[$key] = $value;
 		}
-		$this->assertArraySubset($params, $slide_params);
+		$this->assertEquals($slide_params, $params);
 	}
 }
 ?>
