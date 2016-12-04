@@ -17,14 +17,16 @@
 
     <footer>
       <hr>
-      Developed & maintained by the Loveland Public Library - Loveland, CO
+      Developed &amp; maintained by the Loveland Public Library - Loveland, CO
       <?php
-        if (!empty($_GET) || !empty($_POST)) {
+        if (!empty($_GET) || !empty($_POST) || isset($params)) {
           echo '<pre class="debug">$_GET: ';
           var_dump($_GET);
-          echo '$_POST: ';
+          echo '</pre><pre class="debug">$_POST: ';
           var_dump($_POST);
-          echo "</pre>";
+          echo '</pre><pre class="debug">$params: ';
+          var_dump($params);
+          echo '</pre>';
         }
         ?>
     </footer>
