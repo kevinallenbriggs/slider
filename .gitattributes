@@ -2,3 +2,7 @@
 /app/logs expore-ignore
 .gitattributes export-ignore
 .gitignore export-ignore
+README.md
+RESTdoc.txt
+slider.sql.gz
+phpunit.xml
