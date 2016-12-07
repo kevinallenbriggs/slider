@@ -12,10 +12,11 @@ class SlideTest extends PHPUnit_Framework_TestCase {
 										 'name'				=> 'test slide',
 										 'caption'			=> 'test caption',
 										 'type'				=> 'image/jpeg',
-										 'path_to_image'	=> 'test/path/to/image',
+										 'path_to_image'	=> 'tests/test.jpg',
 									 	 'published' 		=> true,
 									 	 'expires'	 		=> date('Y-m-d'),
-										 'size'				=> 1000000);
+										 'size'				=> 1000000,
+										 'tmp_name'			=> 'test.jpg');
 
 		$this->slide = new Slide($this->slide_properties);
 	}
@@ -56,7 +57,7 @@ class SlideTest extends PHPUnit_Framework_TestCase {
 
 
 	// save a slide to the database
-	public function testSaveSlide() {
+	public function testSaveAndRemoveSlideFromDatabaseAndFilesystem() {
 		foreach ($this->slide as $key => $value) {
 			switch ($key) {
 				case 'name': break;
@@ -66,8 +67,9 @@ class SlideTest extends PHPUnit_Framework_TestCase {
 			}
 		}
 
-		$this->slide->id = $this->slide->upload();
-		$this->assertInternalType('int', $this->slide->id);
+		$result = $this->slide->upload();
+		$this->assertInternalType('int', $result);
+		$this->slide->id = $result;
 		$this->assertEquals($this->slide->remove(true), 1);
 	}
 }

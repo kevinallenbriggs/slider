@@ -44,12 +44,12 @@
 	
 	      // loop through query results to get the property values for each Slide object that will be created
 	      foreach($r->fetchAll() as $slide) {
-			         $params = array('id'					=>	$slide['id'],
-	        				'name'					=>	$slide['name'],
-	        				'caption'				=>	$slide['caption'],
-	        				'path_to_image'			=>	$slide['path_to_image'],
-	        				'published'	=>	$slide['published'],
-	        				'expires'		=>	$slide['expires']);
+			         $params = array('id'            =>	$slide['id'],
+	        				             'name'          =>	$slide['name'],
+	        				             'caption'			 =>	$slide['caption'],
+	        				             'path_to_image' =>	$slide['path_to_image'],
+	        				             'published'	   =>	$slide['published'],
+	        				             'expires'       =>	$slide['expires']);
 			
 			// create the Slide object and add it to the array of results to return
 			$list[] = new Slide($params);
@@ -102,17 +102,19 @@
      */
     public function upload() {
     	// copy the file from it's temporary location in PHP
-    	move_uploaded_file($this->tmp_name, 'uploads/' . $this->name);
+    	if (file_exists($this->tmp_name)) {
+        move_uploaded_file($this->tmp_name, 'uploads/' . $this->name);
+      }
     	
     	// insert the record into the database
     	try {
 	    	$db = Db::getInstance();	// connect to database
 	    	$r = $db->prepare("INSERT INTO `slides` (`name`, `path_to_image`, `type`, `size`, `caption`) VALUES (:name, :path_to_image, :type, :size, :caption)");
-	    	$r->execute(array('name' => $this->name,
-	    						'path_to_image' => $this->path_to_image,
-	    						'type' => $this->type,
-	    						'size' => $this->size,
-                  'caption' => $this->caption));
+	    	$r->execute(array('name'          => $this->name,
+	    					          'path_to_image' => $this->path_to_image,
+	    						        'type'          => $this->type,
+	    						        'size'          => $this->size,
+                          'caption'       => $this->caption));
     	} catch (PDOException $e) {
     		return $e->getMessage();	// something went wrong, return the error
     	}
