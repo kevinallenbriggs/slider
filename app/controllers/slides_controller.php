@@ -29,7 +29,7 @@
      * DISPLAY A FORM TO ADD A NEW SLIDE
      * @return [type] [description]
      */
-    public function new() {
+    public function new_slide_form() {
       SlideView::display_new_slide_form();    // call the view for form to create a new slide
     }
 
