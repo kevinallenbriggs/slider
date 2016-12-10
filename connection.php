@@ -16,9 +16,11 @@
         
         // database credentials
         $database	=	'slider';
-        $port     = 8889;
+        $port     = 8889;     // development
+        //$port     = 3306;   // production
         $username	=	'slider';
-        $password	=	'oUQtr3QnNYIotiBB';
+        $password	=	'oUQtr3QnNYIotiBB';   // development 
+        //$password = 'XkUWCQgHeXH6e5FJ'; // production
         
         // create the new singleton instance (connection to database)
         self::$instance = new PDO("mysql:host=127.0.0.1;dbname=$database;port=$port", $username, $password, $pdo_options);
