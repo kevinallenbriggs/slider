@@ -90,10 +90,12 @@
           }
         }
         print_r($params);
-        if ($sql = Slide::update(strval($_GET['id']))) {
+        if (Slide::update($params)) {
           $slides = Slide::all();
           SlideView::index($slides);
-          echo $sql;
+          //echo $sql;
+        } else {
+          echo "Houston we have a problem.";
         }
       }
     }

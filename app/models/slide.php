@@ -153,21 +153,29 @@
 
 
 
-    public function update($id) {
+    public function update($params) {
       try {
         $db = Db::getInstance();
         $sql = "UPDATE `slides` SET ";
-        foreach ($_POST as $key => $value) {
-          $sql .= "`$key` = '$value'";
-          $i < sizeof($_POST) ? $sql .= ', ' : '';
+        if (empty($params['id'] || null($params['id']))) {
+          $params['id'] = $this->id;
         }
-        $sql .= " WHERE `slides`.`id` = $id";
+
+        foreach ($params as $key => $value) {
+          if ($key != 'id') {
+            $sql .= "`$key` = '$value'";
+            $i < sizeof($params) ? $sql .= ', ' : '';
+          }
+        }
+        $sql .= " WHERE `slides`.`id` = " . $params['id'];
       } catch (PDOException $e) {
-        return $e->getMessage();
+        //return $e->getMessage();
+        return 0;
       }
 
       $db = null;
-      return $sql;
+      //return $sql;
+      return 1;
     }
   }
 ?>
