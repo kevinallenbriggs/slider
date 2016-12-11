@@ -11,11 +11,11 @@ GET				settings(id)	edit			Display a form for a setting
 PATCH			settings(id)	update 			Update the value of a setting	
 
 
-HTTP Verb	Path				Controller#Action	Used for
-GET			/slides				slides#index		display a list of all photos
-GET			/slides/new			slides#new			return an HTML form for creating a new photo
-POST		/slides				slides#create		create a new photo
-GET			/slides/{id}		slides#show			display a specific photo
-GET			/slides/{id}/edit	slides#edit			return an HTML form for editing a photo
-PATCH/PUT	/slides/{id}		slides#update		update a specific photo
-DELETE		/slides/{id}		slides#destroy		delete a specific photo
+HTTP Verb	Path					Controller->Action->Params		Used for
+GET			/slides					slides->index					display a list of all slides
+GET			/slides/new				slides->new_slide_form			eturn an HTML form for creating a new slide
+POST		/slides/create			slides->create					create a new slide
+GET			/slides/show/{id}		slides->show->id				display a specific slide
+GET			/slides/edit/{id}		slides->edit->id				return an HTML form for editing a slide
+POST		/slides/update/{id}		slides->update->id				update a specific slide
+DELETE		/slides/destroy/{id}	slides->destroy->id				delete a specific slide
