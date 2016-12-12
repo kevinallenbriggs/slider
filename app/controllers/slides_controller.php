@@ -54,15 +54,19 @@
           
           // create a new Slide object which the Model layer can access
           $slide = new Slide(array('name' => $file['name'],
-                       'path_to_image' => strtolower('uploads/' . str_replace(' ', '_', $file['name'])),
-                       'type' => $file['type'],
-                       'tmp_name' => $file['tmp_name'],
-                       'size' => $file['size']
+                                   'path_to_image' => strtolower('uploads/' . str_replace(' ', '_', $file['name'])),
+                                   'type' => $file['type'],
+                                   'tmp_name' => $file['tmp_name'],
+                                   'size' => $file['size']
           ));
           
-          // upload the slide
-          // TODO: provide a redirection to the slide index page if upload was a success
-          $slide->upload();
+          // save the slide
+          $debug = $slide->save();
+          if ($debug === 1) {
+            SlideView::display_slide_options($slide);
+          } else {
+            echo $debug;
+          }
         }
       }
     }
@@ -79,23 +83,16 @@
      */
     public function update() {
       if (!empty($_POST) && isset($_GET['id']) && $_POST['submitted'] = 'true') {
-        $params = [];
+        $id = $_GET['id'];
+        $slide = Slide::get($id);
         foreach ($_POST as $key => $value) {
-          switch($key) {
-            case 'name': $params[$key] = strval($value); break;
-            case 'published': $value == 'false' ? $params[$key] = 0 : $params[$key] = 1; break;
-            case 'expires': $params[$key] = date("Y-m-d", strtotime($value)); break;
-            case 'caption': empty($value) ? $params[$key] = NULL : $params[$key] = $value; break;
-            default: break;
+          if (array_key_exists($key, $slide)) {
+            $slide->$key = $value;
           }
         }
-        print_r($params);
-        if (Slide::update($params)) {
-          $slides = Slide::all();
-          SlideView::index($slides);
-          //echo $sql;
-        } else {
-          echo "Houston we have a problem.";
+
+        if ($slide->update() === 1) {
+          SlideView::display_slide_options($slide);
         }
       }
     }

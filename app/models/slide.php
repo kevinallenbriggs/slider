@@ -12,6 +12,7 @@
     public $tmp_name;
     public $size;
 
+
     /**
      * CREATES A NEW SLIDE OBJECT REQUIRING AT LEAST A NAME BUT WITH UP TO 6 OTHER PROPERTIES
      * @param unknown $param
@@ -77,8 +78,7 @@
       try {
 	      $r = $db->prepare('SELECT * FROM slides WHERE id = :id LIMIT 1');
 	      $r->execute(array('id' => $id));
-        $slide = $r->fetch();
-        if (!$slide) return 0;
+        $slide_data = $r->fetch();
       } catch (PDOException $e) {
 			 return $e->getMessage();
       }
@@ -86,8 +86,10 @@
       $db = null;		// disconnect from database
       
       $slide_properties = [];
-      foreach ($slide as $key => $value) {
-        (!empty($value)) ? $slide_properties[$key] = $value : '';
+      foreach ($slide_data as $key => $value) {
+        if (!empty($value)) {
+          $slide_properties[$key] = $value;
+        }
       }
 
       return new Slide($slide_properties);
@@ -101,41 +103,48 @@
      * @return PDOException message on failure
      */
     public function save() {
-    	// copy the file from it's temporary location in PHP
-    	if (file_exists($this->tmp_name)) {
-        move_uploaded_file($this->tmp_name, 'uploads/' . $this->name);
-      }
+      unset($this->id);   //ensure this is saved as a new slide
 
-      // temporarily remove the properties of the slide which are no stored in the database
-      $tmp_vars = array('id' => $this->id, 'tmp_name' => $this->tmp_name);
-      unset($this->id, $this->tmp_name)
+    	// copy the file from it's temporary location in PHP
+      try {
+        if (file_exists($this->tmp_name) && !move_uploaded_file($this->tmp_name, 'uploads/' . $this->name)) {
+          throw new Exception('Could not move file');
+        }
+        unset($this->tmp_name);
+      } catch (Exception $e) {
+        return $e->getMessage();
+      }
     	
     	// insert the record into the database
     	try {
 	    	$db = Db::getInstance();	// connect to database
         $i = 0;
         $sql = "INSERT INTO `slides` (";
-        $prepared_values = "";
-        foreach ($this as $key => $value) {
+        $prepared_values = array();
+        $count = count((array)$this);
+        foreach ((array)$this as $key => $value) {
           ++$i;
           $sql .= "`$key`";
-          $sql .= ($i === count($this) ? ") VALUES (" : ", ");
-          $prepared_values .= ":$key";
-          $prepared_values .= ($i === count($this) ? ")" : ", ");******* this should wrap up the creation of the sql statment, but still need to prepare it and loop through properties (?) to execute
+          $sql .= ($i === $count ? ") VALUES (" : ", ");
+          $prepared_values[$key] = $value;
         }
-	    	$r = $db->prepare("INSERT INTO `slides` (`name`, `path_to_image`, `type`, `size`, `caption`) VALUES (:name, :path_to_image, :type, :size, :caption)");
-	    	$r->execute(array('name'          => $this->name,
-	    					          'path_to_image' => $this->path_to_image,
-	    						        'type'          => $this->type,
-	    						        'size'          => $this->size,
-                          'caption'       => $this->caption));
+
+        $i = 0;
+        foreach ($this as $key => $value) {
+          ++$i;
+          $sql .= ":$key";
+          $sql .= ($i === $count ? ")" : ", ");
+        }
+
+	    	$r = $db->prepare($sql);
+	    	$r->execute($prepared_values);
     	} catch (PDOException $e) {
     		return $e->getMessage();	// something went wrong, return the error
     	}
     	
-      $id = (int)$db->lastInsertId('id');
+      $this->id = (int)$db->lastInsertId('id');
     	$db = null;		// disconnect from the database
-    	return $id;
+    	return 1;
     }
 
 
@@ -173,25 +182,39 @@
      */
     public function update() {
 
+      print_r($this);
       try {
         $db = Db::getInstance();
         $sql = "UPDATE `slides` SET ";
         $i = 0;
+        $id = $this->id;
+        unset($this->id, $this->tmp_name);
         foreach ($this as $key => $value) {
-          $sql .= "`$key` = " . (is_string($value) ? '$value' : $value);    // loop through each property of the object and add value to sql statement
-          $sql .= (++i === count($this) ? " " : ", ";   // add a comma after every parameter except the last one
+          if (!$value) $value = NULL;
+
+          $sql .= "`$key` = :$key";    // loop through each property of the object and add value to sql statement
+          $sql .= (++$i === count((array)$this) ? " " : ", ");   // add a comma after every parameter except the last one
         }
         $sql .= "WHERE `id` = :id";
+        echo $sql;
+
         $q = $db->prepare($sql);
-        $q->execute(array('id' => $this->id));
+
+        $prepared_values = array('id' => $id);
+
+        foreach ($this as $key => $value) {
+          $prepared_values[$key] = $value;
+        }
+        
+        $q->execute($prepared_values);
+        $this->id = $id;
 
       } catch (PDOException $e) {
-        //return $e->getMessage();
-        return 0;
+        return $e->getMessage();
+        //return $sql;
       }
 
       $db = null;
-      //return $sql;
       return 1;
     }
   }

@@ -17,7 +17,7 @@
 
 		public static function display_new_slide_form() {
 			echo <<<EOT
-<form name="formUpload" action="/?controller=slides&action=upload" method="post" enctype="multipart/form-data" id="slideUpload">
+<form name="formUpload" action="/?controller=slides&action=create" method="post" enctype="multipart/form-data" id="slideUpload">
 	<input type="file" name="file">
 	<input type="hidden" name="submitted" value="true">
 	<input type="submit" value="Upload File">
@@ -51,7 +51,7 @@ EOT;
 					</div>
 					<div>
 						<label for='caption'>Caption: </label>
-						<?php $default_value = 'If you want to overlay the image with any text, enter it here.'; ?>
+						<?php $default_value = ($slide->caption ?: 'If you want to overlay the image with any text, enter it here.'); ?>
 						<textarea class='input' name='caption' onfocus='if(this.value == "<?php echo $default_value; ?>") this.value=""; this.onfocus=null;'><?php echo $default_value; ?></textarea>
 					</div>
 					<div>

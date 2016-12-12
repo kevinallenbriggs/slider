@@ -24,8 +24,6 @@
           var_dump($_GET);
           echo '</pre><pre class="debug">$_POST: ';
           var_dump($_POST);
-          echo '</pre><pre class="debug">$params: ';
-          var_dump($params);
           echo '</pre>';
         }
         ?>
