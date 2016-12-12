@@ -100,15 +100,29 @@
      * @return 1 on success
      * @return PDOException message on failure
      */
-    public function upload() {
+    public function save() {
     	// copy the file from it's temporary location in PHP
     	if (file_exists($this->tmp_name)) {
         move_uploaded_file($this->tmp_name, 'uploads/' . $this->name);
       }
+
+      // temporarily remove the properties of the slide which are no stored in the database
+      $tmp_vars = array('id' => $this->id, 'tmp_name' => $this->tmp_name);
+      unset($this->id, $this->tmp_name)
     	
     	// insert the record into the database
     	try {
 	    	$db = Db::getInstance();	// connect to database
+        $i = 0;
+        $sql = "INSERT INTO `slides` (";
+        $prepared_values = "";
+        foreach ($this as $key => $value) {
+          ++$i;
+          $sql .= "`$key`";
+          $sql .= ($i === count($this) ? ") VALUES (" : ", ");
+          $prepared_values .= ":$key";
+          $prepared_values .= ($i === count($this) ? ")" : ", ");******* this should wrap up the creation of the sql statment, but still need to prepare it and loop through properties (?) to execute
+        }
 	    	$r = $db->prepare("INSERT INTO `slides` (`name`, `path_to_image`, `type`, `size`, `caption`) VALUES (:name, :path_to_image, :type, :size, :caption)");
 	    	$r->execute(array('name'          => $this->name,
 	    					          'path_to_image' => $this->path_to_image,
@@ -141,8 +155,8 @@
       // delete the record from the database
       try {
         $db = Db::getInstance();    // connect to database
-        $r = $db->prepare("DELETE FROM `slides` WHERE `id` = :id");
-        $r->execute(array('id' => $this->id));
+        $q = $db->prepare("DELETE FROM `slides` WHERE `id` = :id");
+        $q->execute(array('id' => $this->id));
       } catch (PDOException $e) {
         return $e->getMessage();    // something went wrong, return the error
       }
@@ -152,22 +166,25 @@
     }
 
 
+    /**
+     * UPDATE AN EXISTING RECORD IN THE DATABASE
+     * @return 1 on success
+     * @return an error message on failure
+     */
+    public function update() {
 
-    public function update($params) {
       try {
         $db = Db::getInstance();
         $sql = "UPDATE `slides` SET ";
-        if (empty($params['id'] || null($params['id']))) {
-          $params['id'] = $this->id;
+        $i = 0;
+        foreach ($this as $key => $value) {
+          $sql .= "`$key` = " . (is_string($value) ? '$value' : $value);    // loop through each property of the object and add value to sql statement
+          $sql .= (++i === count($this) ? " " : ", ";   // add a comma after every parameter except the last one
         }
+        $sql .= "WHERE `id` = :id";
+        $q = $db->prepare($sql);
+        $q->execute(array('id' => $this->id));
 
-        foreach ($params as $key => $value) {
-          if ($key != 'id') {
-            $sql .= "`$key` = '$value'";
-            $i < sizeof($params) ? $sql .= ', ' : '';
-          }
-        }
-        $sql .= " WHERE `slides`.`id` = " . $params['id'];
       } catch (PDOException $e) {
         //return $e->getMessage();
         return 0;
