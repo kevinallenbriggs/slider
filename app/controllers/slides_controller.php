@@ -107,7 +107,9 @@
     public function destroy() {
       if (!isset($_GET['id'])) return call('pages', 'error');    // ensure that the ID is included in the request
 
-      Slide::get(intval($_GET['id']))->remove();  // retrieve the slide info from the database and remove it
+      if (Slide::get(intval($_GET['id']))->remove()) {    // retrieve the slide info from the database and remove it
+        SlideView::index(Slide::all());
+      }
     }
   }
 ?>

@@ -62,7 +62,7 @@ EOT;
 					</div>
 					<input type='hidden' name='submitted' value='true'>
 				</form>
-				<form method='post' action='?controller=slides&action=delete&id=<?php echo $slide->id; ?>' name='slide_delete' id='slideDelete' name='slideDelete'>
+				<form method='post' action='?controller=slides&action=destroy&id=<?php echo $slide->id; ?>' name='slide_delete' id='slideDelete' name='slideDelete'>
 					<div>
 						<input class='input buttons' type='submit' name='delete' value='Delete Slide'>
 						<input type='hidden' name='submitted' value='true'>
