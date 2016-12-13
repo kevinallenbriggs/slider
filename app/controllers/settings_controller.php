@@ -8,29 +8,39 @@
 			$settings = Setting::all();
 
 			// display the view
-			require_once 'views/settings/index.php';
-			SettingIndexView::displayAll($settings);
+			require_once 'views/settings/setting_view.php';
+			SettingView::all($settings);
 		}
 		
 		
 		/**
-	     * USE THE ID IN THE URI TO RETRIEVE A SINGLE SETTING FROM THE DATABASE
-	     * AND PASS THAT OBJECT TO THE VIEW
-	     * URI FORMAT EXPECTED IS ?controller=settings&action=show&id=x
-	     * WITHOUT AN ID REDIRECT TO THE ERROR PAGE
+	     * DISPLAY A FORM FOR UPDATING A SLIDE SETTING
+	     * HTTP Request: GET
+	     * EXPECTED URI: setting/edit/{id}
 	     */
 	    public function edit() {
 	      if (!isset($_GET['id'])) return call('pages', 'error');		// make sure an id is included in the URI
-	      
-	      $setting = Setting::find(intval($_GET['id']));		// retrieve the setting from the database
-	      
-	      // check to see if a setting was updated (form submitted)
-		  if (isset($_POST['inSubmitted'])) $setting->update($_POST['value']);
+	      		  
+		  require_once 'views/settings/setting_view.php';
+		  SettingView::display_setting_options(Setting::find($_GET['id']));
+	    }
 
-		  print_r($setting);
-		  
-		  require_once 'views/settings/edit.php';
-		  SettingEditView::displayForm($setting);
+
+
+	    /** 
+	     * PROCESS THE SUBMISSION OF THE edit() FORM AND UPDATE THE DATABASE
+	     * HTTP Request: POST
+	     * EXPECTED URI: setting/update/{id}
+	     * @return the updated slide object on success
+	     * @return Exception on error
+	     */
+	    public function update() {
+	    	if (!isset($_GET['id'])) return call('pages', 'error');
+
+	    	if (get_class($this->update()) == 'Slide') {
+	    		require_once 'views/settings/setting_view.php';
+	    		SettingView::display_setting_options($this);
+	    	}
 	    }
 	}
 ?>

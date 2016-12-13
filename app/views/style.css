@@ -5,10 +5,9 @@
 /*  1. GLOBAL                                */
 /*  2. SLIDESHOW                             */
 /*  3. NAVIGATION MENU                       */
-/*  4. SLIDE OPTIONS                         */
-/*  5. SLIDE UPLOAD FORM                     */
-/*  6. SETTINGS PAGE                         */
-/*  7. FOOTER / DEBUG                        */
+/*  4. SLIDE MANAGEMENT                      */
+/*  5. SETTING MANAGMENT                     */
+/*  6. FOOTER / DEBUG                        */
 /*********************************************/
 
 
@@ -158,9 +157,9 @@ label {
 
 
 
-/**********************/
-/*  4. SLIDE OPTIONS  */
-/**********************/
+/************************/
+/*  4. SLIDE MANAGMENT  */
+/************************/
 .slideList {
   list-style-type: none;
   margin: 0;
@@ -238,11 +237,6 @@ label {
   cursor: pointer;
 }
 
-
-
-/*************************/
-/* 5. SLIDE UPLOAD FORM  */
-/*************************/
 #slideUpload {
   margin: 0;
   padding: 4em 0 0 0;
@@ -251,19 +245,30 @@ label {
 
 
 
-/**************************/
-/* 6. SETTINGS MANAGEMENT */
-/**************************/
-#settingsHeading {
+/*************************/
+/* 5. SETTING MANAGEMENT */
+/*************************/
+#settingsList, #settingOptions {
   margin: 0;
   padding: 4em 0 0 0;
+  min-height: 240px;
+}
+
+.setting {
+  display: inline-block;
+  height: 7em;
+  width: 7em;
+  border-radius: 1em;
+  border: 1px solid black;
+  text-align: center;
+  margin-left: 2em;
 }
 
 
 
-/********************/
-/*  FOOTER / DEBUG  */
-/********************/
+/***********************/
+/*  6. FOOTER / DEBUG  */
+/***********************/
 footer {
   display: block;
   clear: both;

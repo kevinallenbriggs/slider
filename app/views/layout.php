@@ -17,7 +17,7 @@
 
     <footer>
       <hr>
-      Developed &amp; maintained by the Loveland Public Library - Loveland, CO
+      <p>Developed &amp; maintained by the Loveland Public Library - Loveland, CO</p>
       <?php
         if (!empty($_GET) || !empty($_POST) || isset($params)) {
           echo '<pre class="debug">$_GET: ';

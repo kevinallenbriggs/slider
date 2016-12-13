@@ -3,19 +3,25 @@
 		// define the attributes stored in the database (columns)
 		// they are public so that we can access them using $setting->attribute directly
 		public $id;
-		public $setting;
+		public $name;
 		public $value;
+		public $type;
 		
 		
 		/**
-		 * CREATES A NEW SETTING OBJECT THAT REQUIRES BOTH A NAME AND VALUE
+		 * CREATES A NEW SETTING OBJECT GIVEN THE NAME, VALUE AND TYPE
 		 * @param array $array
 		 */
 		public function __construct($arr) {
 			if (is_array($arr)) {		// an array of property values was supplied
-				isset($arr['setting']) ? $this->setting = $arr['setting'] : '';
-				isset($arr['value']) ? $this->value = $arr['value'] : '';
-				isset($arr['id']) ? $this->id = $arr['id'] : '';
+				if (isset($arr['name']) && isset($arr['value']) && isset($arr['type'])) {
+					if (isset($arr['id'])) {
+						$this->id = $arr['id'];		// if the id was provided (such as from the all() function, set the id of the object)
+					}
+					$this->name = $arr['name'];
+					$this->value = $arr['value'];
+					$this->type = $arr['type'];
+				}
 			}
 		}
 		
@@ -37,9 +43,9 @@
 				// loop through query results to get the property values for each Setting object that will be created
 				foreach($r->fetchAll() as $setting) {
 					$params = array('id'		=> $setting['id'],
-									'setting'		=> $setting['setting'],
-									'value'		=> $setting['value']
-					);
+									'name'		=> $setting['name'],
+									'value'		=> $setting['value'],
+									'type'		=> $setting['type']);
 						
 					// create the Slide object and add it to the array of results to return
 					$list[] = new Setting($params);
@@ -77,8 +83,9 @@
 			$db = null;		// disconnect from database
 		
 			return new Setting(array('id'		=> $setting['id'],
-									 'setting'		=> $setting['setting'],
-									 'value'	=> $setting['value']));
+									 'name'		=> $setting['name'],
+									 'value'	=> $setting['value'],
+									 'type'		=> $setting['type']));
 		}
 		
 		
