@@ -26,7 +26,6 @@ class SettingsController {
      */
     public function edit() {
       if (!isset($_GET['id'])) return call('pages', 'error');		// make sure an id is included in the URI
-      		  
 	  SettingView::display_setting_options(Setting::find($_GET['id']));
     }
 

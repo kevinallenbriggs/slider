@@ -7,6 +7,7 @@
 		public $value;
 		public $type;
 		public $tooltip;
+		public $image;
 		
 		
 		/**
@@ -16,6 +17,7 @@
 		public function __construct($arr) {
 				if (isset($arr['id'])) $this->id = $arr['id'];
 				if (isset($arr['tooltip'])) $this->tooltip = $arr['tooltip'];
+				if (isset($arr['image'])) $this->image = $arr['image'];
 				$this->name = $arr['name'];
 				$this->value = $arr['value'];
 				$this->type = $arr['type'];
@@ -61,10 +63,10 @@
 		 * @return a single Setting object on success
 		 */
 		public static function find($id) {
-			$db = Db::getInstance();		// connect to database
+			$params = array();
 		
-			// query database
 			try {
+				$db = Db::getInstance();
 				$r = $db->prepare('SELECT * FROM `settings` WHERE `id` = :id');
 				$r->execute(array('id' => $id));
 				$setting = $r->fetch();
@@ -73,11 +75,12 @@
 			}
 		
 			$db = null;		// disconnect from database
+
+			foreach ($setting as $key => $value) {
+				$params[$key] = $value;
+			}
 		
-			return new Setting(array('id'		=> $setting['id'],
-									 'name'		=> $setting['name'],
-									 'value'	=> $setting['value'],
-									 'type'		=> $setting['type']));
+			return new Setting($params);
 		}
 		
 		
