@@ -5,11 +5,17 @@
 		private function __clone() {}
 
 		public static function all($settings) {
-			echo "<ul id='settingsList'>";
+			$html = "<ul id='settingsList'>";
 			foreach($settings as $setting) {
-				echo "<p class='setting'><a href='?controller=settings&action=edit&id=$setting->id'>$setting->name: $setting->value</a></p>";
+				$html .= "<p class='setting'>" . 
+							"<a href='?controller=settings&action=edit&id=$setting->id'>" .
+								"$setting->name: $setting->value" .
+							"</a>" .
+						"</p>";
 			}
-			echo "</div>";
+			$html .= "</div>";
+
+			echo $html;
 		}
 
 
@@ -17,9 +23,9 @@
 			echo <<< _EOT
 <div id="settingOptions">
 <h1>$setting->name</h1>
-<form action="?controller=settings&action=edit&id=$setting->id" name="formUpload" method="post" style="background-color: grey">
+<form action="?controller=settings&action=update&id=$setting->id" name="formUpload" method="post" style="background-color: grey">
 	<input type="text" name="value" value="$setting->value">
-	<input type="hidden" name="inSubmitted" value="true">
+	<input type="hidden" name="submitted" value="true">
 	<button type="submit">Update</button>
 </form>
 </div>

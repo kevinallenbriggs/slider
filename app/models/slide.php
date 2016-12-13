@@ -181,8 +181,6 @@
      * @return an error message on failure
      */
     public function update() {
-
-      print_r($this);
       try {
         $db = Db::getInstance();
         $sql = "UPDATE `slides` SET ";
@@ -196,7 +194,6 @@
           $sql .= (++$i === count((array)$this) ? " " : ", ");   // add a comma after every parameter except the last one
         }
         $sql .= "WHERE `id` = :id";
-        echo $sql;
 
         $q = $db->prepare($sql);
 

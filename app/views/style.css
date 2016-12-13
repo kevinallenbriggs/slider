@@ -22,13 +22,16 @@ html, body {
   background-color: #d3d3d3;
 }
 
+
 p {
   margin: 0;
 }
 
+
 a {
   text-decoration: none;
 }
+
 
 footer {
   display: block;
@@ -37,10 +40,12 @@ footer {
   font-size: .6em;
 }
 
+
 footer pre {
   text-align: initial;
   font-size: 1.8em;
 }
+
 
 label {
   float: left;
@@ -121,6 +126,7 @@ label {
   transition:         top 1s, opacity .5s;
 }
 
+
 .navButtons:hover {
   opacity:  0.90;
   top: 0;
@@ -135,20 +141,24 @@ label {
   -o-transition: top 1s;
 }
 
+
 .navButtons a {
   color: black;
   display: block;
 }
+
 
 .navButton1 {
   position: fixed;
   left: 0;
 }
 
+
 .navButton2 {
   position: fixed;
   left: 33.3333%;
 }
+
 
 .navButton3 {
   position: fixed;
@@ -167,11 +177,13 @@ label {
   min-height: 240px;
 }
 
+
 .slideList li {
   display: inline-block;
   padding: .25em;
   max-width: 8em;
 }
+
 
 .slideList li img {
   max-height: 4em;
@@ -180,16 +192,19 @@ label {
   box-shadow: 0 6px 8px 0 black;
 }
 
+
 .slideList .addSlide {
   width: 4em;
   height: 4em;
 }
+
 
 #slideOptionsContainer {
   float: left;
   width: 35%;
   min-height: 240px;
 }
+
 
 #slideOptions, #slideDelete {
   margin: 0;
@@ -199,6 +214,7 @@ label {
   line-height: 2em;
   font-size: 1.2em;
 }
+
 
 #slideDelete {
   clear: both;
@@ -212,18 +228,22 @@ label {
   padding: 4.5em 0 0 2em;
 }
 
+
 #slideOptions textarea {
   width: 65%;
 }
+
 
 .input {
   border: 1px solid black;
   border-radius: .3em;
 }
 
+
 .input:focus {
   border: 1px solid red;
 }
+
 
 #slideOptions .buttons,
 #slideDelete .buttons {
@@ -232,10 +252,12 @@ label {
   margin-top: .5em;
 }
 
+
 #slideOptions .buttons:hover,
 #slideDelete .buttons:hover {
   cursor: pointer;
 }
+
 
 #slideUpload {
   margin: 0;
@@ -254,14 +276,16 @@ label {
   min-height: 240px;
 }
 
+
 .setting {
   display: inline-block;
   height: 7em;
   width: 7em;
   border-radius: 1em;
-  border: 1px solid black;
   text-align: center;
   margin-left: 2em;
+  box-shadow: 0 6px 8px 0 black;
+  background-color: ghostwhite;
 }
 
 
@@ -275,6 +299,7 @@ footer {
   text-align: center;
   font-size: .6em;
 }
+
 
 .debug {
   text-align: initial;

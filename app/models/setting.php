@@ -6,6 +6,7 @@
 		public $name;
 		public $value;
 		public $type;
+		public $tooltip;
 		
 		
 		/**
@@ -13,16 +14,11 @@
 		 * @param array $array
 		 */
 		public function __construct($arr) {
-			if (is_array($arr)) {		// an array of property values was supplied
-				if (isset($arr['name']) && isset($arr['value']) && isset($arr['type'])) {
-					if (isset($arr['id'])) {
-						$this->id = $arr['id'];		// if the id was provided (such as from the all() function, set the id of the object)
-					}
-					$this->name = $arr['name'];
-					$this->value = $arr['value'];
-					$this->type = $arr['type'];
-				}
-			}
+				if (isset($arr['id'])) $this->id = $arr['id'];
+				if (isset($arr['tooltip'])) $this->tooltip = $arr['tooltip'];
+				$this->name = $arr['name'];
+				$this->value = $arr['value'];
+				$this->type = $arr['type'];
 		}
 		
 		
@@ -33,23 +29,20 @@
 		 * @return PDOException message on failure
 		 */
 		public static function all() {
-			$list = [];
-			$db = Db::getInstance();		// connect to database
+			$settings = array();
 			
-			// query database
 			try {
+				$db = Db::getInstance();		// connect to database
 				$r = $db->query('SELECT * FROM settings');
 
 				// loop through query results to get the property values for each Setting object that will be created
 				foreach($r->fetchAll() as $setting) {
-					$params = array('id'		=> $setting['id'],
-									'name'		=> $setting['name'],
-									'value'		=> $setting['value'],
-									'type'		=> $setting['type']);
-						
-					// create the Slide object and add it to the array of results to return
-					$list[] = new Setting($params);
-					
+					$params = array();
+					foreach ($setting as $key => $value) {
+						$params[$key] = $value;
+					}
+
+					$settings[] = new Setting($params);
 				}
 			} catch (PDOException $e) {
 				return $e->getMessage();	// something went wrong, return the error
@@ -57,7 +50,7 @@
 			
 			$db = null;		// disconnect from database
 			
-			return $list;
+			return $settings;
 		}
 		
 		
@@ -69,7 +62,6 @@
 		 */
 		public static function find($id) {
 			$db = Db::getInstance();		// connect to database
-			$id = intval($id);			// validate input
 		
 			// query database
 			try {
@@ -90,26 +82,21 @@
 		
 		
 		/**
-		 * UPDATES A SINGLE SETTING IN THE DATABASE
-		 * @param string $setting_value
-		 * @return the updated Setting object on success
-		 * @return PDOException message on failure
+		 * PROCESS THE SUBMISSION OF THE edit() FORM AND UPDATE THE DATABASE RECORD
+		 * @return 1 on success
+		 * @return Exception message on failure
 		 */
-		public function update($setting_value) {
-			$db = Db::getInstance();		// connect to database
-			$str = strval($setting_value);		// sanitize setting value
-			$id = intval($_GET['id']);			// sanitize setting ID from URI
-			
-			// query database
+		public function update() {
 			try {
-				$r = $db->prepare("UPDATE `settings` SET `value`='$str' WHERE `id` = :id");
-				if ($r->execute(array('id' => $id))) $this->value = $str;
+				$db = Db::getInstance();
+				$r = $db->prepare("UPDATE `settings` SET `value`='$this->value' WHERE `id` = :id");
+				$r->execute(array('id' => $this->id));
 			} catch (PDOException $e) {
 				return $e->getMessage();		// something went wrong, return the mysql error
 			}
 			
 			$db = null;		// disconnect from database
-			return $this->find($id);
+			return 1;
 		}
 	}
 ?>
