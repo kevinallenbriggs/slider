@@ -5,6 +5,7 @@ var slideIndex = 0;
 showSlides();
 
 function showSlides() {
+    /* the duration variable is set by php before this script is called */
     var i;
     var slides = document.getElementsByClassName("mySlides");
     for (i = 0; i < slides.length; i++) {
@@ -13,8 +14,8 @@ function showSlides() {
     slideIndex++;
     if (slideIndex > slides.length) slideIndex = 1;
 
-    slides[slideIndex - 1].style.display = "block"; 
-    setTimeout(showSlides, 3000); // Change image every 6 seconds
+    slides[slideIndex - 1].style.display = "block";
+    setTimeout(showSlides, duration * 1000); // change slide at the specified interval
 }
 
 /*******************************************************/
@@ -37,10 +38,9 @@ setInterval(function() {
         interval = 6;
     }
 
-	interval = interval + 1;
+	interval++;
 
 }, 1000);
-
 
 body.addEventListener("mousemove", function(e) {
 	if(window.lastX !== e.clientX || window.lastY !== e.clientY){

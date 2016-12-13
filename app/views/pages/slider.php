@@ -6,7 +6,7 @@
 		private function __clone() {}
 		
 		// display the slider
-		public static function displaySlider($slides) {
+		public static function displaySlider($slides, $duration) {
 
 			$numSlides = count($slides);
 			$i = 1;
@@ -26,6 +26,7 @@
 			?>
 
 			</div> <!-- .slideshow-container -->
+			<script>var duration = <?php echo $duration; ?>;</script>
 			<script src="views/pages/slider.js"></script>
 
 			<?php
