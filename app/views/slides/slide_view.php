@@ -5,12 +5,12 @@
 		private function __clone() {}
 
 		public static function index($slides) {
-			echo "<ul class='slideList'>";
+			echo "<ul id='slideList'>";
 			foreach($slides as $slide) {
-				echo  "<li><a href='?controller=slides&action=edit&id=$slide->id'><img src='$slide->path_to_image'></a></li>";
+				echo  "<li class='slide'><a href='?controller=slides&action=edit&id=$slide->id'><img src='$slide->path_to_image'>$slide->name</a></li>";
 			}
 
-			echo "<li class='addSlide'><a href='?controller=slides&action=new_slide_form'><img src='assets/plus.png'></a></li></ul>";
+			echo "<li class='slide'><a href='?controller=slides&action=new_slide_form'><img src='assets/plus.png' id='addSlide'>New Slide...</a></li></ul>";
 		}
 
 
@@ -69,7 +69,7 @@ EOT;
 					</div>
 				</form>
 			</div>
-			<img class='slide' src='<?php echo $slide->path_to_image; ?>'>
+			<img class='slideImage' src='<?php echo $slide->path_to_image; ?>'>
 			<script src="views/slides/slide_view.js"></script>
 			<?php
 		}
