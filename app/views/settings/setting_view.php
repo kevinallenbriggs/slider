@@ -20,13 +20,26 @@
 
 		public static function display_setting_options($setting) {
 			$html = "<div id='settingOptions'>" .
-					"<img src='assets/" . ($setting->image ?: "gear.png") . "'>" .
 					"<h1>$setting->name</h1>" .
-					"<form action='?controller=settings&action=update&id=$setting->id' name='formUpload' method='post'>" .
-					"<input type='text' name='value' value='$setting->value'>" .
-					"<input type='hidden' name='submitted' value='true'>" .
-					"<button type='submit'>Update</button>" .
-					"</form></div>";
+					"<form action='?controller=settings&action=update&id=$setting->id' name='formUpload' method='post'>";
+
+			switch ($setting->name) {
+				case 'screen size':
+					$screen_size = explode('x', $setting->value, 2);
+					$x = $screen_size[0];
+					$y = $screen_size[1];
+					$html .= "<div><label>Screen width: </label><input type='text' name='x' value='$x'></div>" .
+							 "<div><label>Screen height: </label><input type='text' name='y' value='$y'></div>";
+					break;
+				default:
+					$html .= "<input type='text' name='value' value='$setting->value'>";
+					break;
+			}
+
+			$html .= "<input type='hidden' name='submitted' value='true'>" .
+					 "<button type='submit'>Update</button>" .
+					 "</form></div>" .
+					 "<img id='settingImage' src='assets/" . ($setting->image ?: "gear.png") . "'>";
 
 			echo $html;
 		}

@@ -48,7 +48,7 @@ footer pre {
 
 
 label {
-  float: left;
+  /*float: left;*/
   text-align: right;
   margin-right: 1em;
   width: 20%;
@@ -221,6 +221,10 @@ label {
   font-size: 1.2em;
 }
 
+#slideOptions label {
+  float: left;
+}
+
 
 #slideDelete {
   clear: both;
@@ -304,9 +308,15 @@ label {
   padding: .5em;
 }
 
-
-#settingOptions img {
-  max-height: 4em;
+#settingOptions {
+  float: left;
+  width: 40%;
+  margin: 0 0 0 2em;
+}
+#settingImage {
+  max-width: 12em;
+  float: left;
+  padding: 5em 0 0 0;
 }
 
 
