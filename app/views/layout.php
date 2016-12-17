@@ -15,19 +15,23 @@
 
     <?php require_once ("routes.php"); ?>
 
-    <footer>
-      <hr>
-      <p>Developed &amp; maintained by the Loveland Public Library - Loveland, CO</p>
-      <?php
-        if (!empty($_GET) || !empty($_POST) || isset($params)) {
-          echo '<pre class="debug">$_GET: ';
-          var_dump($_GET);
-          echo '</pre><pre class="debug">$_POST: ';
-          var_dump($_POST);
-          echo '</pre>';
-        }
-        ?>
-    </footer>
+    <?php
+      $uri = $_SERVER['REQUEST_URI'];
+      if ($uri != '/') {
+        $html = "<footer>" .
+                  "<hr>" .
+                    "<p>Developed &amp; maintained by the Loveland Public Library - Loveland, CO</p>";
+            
+            if (!empty($_GET) || !empty($_POST) || isset($params)) {
+              $html .= '<pre class="debug">$_GET: ' .
+              var_dump($_GET) .
+              $html .= '</pre><pre class="debug">$_POST: ' .
+              var_dump($_POST) .
+              $html .= '</pre>';
+            }
+        $html = '</footer>';
+      }
+      ?>
     
   <body>
 </html>
