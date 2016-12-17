@@ -23,13 +23,13 @@
                     "<p>Developed &amp; maintained by the Loveland Public Library - Loveland, CO</p>";
             
             if (!empty($_GET) || !empty($_POST) || isset($params)) {
-              $html .= '<pre class="debug">$_GET: ' .
-              var_dump($_GET) .
-              $html .= '</pre><pre class="debug">$_POST: ' .
-              var_dump($_POST) .
-              $html .= '</pre>';
+              $get_vars = var_export($_GET, true);
+              $post_vars = var_export($_POST, true);
+              $html .= '<pre class="debug">$_GET: ' . $get_vars . '</pre>';
+              $html .= '<pre class="debug">$_POST: ' . $post_vars . '</pre>';
             }
-        $html = '</footer>';
+        $html .= '</footer>';
+        echo $html;
       }
       ?>
     
