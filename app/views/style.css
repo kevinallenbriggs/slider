@@ -67,6 +67,10 @@ label {
   margin: auto;
 }
 
+.noSlides {
+  padding: 4em 0 0 0;
+}
+
 
 /* Slideshow images */
 .mySlides > img {
