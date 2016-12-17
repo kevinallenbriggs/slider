@@ -13,15 +13,16 @@
 			echo '<div class="slideshow-container">';
 			
 			foreach ($slides as $slide) {
-
-				// TODO: add check for aspect ratio so that image can be displayed without scrolling
-
-				echo '<div class="mySlides fade">' .
-					 "<img src='$slide->path_to_image'>" .
-					 "<div class='text'>$slide->caption</div>" .
-					 "</div>";
-				$i++;
+				if (strtotime($slide->expires) - time() > 0) {
+					echo '<div class="mySlides fade">' .
+						 "<img src='$slide->path_to_image'>" .
+						 "<div class='text'>$slide->caption</div>" .
+						 "</div>";
+					$i++;
+				}
 			}
+
+			if ($i <= 1) echo "There are no slides in the database."
 			
 			?>
 
