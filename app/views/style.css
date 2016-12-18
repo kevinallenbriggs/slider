@@ -194,7 +194,7 @@ label {
 }
 
 
- .slide img {
+ .slide .thumbnail {
   max-height: 4em;
   width: 75%;
   display: block;
@@ -203,7 +203,19 @@ label {
   border-radius: 1em;
 }
 
+.slide .checkmark {
+  float: left;
+  width: 1em;
+  padding: 0;
+  margin: 0;
+}
+
 #addSlide {
+  max-height: 4em;
+  display: block;
+  margin: 0 auto;
+  padding: .5em;
+  border-radius: 1em;
   height: 4em;
   width: 4em;
 }

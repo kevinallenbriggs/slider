@@ -7,7 +7,9 @@
 		public static function index($slides) {
 			echo "<ul id='slideList'>";
 			foreach($slides as $slide) {
-				echo  "<li class='slide'><a href='?controller=slides&action=edit&id=$slide->id'><img src='uploads/$slide->filename'>$slide->name</a></li>";
+				echo  "<li class='slide'><a href='?controller=slides&action=edit&id=$slide->id'><img src='uploads/$slide->filename' class='thumbnail'>";
+				if ($slide->published && strtotime($slide->expires) - time() > 0) echo "<img src='assets/checkmark.png' class='checkmark'>";
+				echo "$slide->name</a></li>";
 			}
 
 			echo "<li class='slide'><a href='?controller=slides&action=new_slide_form'><img src='assets/plus.png' id='addSlide'>New Slide...</a></li></ul>";
