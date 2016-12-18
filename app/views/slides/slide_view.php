@@ -42,8 +42,8 @@ EOT;
 					</div>
 					<div>
 						<label for='published'>Published? </label>
-						<input class='input' type="radio" name='published' value='true'>Yes
-						<input class='input' type="radio" name='published' value='false' checked>No
+						<input class='input' type="radio" name='published' value='1' <?php if ($slide->published) echo 'checked'; ?> >Yes
+						<input class='input' type="radio" name='published' value='0' <?php if (!$slide->published) echo 'checked'; ?> >No
 					</div>
 					<div>
 						<label for='expires'>Expires: </label>

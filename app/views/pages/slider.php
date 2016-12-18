@@ -23,7 +23,6 @@
 			}
 
 			if ($i <= 1) echo "<div class='noSlides'>There are no slides in the database.</div>"
-			
 			?>
 
 			</div> <!-- .slideshow-container -->
