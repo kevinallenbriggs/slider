@@ -250,11 +250,6 @@ label {
 }
 
 
-.input:focus {
-  border: 1px solid red;
-}
-
-
 #slideOptions .buttons,
 #slideDelete .buttons {
   width: 80%;

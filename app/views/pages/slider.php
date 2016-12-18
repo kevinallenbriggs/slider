@@ -13,7 +13,7 @@
 			echo '<div class="slideshow-container">';
 			
 			foreach ($slides as $slide) {
-				if (strtotime($slide->expires) - time() > 0) {
+				if (strtotime($slide->expires) - time() > 0 && $slide->published) {
 					echo '<div class="mySlides fade">' .
 						 "<img src='$slide->path_to_image'>" .
 						 "<div class='text'>$slide->caption</div>" .
@@ -23,7 +23,7 @@
 			}
 
 			if ($i <= 1) echo "There are no slides in the database."
-			
+
 			?>
 
 			</div> <!-- .slideshow-container -->

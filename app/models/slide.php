@@ -175,6 +175,7 @@
     }
 
 
+
     /**
      * UPDATE AN EXISTING RECORD IN THE DATABASE
      * @return 1 on success
@@ -202,6 +203,8 @@
         foreach ($this as $key => $value) {
           $prepared_values[$key] = $value;
         }
+        var_dump($sql);
+        var_dump($prepared_values);
         
         $q->execute($prepared_values);
         $this->id = $id;
