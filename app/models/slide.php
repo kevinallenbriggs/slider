@@ -6,7 +6,7 @@
     public $name;
     public $caption;
     public $type;
-    public $path_to_image;
+    public $filename;
     public $published;
     public $expires;
     public $tmp_name;
@@ -48,7 +48,7 @@
 			         $params = array('id'            =>	$slide['id'],
 	        				             'name'          =>	$slide['name'],
 	        				             'caption'			 =>	$slide['caption'],
-	        				             'path_to_image' =>	$slide['path_to_image'],
+	        				             'filename'      =>	$slide['filename'],
 	        				             'published'	   =>	$slide['published'],
 	        				             'expires'       =>	$slide['expires']);
 			
@@ -107,7 +107,7 @@
 
     	// copy the file from it's temporary location in PHP
       try {
-        if (file_exists($this->tmp_name) && !move_uploaded_file($this->tmp_name, 'uploads/' . $this->name)) {
+        if (file_exists($this->tmp_name) && !move_uploaded_file($this->tmp_name, $this->filename)) {
           throw new Exception('Could not move file');
         }
         unset($this->tmp_name);
@@ -155,8 +155,8 @@
     */
     public function remove($skip_filesystem = false) {
       // remove the slide from the filesystem
-      if (file_exists($this->path_to_image)) {    // delete file if it exists otherwise return 0
-        unlink($this->path_to_image);
+      if (file_exists($this->filename)) {    // delete file if it exists otherwise return 0
+        unlink($this->filename);
       } elseif (!$skip_filesystem) {
         return 'Could not find file';
       }  
@@ -203,8 +203,6 @@
         foreach ($this as $key => $value) {
           $prepared_values[$key] = $value;
         }
-        var_dump($sql);
-        var_dump($prepared_values);
         
         $q->execute($prepared_values);
         $this->id = $id;

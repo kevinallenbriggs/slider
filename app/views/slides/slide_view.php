@@ -7,7 +7,7 @@
 		public static function index($slides) {
 			echo "<ul id='slideList'>";
 			foreach($slides as $slide) {
-				echo  "<li class='slide'><a href='?controller=slides&action=edit&id=$slide->id'><img src='$slide->path_to_image'>$slide->name</a></li>";
+				echo  "<li class='slide'><a href='?controller=slides&action=edit&id=$slide->id'><img src='uploads/$slide->filename'>$slide->name</a></li>";
 			}
 
 			echo "<li class='slide'><a href='?controller=slides&action=new_slide_form'><img src='assets/plus.png' id='addSlide'>New Slide...</a></li></ul>";
@@ -35,7 +35,7 @@ EOT;
 						<input id='name' class='input' type='text' value='<?php echo $slide->name; ?>' name='name'>
 					</div>
 					<div>
-						<label>Filename: </label><span> <?php echo $slide->name; ?></span>
+						<label>Filename: </label><span> <?php echo $slide->filename; ?></span>
 					</div>
 					<div>
 						<label>Type: </label> <span> <?php echo $slide->type; ?></span>
@@ -69,7 +69,7 @@ EOT;
 					</div>
 				</form>
 			</div>
-			<img class='slideImage' src='<?php echo $slide->path_to_image; ?>'>
+			<img class='slideImage' src='<?php echo 'uploads/' . $slide->filename; ?>'>
 			<script src="views/slides/slide_view.js"></script>
 			<?php
 		}

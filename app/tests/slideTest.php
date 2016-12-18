@@ -12,7 +12,7 @@ class SlideTest extends PHPUnit_Framework_TestCase {
 										 'name'				=> 'test slide',
 										 'caption'			=> 'test caption',
 										 'type'				=> 'image/jpeg',
-										 'path_to_image'	=> 'tests/test.jpg',
+										 'filename'			=> 'tests/test.jpg',
 									 	 'published' 		=> true,
 									 	 'expires'	 		=> date('Y-m-d'),
 										 'size'				=> 1000000,
@@ -62,7 +62,7 @@ class SlideTest extends PHPUnit_Framework_TestCase {
 			switch ($key) {
 				case 'name': break;
 				case 'caption': break;
-				case 'path_to_image': break;
+				case 'filename': break;
 				default: $this->slide->$key = null;
 			}
 		}

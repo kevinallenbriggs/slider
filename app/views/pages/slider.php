@@ -15,7 +15,7 @@
 			foreach ($slides as $slide) {
 				if (strtotime($slide->expires) - time() > 0 && $slide->published) {
 					echo '<div class="mySlides fade">' .
-						 "<img src='$slide->path_to_image'>" .
+						 "<img src='uploads/$slide->filename'>" .
 						 "<div class='text'>$slide->caption</div>" .
 						 "</div>";
 					$i++;

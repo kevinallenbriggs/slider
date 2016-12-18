@@ -54,7 +54,7 @@
           
           // create a new Slide object which the Model layer can access
           $slide = new Slide(array('name' => $file['name'],
-                                   'path_to_image' => strtolower('uploads/' . str_replace(' ', '_', $file['name'])),
+                                   'filename' => strtolower(str_replace(' ', '_', $file['filename'])),
                                    'type' => $file['type'],
                                    'tmp_name' => $file['tmp_name'],
                                    'size' => $file['size']
