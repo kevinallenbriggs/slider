@@ -87,9 +87,12 @@
         $slide = Slide::get($id);
         foreach ($_POST as $key => $value) {
           if (array_key_exists($key, $slide)) {
+            echo "<p>$key: $value</p>";
             $slide->$key = $value;
           }
         }
+
+        var_dump($slide);
 
         if ($slide->update() === 1) {
           SlideView::display_slide_options($slide);

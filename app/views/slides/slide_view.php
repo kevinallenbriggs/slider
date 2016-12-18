@@ -47,7 +47,7 @@ EOT;
 					</div>
 					<div>
 						<label for='expires'>Expires: </label>
-						<input class='input' type='date' name='expires' value='<?php echo date("Y-m-j"); ?>'>
+						<input class='input' type='date' name='expires' value='<?php echo $slide->expires; ?>'>
 					</div>
 					<div>
 						<label for='caption'>Caption: </label>
