@@ -5,4 +5,3 @@ TODO:
 4. breakout slide images as a separate table in the DB
 5. add support for other image formats
 6. add support for videos (HTML5 <video> tag)
-7. add slide filter for unpublished slides
