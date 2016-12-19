@@ -79,13 +79,14 @@ label {
 
 
 /* Caption text */
-.text {
+.caption {
   color: #f2f2f2;
-  font-size: 15px;
+  font-size: 1.32em;
   /*padding: 8px 12px;*/
   position: absolute;
-  bottom: 8px;
-  width: 100%;
+  bottom: 3em;
+  width: 90%;
+  margin: 0 5%;
   text-align: center;
 }
 

@@ -6,3 +6,5 @@ TODO:
 5. add support for other image formats
 6. add support for videos (HTML5 <video> tag)
 7. add support for scaling slides according to aspect ratio
+8. restyle slide upload form
+9. add a caption color parameter to slide options
