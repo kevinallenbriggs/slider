@@ -32,7 +32,7 @@
     
     /**
      * RETURNS ALL SLIDE OBJECTS FROM THE DATABASE AS AN ARRAY
-     * @return Post[] on success
+     * @return array on success
      * @return PDOException message on failure
      */
     public static function all() {
@@ -52,8 +52,8 @@
 	        				             'published'	   =>	$slide['published'],
 	        				             'expires'       =>	$slide['expires']);
 			
-			// create the Slide object and add it to the array of results to return
-			$list[] = new Slide($params);
+			         // create the Slide object and add it to the array of results to return
+			         $list[] = new Slide($params);
 	      }
       } catch (PDOException $e) {
       	return $e->getMessage();	// something went wrong, return the error
