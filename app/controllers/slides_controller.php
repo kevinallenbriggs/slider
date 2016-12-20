@@ -111,5 +111,27 @@
         SlideView::index(Slide::all());
       }
     }
+
+
+    /**
+     * RUN THE SLIDESHOW ON THE HOMEPAGE
+     * HTTP Request: GET
+     * Expected URI: / or /slides/slideshow
+     */
+    public function slideshow() {
+        // grab all the slides from the model
+        require_once 'models/slide.php';
+        $slides = Slide::all();
+
+            require_once 'models/setting.php';
+            $settings = Setting::all();
+            foreach ($settings as $setting) {
+                if ($setting->name == "slide duration") $duration = (int)$setting->value;
+            }
+    
+        // display the view
+        require_once 'views/slides/slide_view.php';
+        SlideView::display_slideshow($slides, $duration);
+    }
   }
 ?>

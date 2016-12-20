@@ -8,8 +8,8 @@
     $controller = strval($_GET['controller']);		// validate and store GET requests
     $action     = strval($_GET['action']);
   }	else {					// redirect everything else to the home page
-    $controller = 'pages';
-    $action     = 'slider';
+    $controller = 'slides';
+    $action     = 'slideshow';
   }
   
   require_once('views/layout.php');		// call the master view which starts outputting HTML

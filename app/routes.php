@@ -1,7 +1,6 @@
 <?php
   // Every controller and it's actions needs an entry in this array
-  $controllers = array('pages' => ['slider', 'error'],
-                       'slides' => ['index', 'edit', 'show', 'new_slide_form', 'create', 'update', 'destroy'],
+  $controllers = array('slides' => ['index', 'edit', 'show', 'new_slide_form', 'create', 'update', 'destroy', 'slideshow'],
   					   'settings' => ['index', 'edit', 'update']);
 
   // ensure that the controller and action being called exists
