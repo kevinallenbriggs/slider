@@ -10,7 +10,6 @@
       $slides = Slide::all();		// use the model to get all the slides
       SlideView::index($slides);    // call the view
     }
-
     
     
     /**
@@ -54,7 +53,7 @@
           
           // create a new Slide object which the Model layer can access
           $slide = new Slide(array('name' => $file['name'],
-                                   'filename' => strtolower(str_replace(' ', '_', $file['filename'])),
+                                   'filename' => strtolower(str_replace(' ', '_', $file['name'])),
                                    'type' => $file['type'],
                                    'tmp_name' => $file['tmp_name'],
                                    'size' => $file['size']
@@ -126,7 +125,7 @@
             require_once 'models/setting.php';
             $settings = Setting::all();
             foreach ($settings as $setting) {
-                if ($setting->name == "slide duration") $duration = (int)$setting->value;
+                if ($setting->name == "slide_duration") $duration = (int)$setting->value;
             }
     
         // display the view

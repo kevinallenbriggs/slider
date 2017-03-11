@@ -29,7 +29,7 @@
               $html .= '<pre class="debug">$_POST: ' . $post_vars . '</pre>';
             }
         $html .= '</footer>';
-        echo $html;
+        //echo $html;
       }
       ?>
     

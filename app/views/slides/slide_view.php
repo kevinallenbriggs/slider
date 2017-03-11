@@ -8,7 +8,7 @@
 			echo "<ul id='slideList'>";
 			foreach($slides as $slide) {
 				echo  "<li class='slide'><a href='?controller=slides&action=edit&id=$slide->id'><img src='uploads/$slide->filename' class='thumbnail'>";
-				if ($slide->published && strtotime($slide->expires) - time() > 0) echo "<img src='assets/checkmark.png' class='checkmark'>";
+				if ($slide->published && (strtotime($slide->expires) - time() > 0 || $slide->expires == '0000-00-00')) echo "<img src='assets/checkmark.png' class='checkmark'>";
 				echo "$slide->name</a></li>";
 			}
 
@@ -85,7 +85,7 @@ EOT;
 			echo '<div class="slideshow-container">';
 			
 			foreach ($slides as $slide) {
-				if (strtotime($slide->expires) - time() > 0 && $slide->published) {
+				if ((strtotime($slide->expires) - time() > 0 || $slide->expires == '0000-00-00') && $slide->published) {
 					echo '<div class="mySlides fade">' .
 						 "<img src='uploads/$slide->filename'>" .
 						 "<div class='caption'>$slide->caption</div>" .

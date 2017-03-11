@@ -15,7 +15,7 @@
         $pdo_options[PDO::ATTR_EMULATE_PREPARES] = false;
         
         // database credentials
-        $database	=	'slider';
+        $database	=	'dev_slider';
         $port     = 8889;     // development
         //$port     = 3306;   // production
         $username	=	'slider';

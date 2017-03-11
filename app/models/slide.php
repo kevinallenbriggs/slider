@@ -107,7 +107,7 @@
 
     	// copy the file from it's temporary location in PHP
       try {
-        if (file_exists($this->tmp_name) && !move_uploaded_file($this->tmp_name, $this->filename)) {
+        if (file_exists($this->tmp_name) && !move_uploaded_file($this->tmp_name, "uploads/$this->filename")) {
           throw new Exception('Could not move file');
         }
         unset($this->tmp_name);
@@ -154,9 +154,12 @@
     * @return PDOException message on failure
     */
     public function remove($skip_filesystem = false) {
+      /*echo "<tt><pre>";
+      var_dump($this);
+      echo "</pre></tt>";*/
       // remove the slide from the filesystem
-      if (file_exists($this->filename)) {    // delete file if it exists otherwise return 0
-        unlink($this->filename);
+      if (file_exists("uploads/$this->filename")) {    // delete file if it exists otherwise return 0
+        unlink("uploads/$this->filename");
       } elseif (!$skip_filesystem) {
         return 'Could not find file';
       }  
