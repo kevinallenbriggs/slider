@@ -29,12 +29,15 @@ EOT;
 
 
 		public static function display_slide_options($slide) {
+			/*echo "<tt><pre>";
+			echo htmlentities($slide->name);
+			echo "</pre></tt>";*/
 			?>
 			<div id="slideOptionsContainer">
 				<form name='slideOptions' action='?controller=slides&action=update&id=<?php echo $slide->id; ?>' method='post' id='slideOptions'>
 					<div>
 						<label for='name'>Name: </label>
-						<input id='name' class='input' type='text' value='<?php echo $slide->name; ?>' name='name'>
+						<input id='name' class='input' type='text' value="<?php echo htmlentities($slide->name); ?>" name='name'>
 					</div>
 					<div>
 						<label>Filename: </label><span> <?php echo $slide->filename; ?></span>
@@ -49,7 +52,7 @@ EOT;
 					</div>
 					<div>
 						<label for='expires'>Expires: </label>
-						<input class='input' type='date' name='expires' value='<?php echo $slide->expires; ?>'>
+						<input class='input' type='date' name='expires' value="<?php echo $slide->expires; ?>">
 					</div>
 					<div>
 						<label for='caption'>Caption: </label>
@@ -94,7 +97,7 @@ EOT;
 				}
 			}
 
-			if ($i <= 1) echo "<div class='noSlides'>There are no slides in the database.</div>"
+			if ($i <= 1) echo "<div class='noSlides'>There are no slides set to display.<br>Check to make sure slides are published and not expired.</div>"
 			?>
 
 			</div> <!-- .slideshow-container -->

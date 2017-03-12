@@ -126,7 +126,7 @@
           ++$i;
           $sql .= "`$key`";
           $sql .= ($i === $count ? ") VALUES (" : ", ");
-          $prepared_values[$key] = $value;
+          $prepared_values[$key] = htmlentities($value);
         }
 
         $i = 0;
@@ -204,7 +204,7 @@
         $prepared_values = array('id' => $id);
 
         foreach ($this as $key => $value) {
-          $prepared_values[$key] = $value;
+          $prepared_values[$key] = htmlentities($value);
         }
         
         $q->execute($prepared_values);
