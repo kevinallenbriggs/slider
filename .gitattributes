@@ -7,4 +7,3 @@ README.md export-ignore
 RESTdoc.txt export-ignore
 slider.sql.gz export-ignore
 phpunit.xml export-ignore
-connection.php export-ignore
