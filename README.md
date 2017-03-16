@@ -1,4 +1,5 @@
 TODO:
+1. text-file refresh trigger
 2. breakout slide captions as a separate table in the DB
 3. breakout slide types as a separate table in the DB
 4. breakout slide images as a separate table in the DB
