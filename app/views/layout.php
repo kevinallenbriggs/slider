@@ -5,6 +5,8 @@
   <link rel='stylesheet' type='text/css' href='views/style.css'>
   <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
 
+  <meta http-equiv="refresh" content="<?php echo 30 * 60; ?>" >
+
   </head>
   <body>
     <header>

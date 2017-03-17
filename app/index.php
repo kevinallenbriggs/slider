@@ -1,6 +1,6 @@
 <?php
   require_once('../connection.php');		// allows us to connect to the database from any page
-  require_once('../style_helper.php');		// allows us to load all the style sheets dynamically
+  require_once('../helpers.php');		// load helper functions and classes which need to be accessed throughout the application
   date_default_timezone_set('America/Denver');
 
 
@@ -13,4 +13,5 @@
   }
   
   require_once('views/layout.php');		// call the master view which starts outputting HTML
+
 ?>
