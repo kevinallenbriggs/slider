@@ -1,5 +1,5 @@
 TODO:
-1. text-file refresh trigger
+1. text-file refresh trigger (currently hardcoded to refresh every hour)
 2. breakout slide captions as a separate table in the DB
 3. breakout slide types as a separate table in the DB
 4. breakout slide images as a separate table in the DB
@@ -13,3 +13,4 @@ TODO:
 13. add confirmation on slide delete
 14. make color-coded slide publishing status more intuitive
 15. on slide->edit->save, redirect back to slide index w/ confirmation of successful save
+16. exit fullscreen or just plain exit button in main menu
