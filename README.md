@@ -1,5 +1,5 @@
 TODO:
-1. text-file refresh trigger (currently hardcoded to refresh every hour)
+1. create new setting to control application hard refresh interval
 2. breakout slide captions as a separate table in the DB
 3. breakout slide types as a separate table in the DB
 4. breakout slide images as a separate table in the DB
