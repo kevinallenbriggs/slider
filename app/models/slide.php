@@ -167,8 +167,8 @@
       // delete the record from the database
       try {
         $db = Db::getInstance();    // connect to database
-        $q = $db->prepare("DELETE FROM `slides` WHERE `id` = :id");
-        $q->execute(array('id' => $this->id));
+        $q = $db->prepare("DELETE FROM `slides` WHERE `id` = :id"); // prepare statement
+        $q->execute(array('id' => $this->id));    // execute prepared statement
       } catch (PDOException $e) {
         return $e->getMessage();    // something went wrong, return the error
       }

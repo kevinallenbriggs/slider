@@ -57,7 +57,8 @@ class SlideTest extends PHPUnit_Framework_TestCase {
 
 
 	// save a slide to the database
-	public function testSaveAndRemoveSlideFromDatabaseAndFilesystem() {
+	public function testSaveSlideToDatabaseAndFilesystem() {
+		// remove the non-persistent values from the slide
 		foreach ($this->slide as $key => $value) {
 			switch ($key) {
 				case 'name': break;
@@ -67,7 +68,7 @@ class SlideTest extends PHPUnit_Framework_TestCase {
 			}
 		}
 
-		$result = $this->slide->upload();
+		$result = $this->slide->save();
 		$this->assertInternalType('int', $result);
 		$this->slide->id = $result;
 		$this->assertEquals($this->slide->remove(true), 1);

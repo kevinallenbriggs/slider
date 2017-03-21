@@ -6,4 +6,6 @@
 README.md export-ignore
 RESTdoc.txt export-ignore
 slider.sql.gz export-ignore
+slider.sql export-ignore
+slider.sublime-project export-ignore
 phpunit.xml export-ignore

@@ -1,7 +1,4 @@
-/.settings/
-/.buildpath
-/.project
 /.DS_Store
 /logs/
 *.sublime-*
-/uploads/*
+app/uploads/*
