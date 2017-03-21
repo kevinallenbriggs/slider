@@ -24,12 +24,13 @@
 					"<form action='?controller=settings&action=update&id=$setting->id' name='formUpload' method='post'>";
 
 			switch ($setting->name) {
-				case 'screen size':
-					$screen_size = explode('x', $setting->value, 2);
-					$x = $screen_size[0];
-					$y = $screen_size[1];
-					$html .= "<div><label>Screen width: </label><input type='text' name='x' value='$x'></div>" .
-							 "<div><label>Screen height: </label><input type='text' name='y' value='$y'></div>";
+				case 'slide_duration':
+					$possible_durations = ['5', '10', '15', '20'];
+					foreach ($possible_durations as $duration) {
+						$html .= "<div class='slide_duration'><input type='radio' name='value' value='$duration'";
+						$html .= ($setting->value == $duration) ? " checked>" : ">";
+						$html .= "$duration seconds</div>";
+					}
 					break;
 				default:
 					$html .= "<input type='text' name='value' value='$setting->value'>";

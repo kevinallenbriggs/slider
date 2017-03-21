@@ -326,10 +326,15 @@ label {
   width: 40%;
   margin: 0 0 0 2em;
 }
+
 #settingImage {
   max-width: 12em;
   float: left;
   padding: 5em 0 0 0;
+}
+
+.slide_duration {
+  display: block;
 }
 
 
