@@ -5,7 +5,16 @@
   <link rel='stylesheet' type='text/css' href='views/style.css'>
   <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
 
-  <meta http-equiv="refresh" content="<?php echo 30 * 60; ?>" >
+  <?php
+    include_once('models/setting.php');
+    $refresh_setting_id = null;
+    $settings = Setting::all();
+    foreach ($settings as $setting) {
+      if ($setting->name == 'refresh_rate') $refresh_setting_id = $setting->id;
+    }
+    $refresh_interval = Setting::find($refresh_setting_id)->value;
+  ?>
+  <meta http-equiv="refresh" content="<?php echo $refresh_interval; ?>" >
 
   </head>
   <body>

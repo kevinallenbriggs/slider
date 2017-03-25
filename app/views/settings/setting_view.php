@@ -32,6 +32,14 @@
 						$html .= "$duration seconds</div>";
 					}
 					break;
+				case 'refresh_rate':
+					$possible_values = ['5', '10', '30', '60'];
+					foreach ($possible_values as $value) {
+						$html .= "<div><input type='radio' name='value' value='$value'";
+							$html .= ($setting->value == $value) ? " checked>" : ">";
+							$html .= "$value minutes</div>";
+					}
+					break;
 				default:
 					$html .= "<input type='text' name='value' value='$setting->value'>";
 					break;
