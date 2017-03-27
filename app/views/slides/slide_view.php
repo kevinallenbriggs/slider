@@ -79,7 +79,7 @@ EOT;
 					</div>
 				</form>
 			</div>
-			<img class='slideImage' src='<?php echo 'uploads/' . $slide->filename; ?>' >
+			<img class='slideImage' src='<?php echo 'uploads/' . $slide->filename; ?>' style='<?php echo ($slide->landscape ? "width:60%" : "height:80%"); ?>'>
 			<script>
 				slide_options = document.getElementById('slideOptions');
 				slide_options.btnSubmit.addEventListener("click", function(e) {
