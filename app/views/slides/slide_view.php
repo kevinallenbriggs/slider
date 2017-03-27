@@ -7,7 +7,7 @@
 		public static function index($slides) {
 			echo "<ul id='slideList'>";
 			foreach($slides as $slide) {
-				echo  "<li class='slide'><a href='?controller=slides&action=edit&id=$slide->id'><img src='uploads/$slide->filename' class='thumbnail'>";
+				echo  "<li class='slide'><a href='?controller=slides&action=edit&id=$slide->id'><img src='uploads/$slide->filename' class='thumbnail' style='" . ($slide->landscape ? "width:75%" : "height:100%") . "'>";
 				if ($slide->published && (strtotime($slide->expires) - time() > 0 || $slide->expires == '0000-00-00')) echo "<img src='assets/checkmark.png' class='checkmark'>";
 				echo "$slide->name</a></li>";
 			}
@@ -79,7 +79,7 @@ EOT;
 					</div>
 				</form>
 			</div>
-			<img class='slideImage' src='<?php echo 'uploads/' . $slide->filename; ?>'>
+			<img class='slideImage' src='<?php echo 'uploads/' . $slide->filename; ?>' >
 			<script>
 				slide_options = document.getElementById('slideOptions');
 				slide_options.btnSubmit.addEventListener("click", function(e) {
