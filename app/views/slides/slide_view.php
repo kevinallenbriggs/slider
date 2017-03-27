@@ -80,7 +80,15 @@ EOT;
 				</form>
 			</div>
 			<img class='slideImage' src='<?php echo 'uploads/' . $slide->filename; ?>'>
-			<script src="views/slides/slide_view.js"></script>
+			<script>
+				slide_options = document.getElementById('slideOptions');
+				slide_options.btnSubmit.addEventListener("click", function(e) {
+					e.preventDefault();
+					var caption = slide_options.caption;
+					if (caption.value == 'If you want to overlay the image with any text, enter it here.') caption.value = null;
+					slide_options.submit();
+				});
+			</script>
 			<?php
 		}
 
@@ -90,23 +98,28 @@ EOT;
 
 			$numSlides = count($slides);
 			$i = 1;
-			echo '<div class="slideshow-container">';
+			$html = '<div class="slideshow-container">';
 			
 			foreach ($slides as $slide) {
 				if ((strtotime($slide->expires) - time() > 0 || $slide->expires == '0000-00-00') && $slide->published) {
-					echo '<div class="mySlides fade">' .
-						 "<img src='uploads/$slide->filename'>" .
-						 "<div class='caption'>$slide->caption</div>" .
-						 "</div>";
+					$html .= '<div class="mySlides fade">' .
+							 "<img src='uploads/$slide->filename'" .
+							 ($slide->landscape ? " style='height:600px'" : " style='width:1024px'") . ">" .
+							 "<div class='caption'>$slide->caption</div>" .
+						 	 "</div>";
 					$i++;
 				}
 			}
 
-			if ($i <= 1) echo "<div class='noSlides'>There are no slides set to display.<br>Check to make sure slides are published and not expired.</div>"
+			if ($i <= 1) $html .= "<div class='noSlides'>There are no slides set to display.<br>Check to make sure slides are published and not expired.</div>";
+			
+			echo $html;
+
 			?>
 
 			</div> <!-- .slideshow-container -->
 			<script>var duration = <?php echo $duration; ?>;</script>
+			<script>var landscapes_array = <?php ?></script>
 			<script src="views/slides/slider.js"></script>
 
 			<?php
