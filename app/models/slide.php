@@ -11,6 +11,7 @@
     public $expires;
     public $tmp_name;
     public $size;
+    public $landscape;
 
 
     /**
@@ -23,8 +24,13 @@
         $this->name = $params;
       } else if (is_array($params)) {    // an array of property values was supplied
          foreach ($params as $key => $value) {
-          isset($params[$key]) ? $this->$key = $value : '';
+          if (isset($params[$key])) $this->$key = $value;
          }
+      }
+
+      // set default value for landscape
+      if (!isset($this->landscape)) {
+        $this->landscape = false;
       }
     }
 
@@ -50,7 +56,8 @@
 	        				             'caption'			 =>	$slide['caption'],
 	        				             'filename'      =>	$slide['filename'],
 	        				             'published'	   =>	$slide['published'],
-	        				             'expires'       =>	$slide['expires']);
+	        				             'expires'       =>	$slide['expires'],
+                               'landscape'     => $slide['landscape']);
 			
 			         // create the Slide object and add it to the array of results to return
 			         $list[] = new Slide($params);
@@ -110,6 +117,14 @@
         if (file_exists($this->tmp_name) && !move_uploaded_file($this->tmp_name, "uploads/$this->filename")) {
           throw new Exception('Could not move file');
         }
+
+        // get the image properties so we can determine orientation
+        $imagick = new imagick("uploads/$this->filename");
+        if ($imagick->getImageWidth() > $imagick->getImageHeight()) {
+          $this->landscape = true;
+        }
+
+
         unset($this->tmp_name);
       } catch (Exception $e) {
         return $e->getMessage();
