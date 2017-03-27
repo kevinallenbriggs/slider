@@ -60,6 +60,11 @@ EOT;
 						<textarea class='input' name='caption' onfocus='if(this.value == "<?php echo $default_value; ?>") this.value=""; this.onfocus=null;'><?php echo $default_value; ?></textarea>
 					</div>
 					<div>
+						<label for='orientation'>Orientation: </label>
+						<input class='input' type="radio" name='landscape' value='1' disabled <?php if ($slide->landscape) echo 'checked'; ?> >Landscape
+						<input class='input' type="radio" name='landscape' value='0' disabled <?php if (!$slide->landscape) echo 'checked'; ?> >Portrait
+					</div>
+					<div>
 						<label>Size: </label><span> <?php echo round($slide->size/1024/1024, 2, PHP_ROUND_HALF_UP); ?> MB</span>
 					</div>
 					<div>
